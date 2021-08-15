@@ -1,12 +1,34 @@
-from flask import Flask
-
+from flask import Flask, redirect, url_for, render_template, request
+from grammar import parse as parseC3D
 app = Flask(__name__)
 
-
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+tmp_val=''
 
 
-if __name__ == '__main__':
-    app.run()
+@app.route("/")# de esta forma le indicamos la ruta para acceder a esta pagina. 'Decoramos' la funcion.
+def home():
+    return render_template('index.html')
+
+@app.route("/analyze", methods=["POST","GET"])
+def analyze():
+    if request.method == "POST":
+        inpt = request.form["inpt"];
+        global tmp_val
+        tmp_val=inpt
+        return redirect(url_for("output"))
+    else:
+        return render_template('analyze.html', initial="3*2*(2+5)==15|2+3*4/(3+1)==10 & 6*7/(8+1)==10")
+
+@app.route('/output')
+def output():
+    global tmp_val
+    result = parseC3D(tmp_val)
+    return render_template('output.html', input=result)
+
+@app.route("/report")# de esta forma le indicamos la ruta para acceder a esta pagina. 'Decoramos' la funcion.
+def report():
+    # TODO:misma pagina para las tablas y generar png del ast
+    return render_template('report.html')
+
+if __name__ == "__main__":
+    app.run(debug=True)#para que se actualice al detectar cambios
