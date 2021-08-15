@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Report Page{% endblock %}
+
+{% block content %}
+
+<main role="main" class="container p-5">
+
+    <form action="#" method="POST">
+    <div class="p-5 bg-light border  rounded-3">
+        <h1>Reportes del ultimo analisis</h1>
+        <p>
+            A continuacion se muestran los reportes generados por el mas reciente analisis.
+        </p>
+        <button type="submit" class="btn btn-primary">Errores</button>&emsp;
+        <button type="submit" class="btn btn-primary">Tabla de Simbolos</button>&emsp;
+        <button type="submit" class="btn btn-primary">AST</button>
+    </div>
+        <small class="text-primary">OLC2</small>
+    </form>
+
+
+</main>
+
+{% endblock %}
