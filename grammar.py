@@ -179,38 +179,26 @@ def t_error(t):
 # CONSTRUYENDO EL ANALIZADOR LEXICO==========
 lexer = lex.lex()
 
-
-
-def parse(input):
-
-    # Give the lexer some input
-    lexer.input(input)
-
-    # Tokenize
-    while True:
-        tok = lexer.token()
-        if not tok:
-            break  # No more input
-        print(tok)
-
-    return "ccc"
-
-"""
-
-
 # ASOCIACION DE OPERADORES Y PRECEDENCIA
 precedence = (
-    ('left', 'OR'),
-    ('left', 'AND'),
-    ('left', 'IGIG', 'DIFDE'),
-    ('nonassoc', 'MEN', 'MAY'),
+    # ('right', IGUAL),
+    # ('right', TERNARIO),
+    ('right', 'OR'),  # TODO: el OR y AND son left pero en Julia aparecen right
+    ('right', 'AND'),
+    ('nonassoc', 'DIFERENTE', 'IGUALIGUAL', 'MENORIGUAL', 'MAYORIGUAL', 'MENOR', 'MAYOR'),
+    # (left, DOSPUNTOS),
     ('left', 'MAS', 'MENOS'),
-    ('left', 'POR', 'DIV'),
-    ('right', 'UMENOS'),
-    ('left', 'PARIZQ', 'PARDER'),
+    ('left', 'POR', 'DIV', 'MODULO'),
+    # ('right', 'UMENOS'),
+    ('right', 'POTENCIA'),
+    ('right', 'NOT')
+    # ('left', 'PUNTO', 'DOSPUNTODOSPUNTOS'),
 )
 
 # DEFINICION DE GRAMATICA
+def p_init(t):
+    'INICIO : STRING'
+    return t[1]
 
 def p_error(t):
     print("Error sintáctico en '%s'" % str(t))
@@ -218,6 +206,20 @@ def p_error(t):
 # CONSTRUYENDO EL ANALIZADOR SINTACTICO========
 parser = yacc.yacc()
 
+def parse(input):
+    # Give the lexer some input
+    lexer.input(input)
+    # Tokenize
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break  # No more input
+        print(tok)
+
+    cad = parser.parse(input)  # TODO: porque ingresar al cad[x]?
+    return str(cad)
+
+"""
 def parse(input):
     global contTemp
     global contEtq

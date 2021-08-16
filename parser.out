@@ -1,700 +1,174 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
+Unused terminals:
+
+    AND
+    BREAK
+    CADENA
+    CARACTER
+    CHAR
+    COMA
+    CONTINUE
+    CORDER
+    CORIZQ
+    COS
+    DECIMAL
+    DIFERENTE
+    DIV
+    DOLAR
+    DOSPUNTOS
+    DOSPUNTOSDOSPUNTOS
+    ELSE
+    ELSEIF
+    END
+    ENTERO
+    FALSE
+    FLOAT
+    FLOAT64
+    FOR
+    FUNCTION
+    GLOBAL
+    ID
+    IF
+    IGUAL
+    IGUALIGUAL
+    IN
+    INT64
+    LOCAL
+    LOG
+    LOG10
+    LOWERCASE
+    MAS
+    MAYOR
+    MAYORIGUAL
+    MENOR
+    MENORIGUAL
+    MENOS
+    MODULO
+    MUTABLE
+    NOT
+    NULO
+    OR
+    PARDER
+    PARIZQ
+    PARSE
+    POR
+    POTENCIA
+    PRINT
+    PRINTLN
+    PUNTO
+    PUNTOYCOMA
+    RETURN
+    SIN
+    SQRT
+    STRUCT
+    TAN
+    TRUE
+    TRUNC
+    TYPEOF
+    UPPERCASE
+    WHILE
+
 Grammar
 
-Rule 0     S' -> l
-Rule 1     l -> l OR m
-Rule 2     l -> m
-Rule 3     m -> m AND r
-Rule 4     m -> r
-Rule 5     r -> e MAY e
-Rule 6     r -> e MEN e
-Rule 7     r -> e IGIG e
-Rule 8     r -> e DIFDE e
-Rule 9     r -> RTRUE
-Rule 10    r -> RFALSE
-Rule 11    r -> e
-Rule 12    e -> e MAS e
-Rule 13    e -> e MENOS e
-Rule 14    e -> e POR e
-Rule 15    e -> e DIV e
-Rule 16    e -> MENOS e
-Rule 17    e -> PARIZQ e PARDER
-Rule 18    e -> ENTERO
-Rule 19    e -> DECIMAL
+Rule 0     S' -> INICIO
+Rule 1     INICIO -> STRING
 
 Terminals, with rules where they appear
 
-AND                  : 3
-DECIMAL              : 19
-DIFDE                : 8
-DIV                  : 15
-ENTERO               : 18
-IGIG                 : 7
-MAS                  : 12
-MAY                  : 5
-MEN                  : 6
-MENOS                : 13 16
-OR                   : 1
-PARDER               : 17
-PARIZQ               : 17
-POR                  : 14
-RFALSE               : 10
-RTRUE                : 9
+AND                  : 
+BREAK                : 
+CADENA               : 
+CARACTER             : 
+CHAR                 : 
+COMA                 : 
+CONTINUE             : 
+CORDER               : 
+CORIZQ               : 
+COS                  : 
+DECIMAL              : 
+DIFERENTE            : 
+DIV                  : 
+DOLAR                : 
+DOSPUNTOS            : 
+DOSPUNTOSDOSPUNTOS   : 
+ELSE                 : 
+ELSEIF               : 
+END                  : 
+ENTERO               : 
+FALSE                : 
+FLOAT                : 
+FLOAT64              : 
+FOR                  : 
+FUNCTION             : 
+GLOBAL               : 
+ID                   : 
+IF                   : 
+IGUAL                : 
+IGUALIGUAL           : 
+IN                   : 
+INT64                : 
+LOCAL                : 
+LOG                  : 
+LOG10                : 
+LOWERCASE            : 
+MAS                  : 
+MAYOR                : 
+MAYORIGUAL           : 
+MENOR                : 
+MENORIGUAL           : 
+MENOS                : 
+MODULO               : 
+MUTABLE              : 
+NOT                  : 
+NULO                 : 
+OR                   : 
+PARDER               : 
+PARIZQ               : 
+PARSE                : 
+POR                  : 
+POTENCIA             : 
+PRINT                : 
+PRINTLN              : 
+PUNTO                : 
+PUNTOYCOMA           : 
+RETURN               : 
+SIN                  : 
+SQRT                 : 
+STRING               : 1
+STRUCT               : 
+TAN                  : 
+TRUE                 : 
+TRUNC                : 
+TYPEOF               : 
+UPPERCASE            : 
+WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-e                    : 5 5 6 6 7 7 8 8 11 12 12 13 13 14 14 15 15 16 17
-l                    : 1 0
-m                    : 1 2 3
-r                    : 3 4
+INICIO               : 0
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . l
-    (1) l -> . l OR m
-    (2) l -> . m
-    (3) m -> . m AND r
-    (4) m -> . r
-    (5) r -> . e MAY e
-    (6) r -> . e MEN e
-    (7) r -> . e IGIG e
-    (8) r -> . e DIFDE e
-    (9) r -> . RTRUE
-    (10) r -> . RFALSE
-    (11) r -> . e
-    (12) e -> . e MAS e
-    (13) e -> . e MENOS e
-    (14) e -> . e POR e
-    (15) e -> . e DIV e
-    (16) e -> . MENOS e
-    (17) e -> . PARIZQ e PARDER
-    (18) e -> . ENTERO
-    (19) e -> . DECIMAL
+    (0) S' -> . INICIO
+    (1) INICIO -> . STRING
 
-    RTRUE           shift and go to state 5
-    RFALSE          shift and go to state 6
-    MENOS           shift and go to state 7
-    PARIZQ          shift and go to state 8
-    ENTERO          shift and go to state 9
-    DECIMAL         shift and go to state 10
+    STRING          shift and go to state 2
 
-    l                              shift and go to state 1
-    m                              shift and go to state 2
-    r                              shift and go to state 3
-    e                              shift and go to state 4
+    INICIO                         shift and go to state 1
 
 state 1
 
-    (0) S' -> l .
-    (1) l -> l . OR m
+    (0) S' -> INICIO .
 
-    OR              shift and go to state 11
 
 
 state 2
 
-    (2) l -> m .
-    (3) m -> m . AND r
+    (1) INICIO -> STRING .
 
-    OR              reduce using rule 2 (l -> m .)
-    $end            reduce using rule 2 (l -> m .)
-    AND             shift and go to state 12
-
-
-state 3
-
-    (4) m -> r .
-
-    AND             reduce using rule 4 (m -> r .)
-    OR              reduce using rule 4 (m -> r .)
-    $end            reduce using rule 4 (m -> r .)
-
-
-state 4
-
-    (5) r -> e . MAY e
-    (6) r -> e . MEN e
-    (7) r -> e . IGIG e
-    (8) r -> e . DIFDE e
-    (11) r -> e .
-    (12) e -> e . MAS e
-    (13) e -> e . MENOS e
-    (14) e -> e . POR e
-    (15) e -> e . DIV e
-
-    MAY             shift and go to state 13
-    MEN             shift and go to state 14
-    IGIG            shift and go to state 15
-    DIFDE           shift and go to state 16
-    AND             reduce using rule 11 (r -> e .)
-    OR              reduce using rule 11 (r -> e .)
-    $end            reduce using rule 11 (r -> e .)
-    MAS             shift and go to state 17
-    MENOS           shift and go to state 18
-    POR             shift and go to state 19
-    DIV             shift and go to state 20
-
-
-state 5
-
-    (9) r -> RTRUE .
-
-    AND             reduce using rule 9 (r -> RTRUE .)
-    OR              reduce using rule 9 (r -> RTRUE .)
-    $end            reduce using rule 9 (r -> RTRUE .)
-
-
-state 6
-
-    (10) r -> RFALSE .
-
-    AND             reduce using rule 10 (r -> RFALSE .)
-    OR              reduce using rule 10 (r -> RFALSE .)
-    $end            reduce using rule 10 (r -> RFALSE .)
-
-
-state 7
-
-    (16) e -> MENOS . e
-    (12) e -> . e MAS e
-    (13) e -> . e MENOS e
-    (14) e -> . e POR e
-    (15) e -> . e DIV e
-    (16) e -> . MENOS e
-    (17) e -> . PARIZQ e PARDER
-    (18) e -> . ENTERO
-    (19) e -> . DECIMAL
-
-    MENOS           shift and go to state 7
-    PARIZQ          shift and go to state 8
-    ENTERO          shift and go to state 9
-    DECIMAL         shift and go to state 10
-
-    e                              shift and go to state 21
-
-state 8
-
-    (17) e -> PARIZQ . e PARDER
-    (12) e -> . e MAS e
-    (13) e -> . e MENOS e
-    (14) e -> . e POR e
-    (15) e -> . e DIV e
-    (16) e -> . MENOS e
-    (17) e -> . PARIZQ e PARDER
-    (18) e -> . ENTERO
-    (19) e -> . DECIMAL
-
-    MENOS           shift and go to state 7
-    PARIZQ          shift and go to state 8
-    ENTERO          shift and go to state 9
-    DECIMAL         shift and go to state 10
-
-    e                              shift and go to state 22
-
-state 9
-
-    (18) e -> ENTERO .
-
-    MAY             reduce using rule 18 (e -> ENTERO .)
-    MEN             reduce using rule 18 (e -> ENTERO .)
-    IGIG            reduce using rule 18 (e -> ENTERO .)
-    DIFDE           reduce using rule 18 (e -> ENTERO .)
-    MAS             reduce using rule 18 (e -> ENTERO .)
-    MENOS           reduce using rule 18 (e -> ENTERO .)
-    POR             reduce using rule 18 (e -> ENTERO .)
-    DIV             reduce using rule 18 (e -> ENTERO .)
-    AND             reduce using rule 18 (e -> ENTERO .)
-    OR              reduce using rule 18 (e -> ENTERO .)
-    $end            reduce using rule 18 (e -> ENTERO .)
-    PARDER          reduce using rule 18 (e -> ENTERO .)
-
-
-state 10
-
-    (19) e -> DECIMAL .
-
-    MAY             reduce using rule 19 (e -> DECIMAL .)
-    MEN             reduce using rule 19 (e -> DECIMAL .)
-    IGIG            reduce using rule 19 (e -> DECIMAL .)
-    DIFDE           reduce using rule 19 (e -> DECIMAL .)
-    MAS             reduce using rule 19 (e -> DECIMAL .)
-    MENOS           reduce using rule 19 (e -> DECIMAL .)
-    POR             reduce using rule 19 (e -> DECIMAL .)
-    DIV             reduce using rule 19 (e -> DECIMAL .)
-    AND             reduce using rule 19 (e -> DECIMAL .)
-    OR              reduce using rule 19 (e -> DECIMAL .)
-    $end            reduce using rule 19 (e -> DECIMAL .)
-    PARDER          reduce using rule 19 (e -> DECIMAL .)
-
-
-state 11
-
-    (1) l -> l OR . m
-    (3) m -> . m AND r
-    (4) m -> . r
-    (5) r -> . e MAY e
-    (6) r -> . e MEN e
-    (7) r -> . e IGIG e
-    (8) r -> . e DIFDE e
-    (9) r -> . RTRUE
-    (10) r -> . RFALSE
-    (11) r -> . e
-    (12) e -> . e MAS e
-    (13) e -> . e MENOS e
-    (14) e -> . e POR e
-    (15) e -> . e DIV e
-    (16) e -> . MENOS e
-    (17) e -> . PARIZQ e PARDER
-    (18) e -> . ENTERO
-    (19) e -> . DECIMAL
-
-    RTRUE           shift and go to state 5
-    RFALSE          shift and go to state 6
-    MENOS           shift and go to state 7
-    PARIZQ          shift and go to state 8
-    ENTERO          shift and go to state 9
-    DECIMAL         shift and go to state 10
-
-    m                              shift and go to state 23
-    r                              shift and go to state 3
-    e                              shift and go to state 4
-
-state 12
-
-    (3) m -> m AND . r
-    (5) r -> . e MAY e
-    (6) r -> . e MEN e
-    (7) r -> . e IGIG e
-    (8) r -> . e DIFDE e
-    (9) r -> . RTRUE
-    (10) r -> . RFALSE
-    (11) r -> . e
-    (12) e -> . e MAS e
-    (13) e -> . e MENOS e
-    (14) e -> . e POR e
-    (15) e -> . e DIV e
-    (16) e -> . MENOS e
-    (17) e -> . PARIZQ e PARDER
-    (18) e -> . ENTERO
-    (19) e -> . DECIMAL
-
-    RTRUE           shift and go to state 5
-    RFALSE          shift and go to state 6
-    MENOS           shift and go to state 7
-    PARIZQ          shift and go to state 8
-    ENTERO          shift and go to state 9
-    DECIMAL         shift and go to state 10
-
-    r                              shift and go to state 24
-    e                              shift and go to state 4
-
-state 13
-
-    (5) r -> e MAY . e
-    (12) e -> . e MAS e
-    (13) e -> . e MENOS e
-    (14) e -> . e POR e
-    (15) e -> . e DIV e
-    (16) e -> . MENOS e
-    (17) e -> . PARIZQ e PARDER
-    (18) e -> . ENTERO
-    (19) e -> . DECIMAL
-
-    MENOS           shift and go to state 7
-    PARIZQ          shift and go to state 8
-    ENTERO          shift and go to state 9
-    DECIMAL         shift and go to state 10
-
-    e                              shift and go to state 25
-
-state 14
-
-    (6) r -> e MEN . e
-    (12) e -> . e MAS e
-    (13) e -> . e MENOS e
-    (14) e -> . e POR e
-    (15) e -> . e DIV e
-    (16) e -> . MENOS e
-    (17) e -> . PARIZQ e PARDER
-    (18) e -> . ENTERO
-    (19) e -> . DECIMAL
-
-    MENOS           shift and go to state 7
-    PARIZQ          shift and go to state 8
-    ENTERO          shift and go to state 9
-    DECIMAL         shift and go to state 10
-
-    e                              shift and go to state 26
-
-state 15
-
-    (7) r -> e IGIG . e
-    (12) e -> . e MAS e
-    (13) e -> . e MENOS e
-    (14) e -> . e POR e
-    (15) e -> . e DIV e
-    (16) e -> . MENOS e
-    (17) e -> . PARIZQ e PARDER
-    (18) e -> . ENTERO
-    (19) e -> . DECIMAL
-
-    MENOS           shift and go to state 7
-    PARIZQ          shift and go to state 8
-    ENTERO          shift and go to state 9
-    DECIMAL         shift and go to state 10
-
-    e                              shift and go to state 27
-
-state 16
-
-    (8) r -> e DIFDE . e
-    (12) e -> . e MAS e
-    (13) e -> . e MENOS e
-    (14) e -> . e POR e
-    (15) e -> . e DIV e
-    (16) e -> . MENOS e
-    (17) e -> . PARIZQ e PARDER
-    (18) e -> . ENTERO
-    (19) e -> . DECIMAL
-
-    MENOS           shift and go to state 7
-    PARIZQ          shift and go to state 8
-    ENTERO          shift and go to state 9
-    DECIMAL         shift and go to state 10
-
-    e                              shift and go to state 28
-
-state 17
-
-    (12) e -> e MAS . e
-    (12) e -> . e MAS e
-    (13) e -> . e MENOS e
-    (14) e -> . e POR e
-    (15) e -> . e DIV e
-    (16) e -> . MENOS e
-    (17) e -> . PARIZQ e PARDER
-    (18) e -> . ENTERO
-    (19) e -> . DECIMAL
-
-    MENOS           shift and go to state 7
-    PARIZQ          shift and go to state 8
-    ENTERO          shift and go to state 9
-    DECIMAL         shift and go to state 10
-
-    e                              shift and go to state 29
-
-state 18
-
-    (13) e -> e MENOS . e
-    (12) e -> . e MAS e
-    (13) e -> . e MENOS e
-    (14) e -> . e POR e
-    (15) e -> . e DIV e
-    (16) e -> . MENOS e
-    (17) e -> . PARIZQ e PARDER
-    (18) e -> . ENTERO
-    (19) e -> . DECIMAL
-
-    MENOS           shift and go to state 7
-    PARIZQ          shift and go to state 8
-    ENTERO          shift and go to state 9
-    DECIMAL         shift and go to state 10
-
-    e                              shift and go to state 30
-
-state 19
-
-    (14) e -> e POR . e
-    (12) e -> . e MAS e
-    (13) e -> . e MENOS e
-    (14) e -> . e POR e
-    (15) e -> . e DIV e
-    (16) e -> . MENOS e
-    (17) e -> . PARIZQ e PARDER
-    (18) e -> . ENTERO
-    (19) e -> . DECIMAL
-
-    MENOS           shift and go to state 7
-    PARIZQ          shift and go to state 8
-    ENTERO          shift and go to state 9
-    DECIMAL         shift and go to state 10
-
-    e                              shift and go to state 31
-
-state 20
-
-    (15) e -> e DIV . e
-    (12) e -> . e MAS e
-    (13) e -> . e MENOS e
-    (14) e -> . e POR e
-    (15) e -> . e DIV e
-    (16) e -> . MENOS e
-    (17) e -> . PARIZQ e PARDER
-    (18) e -> . ENTERO
-    (19) e -> . DECIMAL
-
-    MENOS           shift and go to state 7
-    PARIZQ          shift and go to state 8
-    ENTERO          shift and go to state 9
-    DECIMAL         shift and go to state 10
-
-    e                              shift and go to state 32
-
-state 21
-
-    (16) e -> MENOS e .
-    (12) e -> e . MAS e
-    (13) e -> e . MENOS e
-    (14) e -> e . POR e
-    (15) e -> e . DIV e
-
-    MAY             reduce using rule 16 (e -> MENOS e .)
-    MEN             reduce using rule 16 (e -> MENOS e .)
-    IGIG            reduce using rule 16 (e -> MENOS e .)
-    DIFDE           reduce using rule 16 (e -> MENOS e .)
-    MAS             reduce using rule 16 (e -> MENOS e .)
-    MENOS           reduce using rule 16 (e -> MENOS e .)
-    POR             reduce using rule 16 (e -> MENOS e .)
-    DIV             reduce using rule 16 (e -> MENOS e .)
-    AND             reduce using rule 16 (e -> MENOS e .)
-    OR              reduce using rule 16 (e -> MENOS e .)
-    $end            reduce using rule 16 (e -> MENOS e .)
-    PARDER          reduce using rule 16 (e -> MENOS e .)
-
-  ! MAS             [ shift and go to state 17 ]
-  ! MENOS           [ shift and go to state 18 ]
-  ! POR             [ shift and go to state 19 ]
-  ! DIV             [ shift and go to state 20 ]
-
-
-state 22
-
-    (17) e -> PARIZQ e . PARDER
-    (12) e -> e . MAS e
-    (13) e -> e . MENOS e
-    (14) e -> e . POR e
-    (15) e -> e . DIV e
-
-    PARDER          shift and go to state 33
-    MAS             shift and go to state 17
-    MENOS           shift and go to state 18
-    POR             shift and go to state 19
-    DIV             shift and go to state 20
-
-
-state 23
-
-    (1) l -> l OR m .
-    (3) m -> m . AND r
-
-    OR              reduce using rule 1 (l -> l OR m .)
-    $end            reduce using rule 1 (l -> l OR m .)
-    AND             shift and go to state 12
-
-
-state 24
-
-    (3) m -> m AND r .
-
-    AND             reduce using rule 3 (m -> m AND r .)
-    OR              reduce using rule 3 (m -> m AND r .)
-    $end            reduce using rule 3 (m -> m AND r .)
-
-
-state 25
-
-    (5) r -> e MAY e .
-    (12) e -> e . MAS e
-    (13) e -> e . MENOS e
-    (14) e -> e . POR e
-    (15) e -> e . DIV e
-
-    AND             reduce using rule 5 (r -> e MAY e .)
-    OR              reduce using rule 5 (r -> e MAY e .)
-    $end            reduce using rule 5 (r -> e MAY e .)
-    MAS             shift and go to state 17
-    MENOS           shift and go to state 18
-    POR             shift and go to state 19
-    DIV             shift and go to state 20
-
-
-state 26
-
-    (6) r -> e MEN e .
-    (12) e -> e . MAS e
-    (13) e -> e . MENOS e
-    (14) e -> e . POR e
-    (15) e -> e . DIV e
-
-    AND             reduce using rule 6 (r -> e MEN e .)
-    OR              reduce using rule 6 (r -> e MEN e .)
-    $end            reduce using rule 6 (r -> e MEN e .)
-    MAS             shift and go to state 17
-    MENOS           shift and go to state 18
-    POR             shift and go to state 19
-    DIV             shift and go to state 20
-
-
-state 27
-
-    (7) r -> e IGIG e .
-    (12) e -> e . MAS e
-    (13) e -> e . MENOS e
-    (14) e -> e . POR e
-    (15) e -> e . DIV e
-
-    AND             reduce using rule 7 (r -> e IGIG e .)
-    OR              reduce using rule 7 (r -> e IGIG e .)
-    $end            reduce using rule 7 (r -> e IGIG e .)
-    MAS             shift and go to state 17
-    MENOS           shift and go to state 18
-    POR             shift and go to state 19
-    DIV             shift and go to state 20
-
-
-state 28
-
-    (8) r -> e DIFDE e .
-    (12) e -> e . MAS e
-    (13) e -> e . MENOS e
-    (14) e -> e . POR e
-    (15) e -> e . DIV e
-
-    AND             reduce using rule 8 (r -> e DIFDE e .)
-    OR              reduce using rule 8 (r -> e DIFDE e .)
-    $end            reduce using rule 8 (r -> e DIFDE e .)
-    MAS             shift and go to state 17
-    MENOS           shift and go to state 18
-    POR             shift and go to state 19
-    DIV             shift and go to state 20
-
-
-state 29
-
-    (12) e -> e MAS e .
-    (12) e -> e . MAS e
-    (13) e -> e . MENOS e
-    (14) e -> e . POR e
-    (15) e -> e . DIV e
-
-    MAY             reduce using rule 12 (e -> e MAS e .)
-    MEN             reduce using rule 12 (e -> e MAS e .)
-    IGIG            reduce using rule 12 (e -> e MAS e .)
-    DIFDE           reduce using rule 12 (e -> e MAS e .)
-    MAS             reduce using rule 12 (e -> e MAS e .)
-    MENOS           reduce using rule 12 (e -> e MAS e .)
-    AND             reduce using rule 12 (e -> e MAS e .)
-    OR              reduce using rule 12 (e -> e MAS e .)
-    $end            reduce using rule 12 (e -> e MAS e .)
-    PARDER          reduce using rule 12 (e -> e MAS e .)
-    POR             shift and go to state 19
-    DIV             shift and go to state 20
-
-  ! POR             [ reduce using rule 12 (e -> e MAS e .) ]
-  ! DIV             [ reduce using rule 12 (e -> e MAS e .) ]
-  ! MAS             [ shift and go to state 17 ]
-  ! MENOS           [ shift and go to state 18 ]
-
-
-state 30
-
-    (13) e -> e MENOS e .
-    (12) e -> e . MAS e
-    (13) e -> e . MENOS e
-    (14) e -> e . POR e
-    (15) e -> e . DIV e
-
-    MAY             reduce using rule 13 (e -> e MENOS e .)
-    MEN             reduce using rule 13 (e -> e MENOS e .)
-    IGIG            reduce using rule 13 (e -> e MENOS e .)
-    DIFDE           reduce using rule 13 (e -> e MENOS e .)
-    MAS             reduce using rule 13 (e -> e MENOS e .)
-    MENOS           reduce using rule 13 (e -> e MENOS e .)
-    AND             reduce using rule 13 (e -> e MENOS e .)
-    OR              reduce using rule 13 (e -> e MENOS e .)
-    $end            reduce using rule 13 (e -> e MENOS e .)
-    PARDER          reduce using rule 13 (e -> e MENOS e .)
-    POR             shift and go to state 19
-    DIV             shift and go to state 20
-
-  ! POR             [ reduce using rule 13 (e -> e MENOS e .) ]
-  ! DIV             [ reduce using rule 13 (e -> e MENOS e .) ]
-  ! MAS             [ shift and go to state 17 ]
-  ! MENOS           [ shift and go to state 18 ]
-
-
-state 31
-
-    (14) e -> e POR e .
-    (12) e -> e . MAS e
-    (13) e -> e . MENOS e
-    (14) e -> e . POR e
-    (15) e -> e . DIV e
-
-    MAY             reduce using rule 14 (e -> e POR e .)
-    MEN             reduce using rule 14 (e -> e POR e .)
-    IGIG            reduce using rule 14 (e -> e POR e .)
-    DIFDE           reduce using rule 14 (e -> e POR e .)
-    MAS             reduce using rule 14 (e -> e POR e .)
-    MENOS           reduce using rule 14 (e -> e POR e .)
-    POR             reduce using rule 14 (e -> e POR e .)
-    DIV             reduce using rule 14 (e -> e POR e .)
-    AND             reduce using rule 14 (e -> e POR e .)
-    OR              reduce using rule 14 (e -> e POR e .)
-    $end            reduce using rule 14 (e -> e POR e .)
-    PARDER          reduce using rule 14 (e -> e POR e .)
-
-  ! MAS             [ shift and go to state 17 ]
-  ! MENOS           [ shift and go to state 18 ]
-  ! POR             [ shift and go to state 19 ]
-  ! DIV             [ shift and go to state 20 ]
-
-
-state 32
-
-    (15) e -> e DIV e .
-    (12) e -> e . MAS e
-    (13) e -> e . MENOS e
-    (14) e -> e . POR e
-    (15) e -> e . DIV e
-
-    MAY             reduce using rule 15 (e -> e DIV e .)
-    MEN             reduce using rule 15 (e -> e DIV e .)
-    IGIG            reduce using rule 15 (e -> e DIV e .)
-    DIFDE           reduce using rule 15 (e -> e DIV e .)
-    MAS             reduce using rule 15 (e -> e DIV e .)
-    MENOS           reduce using rule 15 (e -> e DIV e .)
-    POR             reduce using rule 15 (e -> e DIV e .)
-    DIV             reduce using rule 15 (e -> e DIV e .)
-    AND             reduce using rule 15 (e -> e DIV e .)
-    OR              reduce using rule 15 (e -> e DIV e .)
-    $end            reduce using rule 15 (e -> e DIV e .)
-    PARDER          reduce using rule 15 (e -> e DIV e .)
-
-  ! MAS             [ shift and go to state 17 ]
-  ! MENOS           [ shift and go to state 18 ]
-  ! POR             [ shift and go to state 19 ]
-  ! DIV             [ shift and go to state 20 ]
-
-
-state 33
-
-    (17) e -> PARIZQ e PARDER .
-
-    MAY             reduce using rule 17 (e -> PARIZQ e PARDER .)
-    MEN             reduce using rule 17 (e -> PARIZQ e PARDER .)
-    IGIG            reduce using rule 17 (e -> PARIZQ e PARDER .)
-    DIFDE           reduce using rule 17 (e -> PARIZQ e PARDER .)
-    MAS             reduce using rule 17 (e -> PARIZQ e PARDER .)
-    MENOS           reduce using rule 17 (e -> PARIZQ e PARDER .)
-    POR             reduce using rule 17 (e -> PARIZQ e PARDER .)
-    DIV             reduce using rule 17 (e -> PARIZQ e PARDER .)
-    AND             reduce using rule 17 (e -> PARIZQ e PARDER .)
-    OR              reduce using rule 17 (e -> PARIZQ e PARDER .)
-    $end            reduce using rule 17 (e -> PARIZQ e PARDER .)
-    PARDER          reduce using rule 17 (e -> PARIZQ e PARDER .)
+    $end            reduce using rule 1 (INICIO -> STRING .)
 
