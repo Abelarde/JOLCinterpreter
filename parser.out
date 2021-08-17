@@ -49,18 +49,14 @@ Unused terminals:
     NOT
     NULO
     OR
-    PARDER
-    PARIZQ
     PARSE
     POR
     POTENCIA
-    PRINT
-    PRINTLN
     PUNTO
-    PUNTOYCOMA
     RETURN
     SIN
     SQRT
+    STRING
     STRUCT
     TAN
     TRUE
@@ -71,8 +67,13 @@ Unused terminals:
 
 Grammar
 
-Rule 0     S' -> INICIO
-Rule 1     INICIO -> STRING
+Rule 0     S' -> inicio
+Rule 1     inicio -> instrucciones
+Rule 2     instrucciones -> instrucciones instruccion
+Rule 3     instrucciones -> instruccion
+Rule 4     instruccion -> print_instr
+Rule 5     print_instr -> PRINT PARIZQ PARDER PUNTOYCOMA
+Rule 6     print_instr -> PRINTLN PARIZQ PARDER PUNTOYCOMA
 
 Terminals, with rules where they appear
 
@@ -123,19 +124,19 @@ MUTABLE              :
 NOT                  : 
 NULO                 : 
 OR                   : 
-PARDER               : 
-PARIZQ               : 
+PARDER               : 5 6
+PARIZQ               : 5 6
 PARSE                : 
 POR                  : 
 POTENCIA             : 
-PRINT                : 
-PRINTLN              : 
+PRINT                : 5
+PRINTLN              : 6
 PUNTO                : 
-PUNTOYCOMA           : 
+PUNTOYCOMA           : 5 6
 RETURN               : 
 SIN                  : 
 SQRT                 : 
-STRING               : 1
+STRING               : 
 STRUCT               : 
 TAN                  : 
 TRUE                 : 
@@ -147,28 +148,135 @@ error                :
 
 Nonterminals, with rules where they appear
 
-INICIO               : 0
+inicio               : 0
+instruccion          : 2 3
+instrucciones        : 1 2
+print_instr          : 4
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . INICIO
-    (1) INICIO -> . STRING
+    (0) S' -> . inicio
+    (1) inicio -> . instrucciones
+    (2) instrucciones -> . instrucciones instruccion
+    (3) instrucciones -> . instruccion
+    (4) instruccion -> . print_instr
+    (5) print_instr -> . PRINT PARIZQ PARDER PUNTOYCOMA
+    (6) print_instr -> . PRINTLN PARIZQ PARDER PUNTOYCOMA
 
-    STRING          shift and go to state 2
+    PRINT           shift and go to state 5
+    PRINTLN         shift and go to state 6
 
-    INICIO                         shift and go to state 1
+    inicio                         shift and go to state 1
+    instrucciones                  shift and go to state 2
+    instruccion                    shift and go to state 3
+    print_instr                    shift and go to state 4
 
 state 1
 
-    (0) S' -> INICIO .
+    (0) S' -> inicio .
 
 
 
 state 2
 
-    (1) INICIO -> STRING .
+    (1) inicio -> instrucciones .
+    (2) instrucciones -> instrucciones . instruccion
+    (4) instruccion -> . print_instr
+    (5) print_instr -> . PRINT PARIZQ PARDER PUNTOYCOMA
+    (6) print_instr -> . PRINTLN PARIZQ PARDER PUNTOYCOMA
 
-    $end            reduce using rule 1 (INICIO -> STRING .)
+    $end            reduce using rule 1 (inicio -> instrucciones .)
+    PRINT           shift and go to state 5
+    PRINTLN         shift and go to state 6
+
+    instruccion                    shift and go to state 7
+    print_instr                    shift and go to state 4
+
+state 3
+
+    (3) instrucciones -> instruccion .
+
+    PRINT           reduce using rule 3 (instrucciones -> instruccion .)
+    PRINTLN         reduce using rule 3 (instrucciones -> instruccion .)
+    $end            reduce using rule 3 (instrucciones -> instruccion .)
+
+
+state 4
+
+    (4) instruccion -> print_instr .
+
+    PRINT           reduce using rule 4 (instruccion -> print_instr .)
+    PRINTLN         reduce using rule 4 (instruccion -> print_instr .)
+    $end            reduce using rule 4 (instruccion -> print_instr .)
+
+
+state 5
+
+    (5) print_instr -> PRINT . PARIZQ PARDER PUNTOYCOMA
+
+    PARIZQ          shift and go to state 8
+
+
+state 6
+
+    (6) print_instr -> PRINTLN . PARIZQ PARDER PUNTOYCOMA
+
+    PARIZQ          shift and go to state 9
+
+
+state 7
+
+    (2) instrucciones -> instrucciones instruccion .
+
+    PRINT           reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    PRINTLN         reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    $end            reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+
+
+state 8
+
+    (5) print_instr -> PRINT PARIZQ . PARDER PUNTOYCOMA
+
+    PARDER          shift and go to state 10
+
+
+state 9
+
+    (6) print_instr -> PRINTLN PARIZQ . PARDER PUNTOYCOMA
+
+    PARDER          shift and go to state 11
+
+
+state 10
+
+    (5) print_instr -> PRINT PARIZQ PARDER . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 12
+
+
+state 11
+
+    (6) print_instr -> PRINTLN PARIZQ PARDER . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 13
+
+
+state 12
+
+    (5) print_instr -> PRINT PARIZQ PARDER PUNTOYCOMA .
+
+    PRINT           reduce using rule 5 (print_instr -> PRINT PARIZQ PARDER PUNTOYCOMA .)
+    PRINTLN         reduce using rule 5 (print_instr -> PRINT PARIZQ PARDER PUNTOYCOMA .)
+    $end            reduce using rule 5 (print_instr -> PRINT PARIZQ PARDER PUNTOYCOMA .)
+
+
+state 13
+
+    (6) print_instr -> PRINTLN PARIZQ PARDER PUNTOYCOMA .
+
+    PRINT           reduce using rule 6 (print_instr -> PRINTLN PARIZQ PARDER PUNTOYCOMA .)
+    PRINTLN         reduce using rule 6 (print_instr -> PRINTLN PARIZQ PARDER PUNTOYCOMA .)
+    $end            reduce using rule 6 (print_instr -> PRINTLN PARIZQ PARDER PUNTOYCOMA .)
 

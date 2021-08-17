@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'rightORrightANDnonassocDIFERENTEIGUALIGUALMENORIGUALMAYORIGUALMENORMAYORleftMASMENOSleftPORDIVMODULOrightPOTENCIArightNOTAND BREAK CADENA CARACTER CHAR COMA CONTINUE CORDER CORIZQ COS DECIMAL DIFERENTE DIV DOLAR DOSPUNTOS DOSPUNTOSDOSPUNTOS ELSE ELSEIF END ENTERO FALSE FLOAT FLOAT64 FOR FUNCTION GLOBAL ID IF IGUAL IGUALIGUAL IN INT64 LOCAL LOG LOG10 LOWERCASE MAS MAYOR MAYORIGUAL MENOR MENORIGUAL MENOS MODULO MUTABLE NOT NULO OR PARDER PARIZQ PARSE POR POTENCIA PRINT PRINTLN PUNTO PUNTOYCOMA RETURN SIN SQRT STRING STRUCT TAN TRUE TRUNC TYPEOF UPPERCASE WHILEINICIO : STRING'
+_lr_signature = 'rightORrightANDnonassocDIFERENTEIGUALIGUALMENORIGUALMAYORIGUALMENORMAYORleftMASMENOSleftPORDIVMODULOrightPOTENCIArightNOTAND BREAK CADENA CARACTER CHAR COMA CONTINUE CORDER CORIZQ COS DECIMAL DIFERENTE DIV DOLAR DOSPUNTOS DOSPUNTOSDOSPUNTOS ELSE ELSEIF END ENTERO FALSE FLOAT FLOAT64 FOR FUNCTION GLOBAL ID IF IGUAL IGUALIGUAL IN INT64 LOCAL LOG LOG10 LOWERCASE MAS MAYOR MAYORIGUAL MENOR MENORIGUAL MENOS MODULO MUTABLE NOT NULO OR PARDER PARIZQ PARSE POR POTENCIA PRINT PRINTLN PUNTO PUNTOYCOMA RETURN SIN SQRT STRING STRUCT TAN TRUE TRUNC TYPEOF UPPERCASE WHILEinicio             : instruccionesinstrucciones      : instrucciones instruccioninstrucciones      : instruccioninstruccion      : print_instrprint_instr        : PRINT PARIZQ PARDER PUNTOYCOMAprint_instr        : PRINTLN PARIZQ PARDER PUNTOYCOMA'
     
-_lr_action_items = {'STRING':([0,],[2,]),'$end':([1,2,],[0,-1,]),}
+_lr_action_items = {'PRINT':([0,2,3,4,7,12,13,],[5,5,-3,-4,-2,-5,-6,]),'PRINTLN':([0,2,3,4,7,12,13,],[6,6,-3,-4,-2,-5,-6,]),'$end':([1,2,3,4,7,12,13,],[0,-1,-3,-4,-2,-5,-6,]),'PARIZQ':([5,6,],[8,9,]),'PARDER':([8,9,],[10,11,]),'PUNTOYCOMA':([10,11,],[12,13,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'INICIO':([0,],[1,]),}
+_lr_goto_items = {'inicio':([0,],[1,]),'instrucciones':([0,],[2,]),'instruccion':([0,2,],[3,7,]),'print_instr':([0,2,],[4,4,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,6 +26,11 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> INICIO","S'",1,None,None,None),
-  ('INICIO -> STRING','INICIO',1,'p_init','grammar.py',200),
+  ("S' -> inicio","S'",1,None,None,None),
+  ('inicio -> instrucciones','inicio',1,'p_init','grammar.py',200),
+  ('instrucciones -> instrucciones instruccion','instrucciones',2,'p_instrucciones_s1','grammar.py',204),
+  ('instrucciones -> instruccion','instrucciones',1,'p_instrucciones_s2','grammar.py',209),
+  ('instruccion -> print_instr','instruccion',1,'p_instruccion_s1','grammar.py',213),
+  ('print_instr -> PRINT PARIZQ PARDER PUNTOYCOMA','print_instr',4,'p_print_instr_s1','grammar.py',216),
+  ('print_instr -> PRINTLN PARIZQ PARDER PUNTOYCOMA','print_instr',4,'p_print_instr_s2','grammar.py',218),
 ]
