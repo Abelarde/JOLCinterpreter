@@ -26,6 +26,10 @@ reservadas = {
     'tan': 'TAN',
     'sqrt': 'SQRT',
 
+    'push': 'PUSH',
+    'pop': 'POP',
+    'length': 'LENGTH',
+
     'global': 'GLOBAL',
     'local': 'LOCAL',
 
@@ -79,7 +83,7 @@ tokens = [
     'AND',
     'NOT',
 
-    'DOLAR',
+    #'DOLAR',
     'PUNTO',
 
     'DECIMAL',
@@ -119,7 +123,7 @@ t_OR = r'\|\|'
 t_AND = r'\&&'
 t_NOT = r'\!'
 
-t_DOLAR = r'\$'
+#t_DOLAR = r'\$'
 t_PUNTO = r'\.'
 
 
@@ -223,36 +227,46 @@ def p_instruccion_s1(t):
                         | for_instr
                         | BREAK
                         | CONTINUE
-                        | RETURN
-                        | parse
-                        | trunc
-                        | float
-                        | string
-                        | typeof
-                        | push
-                        | pop
-                        | length
-                        | raizCuadrada
-                        | tangente
-                        | coseno
-                        | seno
-                        | logaritmoBaseDiferente
-                        | logaritmoComun'''
+                        | RETURN'''
+                        # se puede validar que el break, continue, venga solo dentro de bucles y en cualquier
+                        # otro lado es error
+                        # return = solo dentro de una funcion (si viene, ahi se acaba la ejecucion y retorna
+                        # de una ese valor)
 
 def p_print_instr_s1(t): # TODO: agregar el simbolo $
     'print_instr            : PRINTLN PARIZQ expresiones PARDER PUNTOYCOMA'
 def p_print_instr_s2(t):
     'print_instr            : PRINT PARIZQ expresiones PARDER PUNTOYCOMA'
+
 def p_declaracion_instr_s1(t): # VARIABLE
-    '''declaracion_instr    : LOCAL ID PUNTOYCOMA
+    '''declaracion_instr    : LOCAL ID IGUAL expresion PUNTOYCOMA
+                            | GLOBAL ID IGUAL expresion PUNTOYCOMA
+                            | LOCAL ID PUNTOYCOMA
                             | GLOBAL ID PUNTOYCOMA'''
 def p_declaracion_instr_s2(t): # STRUCT
-    '''declaracion_instr    : STRUCT ID instrucciones END PUNTOYCOMA
-                            | MUTABLE STRUCT ID instrucciones END PUNTOYCOMA'''
+    '''declaracion_instr    : STRUCT ID struct_variables END PUNTOYCOMA
+                            | MUTABLE STRUCT ID struct_variables END PUNTOYCOMA'''
+def p_struct_variables_instr_s1(t):
+    'struct_variables      : struct_variables struct_variable'
+    t[1].append(t[2])
+    t[0] = t[1]
+def p_struct_variables_instr_s2(t):
+    'struct_variables      : struct_variable'
+    t[0] = [t[1]]
+
+def p_struct_variable(t):
+    '''struct_variable      : ID DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA
+                            | ID PUNTOYCOMA'''
+
 def p_asignacion_instr_s1(t): # VARIABLE Y ARRAY  antes=[ID IGUAL CORIZQ expresiones CORDER expresion PUNTOYCOMA]
-    'asignacion_instr       : ID IGUAL expresion PUNTOYCOMA'
+    'asignacion_instr       : expresion IGUAL expresion PUNTOYCOMA'
+                            # validar que la expresion que viene es de tipo:
+                            # ID
+                            # arreglo
+                            # arr = [1,2,3,4,5,6];  x[3][2]=55; x[1] = 3;  variable = 3;
 def p_declaracion_asignacion_instr_s1(t):
-    'declaracion_asignacion_instr:  ID IGUAL expresion DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA'
+    'declaracion_asignacion_instr   :  ID IGUAL expresion DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA'
+
 def p_llamadaFuncion_instr_s1(t):
     'llamadaFuncion_instr   : ID PARIZQ expresiones PARDER PUNTOYCOMA'
 def p_funcion_instr_s1(t):  #VALIDAR EL RETURN EN EL SEMANTICO TODO:siempre retornar 'nothing'
@@ -269,11 +283,12 @@ def p_parametros_s2(t):
 def p_parametro_s1(t):
     '''parametro        : ID DOSPUNTOSDOSPUNTOS tipoDato
                         | ID'''
+                        # TODO: se permitira un id como parametro
 
 # ==========================
 def p_if_instr(t):
-    '''if_instr:        : IF expresion instrucciones END PUNTOYCOMA
-                        | IF expresion instrucciones elseif_instr ELSE instrucciones END PUNTOYCOMA
+    '''if_instr        : IF expresion instrucciones END PUNTOYCOMA
+                        | IF expresion instrucciones elseifs ELSE instrucciones END PUNTOYCOMA
                         | IF expresion instrucciones ELSE instrucciones END PUNTOYCOMA'''
 def p_elseifs_s1(t):
     'elseifs            : elseifs COMA elseif_instr'
@@ -291,8 +306,10 @@ def p_while_instr(t):
 def p_for_instr(t): # EN EL SEMANTICO VALIDAR QUE TIPO ES LO QUE ITERARA Y DE AHI PROGRAMAR LA ACCION
     'for_instr          : FOR ID IN for_instr_opciones instrucciones END PUNTOYCOMA'
 def p_for_instr_opciones(t):
-    '''for_instr_opciones: ENTERO DOSPUNTOS ENTERO 
-                        | expresion'''  # TODO: validar estos parametros
+    '''for_instr_opciones   : ENTERO DOSPUNTOS ENTERO 
+                            | expresion'''
+                        # id, string, arreglo, variable === expresion
+                        # TODO: validar estos parametros
 
 # ==========================
 
@@ -330,13 +347,34 @@ def p_expresion(t): # TODO: unario
                         | TRUE
                         | FALSE
                         | NULO
+                        | SQRT PARIZQ expresion PARDER
+                        | TAN PARIZQ expresion PARDER
+                        | COS PARIZQ expresion PARDER
+                        | SIN PARIZQ expresion PARDER
+                        | LOG PARIZQ expresion COMA expresion PARDER
+                        | LOG10 PARIZQ expresion PARDER
+                        | PARSE PARIZQ tipoDato COMA expresion PARDER
+                        | TRUNC PARIZQ tipoDato COMA expresion PARDER
+                        | FLOAT PARIZQ expresion PARDER
+                        | STRING PARIZQ expresion PARDER
+                        | TYPEOF PARIZQ expresion PARDER
+                        | PUSH NOT PARIZQ expresion COMA expresion PARDER
+                        | POP NOT PARIZQ expresion PARDER
+                        | LENGTH PARIZQ expresion PARDER
+                        | UPPERCASE
+                        | LOWERCASE
                         | expresion PUNTO expresion
-                        | ID PARDER expresiones PARIZQ
+                        | ID PARIZQ expresiones PARDER
                         | ID expresion
                         | ID
+                        | CORIZQ expresion DOSPUNTOS expresion CORDER
                         | CORIZQ expresiones CORDER'''
                         # x[1] = 3;
                         # x[3][2]=55;
+                        # TODO: arreglo = [32, 21, 7, 89, 56, 909, 109, 2, 9, 1, 44, 3, 8200, 11, 8, 10];
+                        # copiaArreglo = arreglo[:];
+
+                        #PUEDE SER LA LLAMDA A UNA FUNCION || PUEDE SER LA CREACION DE UN STRUCT COMO EXPRESION
 
 def p_tipoDatos(t):
     '''tipoDato         : NULO
@@ -345,7 +383,8 @@ def p_tipoDatos(t):
                         | BOOL
                         | CHAR
                         | STRING
-                        | ID'''   # POR EJEMPLO ALGUN STRUCT
+                        | ID'''
+                        # POR EJEMPLO ALGUN STRUCT
 
 def p_error(t):
     print("Error sintáctico en '%s'" % str(t))
