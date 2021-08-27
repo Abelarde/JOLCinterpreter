@@ -1,5 +1,11 @@
+import sys
 import ply.lex as lex
 import ply.yacc as yacc
+from TS.Excepcion import Excepcion
+
+sys.setrecursionlimit(3000)
+
+errores = []
 
 reservadas = {
     # PALABRAS RESERVADAS
@@ -177,9 +183,13 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
 
 def t_error(t):
+    errores.append(Excepcion("LEXICO", "error lexico ", t.value[0], t.lexer.lineno, find_column(input, t)))
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
+def find_column(inp, token):
+    line_start = inp.rfind('\n', 0, token.lexpos) + 1
+    return (token.lexpos - line_start) + 1
 
 # CONSTRUYENDO EL ANALIZADOR LEXICO==========
 lexer = lex.lex()
@@ -200,6 +210,10 @@ precedence = (
     ('right','UMENOS')
     # ('left', 'PUNTO', 'DOSPUNTODOSPUNTOS'),
 )
+#ABSTRACTAS
+
+
+
 
 # DEFINICION DE GRAMATICA======================
 def p_init(t):
@@ -218,6 +232,7 @@ def p_instrucciones_s2(t):
 def p_instruccion_s1(t):
     '''instruccion      : print_instr
                         | declaracion_instr
+                        | structs_instr
                         | asignacion_instr
                         | declaracion_asignacion_instr
                         | llamadaFuncion_instr
@@ -244,7 +259,7 @@ def p_declaracion_instr_s1(t): # VARIABLE
                             | LOCAL ID PUNTOYCOMA
                             | GLOBAL ID PUNTOYCOMA'''
 def p_declaracion_instr_s2(t): # STRUCT
-    '''declaracion_instr    : STRUCT ID struct_variables END PUNTOYCOMA
+    '''structs_instr        : STRUCT ID struct_variables END PUNTOYCOMA
                             | MUTABLE STRUCT ID struct_variables END PUNTOYCOMA'''
 def p_struct_variables_instr_s1(t):
     'struct_variables      : struct_variables struct_variable'
@@ -323,7 +338,7 @@ def p_expresiones_s1(t):
 def p_expresiones_s2(t):
     'expresiones        : expresion'
     t[0] = [t[1]]
-def p_expresion(t): # TODO: unario
+def p_expresion_s1(t): # TODO: unario
     '''expresion        : expresion MAS expresion
                         | expresion MENOS expresion
                         | expresion POR expresion
@@ -337,17 +352,24 @@ def p_expresion(t): # TODO: unario
                         | expresion IGUALIGUAL expresion
                         | expresion DIFERENTE expresion
                         | expresion OR expresion
-                        | expresion AND expresion
-                        | MENOS expresion %prec UMENOS
-                        | NOT expresion
-                        | DECIMAL
+                        | expresion AND expresion'''
+
+
+def p_expresion_s2(t): # TODO: unario
+    '''expresion        : MENOS expresion %prec UMENOS
+                        | NOT expresion'''
+
+def p_expresion_s3(t): # TODO: unario
+    '''expresion        : DECIMAL
                         | ENTERO
                         | CARACTER
                         | CADENA
                         | TRUE
                         | FALSE
-                        | NULO
-                        | SQRT PARIZQ expresion PARDER
+                        | NULO'''
+
+def p_expresion_s4(t):
+    '''expresion        : SQRT PARIZQ expresion PARDER
                         | TAN PARIZQ expresion PARDER
                         | COS PARIZQ expresion PARDER
                         | SIN PARIZQ expresion PARDER
@@ -361,9 +383,11 @@ def p_expresion(t): # TODO: unario
                         | PUSH NOT PARIZQ expresion COMA expresion PARDER
                         | POP NOT PARIZQ expresion PARDER
                         | LENGTH PARIZQ expresion PARDER
-                        | UPPERCASE
-                        | LOWERCASE
-                        | expresion PUNTO expresion
+                        | UPPERCASE PARIZQ expresion PARDER
+                        | LOWERCASE PARIZQ expresion PARDER'''
+
+def p_expresion_s5(t):
+    '''expresion        : expresion PUNTO expresion
                         | ID PARIZQ expresiones PARDER
                         | ID expresion
                         | ID

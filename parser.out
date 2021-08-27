@@ -87,8 +87,8 @@ Rule 81    expresion -> TYPEOF PARIZQ expresion PARDER
 Rule 82    expresion -> PUSH NOT PARIZQ expresion COMA expresion PARDER
 Rule 83    expresion -> POP NOT PARIZQ expresion PARDER
 Rule 84    expresion -> LENGTH PARIZQ expresion PARDER
-Rule 85    expresion -> UPPERCASE
-Rule 86    expresion -> LOWERCASE
+Rule 85    expresion -> UPPERCASE PARIZQ expresion PARDER
+Rule 86    expresion -> LOWERCASE PARIZQ expresion PARDER
 Rule 87    expresion -> expresion PUNTO expresion
 Rule 88    expresion -> ID PARIZQ expresiones PARDER
 Rule 89    expresion -> ID expresion
@@ -153,8 +153,8 @@ MUTABLE              : 23
 NOT                  : 63 82 83
 NULO                 : 70 93
 OR                   : 60
-PARDER               : 16 17 30 31 71 72 73 74 75 76 77 78 79 80 81 82 83 84 88
-PARIZQ               : 16 17 30 31 71 72 73 74 75 76 77 78 79 80 81 82 83 84 88
+PARDER               : 16 17 30 31 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 88
+PARIZQ               : 16 17 30 31 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 88
 PARSE                : 77
 POP                  : 83
 POR                  : 50
@@ -184,7 +184,7 @@ declaracion_asignacion_instr : 7
 declaracion_instr    : 5
 elseif_instr         : 39 40
 elseifs              : 37 39
-expresion            : 18 19 28 28 29 36 37 38 41 42 45 46 47 48 48 49 49 50 50 51 51 52 52 53 53 54 54 55 55 56 56 57 57 58 58 59 59 60 60 61 61 62 63 71 72 73 74 75 75 76 77 78 79 80 81 82 82 83 84 87 87 89 91 91
+expresion            : 18 19 28 28 29 36 37 38 41 42 45 46 47 48 48 49 49 50 50 51 51 52 52 53 53 54 54 55 55 56 56 57 57 58 58 59 59 60 60 61 61 62 63 71 72 73 74 75 75 76 77 78 79 80 81 82 82 83 84 85 86 87 87 89 91 91
 expresiones          : 16 17 30 46 88 92
 for_instr            : 12
 for_instr_opciones   : 43
@@ -276,8 +276,8 @@ state 0
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -416,8 +416,8 @@ state 2
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -1208,8 +1208,8 @@ state 19
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -1376,8 +1376,8 @@ state 25
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -1455,8 +1455,8 @@ state 26
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -1541,8 +1541,8 @@ state 28
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -1620,8 +1620,8 @@ state 29
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -2228,136 +2228,16 @@ state 50
 
 state 51
 
-    (85) expresion -> UPPERCASE .
+    (85) expresion -> UPPERCASE . PARIZQ expresion PARDER
 
-    IGUAL           reduce using rule 85 (expresion -> UPPERCASE .)
-    MAS             reduce using rule 85 (expresion -> UPPERCASE .)
-    MENOS           reduce using rule 85 (expresion -> UPPERCASE .)
-    POR             reduce using rule 85 (expresion -> UPPERCASE .)
-    DIV             reduce using rule 85 (expresion -> UPPERCASE .)
-    POTENCIA        reduce using rule 85 (expresion -> UPPERCASE .)
-    MODULO          reduce using rule 85 (expresion -> UPPERCASE .)
-    MAYOR           reduce using rule 85 (expresion -> UPPERCASE .)
-    MENOR           reduce using rule 85 (expresion -> UPPERCASE .)
-    MAYORIGUAL      reduce using rule 85 (expresion -> UPPERCASE .)
-    MENORIGUAL      reduce using rule 85 (expresion -> UPPERCASE .)
-    IGUALIGUAL      reduce using rule 85 (expresion -> UPPERCASE .)
-    DIFERENTE       reduce using rule 85 (expresion -> UPPERCASE .)
-    OR              reduce using rule 85 (expresion -> UPPERCASE .)
-    AND             reduce using rule 85 (expresion -> UPPERCASE .)
-    PUNTO           reduce using rule 85 (expresion -> UPPERCASE .)
-    BREAK           reduce using rule 85 (expresion -> UPPERCASE .)
-    CONTINUE        reduce using rule 85 (expresion -> UPPERCASE .)
-    RETURN          reduce using rule 85 (expresion -> UPPERCASE .)
-    PRINTLN         reduce using rule 85 (expresion -> UPPERCASE .)
-    PRINT           reduce using rule 85 (expresion -> UPPERCASE .)
-    LOCAL           reduce using rule 85 (expresion -> UPPERCASE .)
-    GLOBAL          reduce using rule 85 (expresion -> UPPERCASE .)
-    STRUCT          reduce using rule 85 (expresion -> UPPERCASE .)
-    MUTABLE         reduce using rule 85 (expresion -> UPPERCASE .)
-    ID              reduce using rule 85 (expresion -> UPPERCASE .)
-    FUNCTION        reduce using rule 85 (expresion -> UPPERCASE .)
-    IF              reduce using rule 85 (expresion -> UPPERCASE .)
-    WHILE           reduce using rule 85 (expresion -> UPPERCASE .)
-    FOR             reduce using rule 85 (expresion -> UPPERCASE .)
-    NOT             reduce using rule 85 (expresion -> UPPERCASE .)
-    DECIMAL         reduce using rule 85 (expresion -> UPPERCASE .)
-    ENTERO          reduce using rule 85 (expresion -> UPPERCASE .)
-    CARACTER        reduce using rule 85 (expresion -> UPPERCASE .)
-    CADENA          reduce using rule 85 (expresion -> UPPERCASE .)
-    TRUE            reduce using rule 85 (expresion -> UPPERCASE .)
-    FALSE           reduce using rule 85 (expresion -> UPPERCASE .)
-    NULO            reduce using rule 85 (expresion -> UPPERCASE .)
-    SQRT            reduce using rule 85 (expresion -> UPPERCASE .)
-    TAN             reduce using rule 85 (expresion -> UPPERCASE .)
-    COS             reduce using rule 85 (expresion -> UPPERCASE .)
-    SIN             reduce using rule 85 (expresion -> UPPERCASE .)
-    LOG             reduce using rule 85 (expresion -> UPPERCASE .)
-    LOG10           reduce using rule 85 (expresion -> UPPERCASE .)
-    PARSE           reduce using rule 85 (expresion -> UPPERCASE .)
-    TRUNC           reduce using rule 85 (expresion -> UPPERCASE .)
-    FLOAT           reduce using rule 85 (expresion -> UPPERCASE .)
-    STRING          reduce using rule 85 (expresion -> UPPERCASE .)
-    TYPEOF          reduce using rule 85 (expresion -> UPPERCASE .)
-    PUSH            reduce using rule 85 (expresion -> UPPERCASE .)
-    POP             reduce using rule 85 (expresion -> UPPERCASE .)
-    LENGTH          reduce using rule 85 (expresion -> UPPERCASE .)
-    UPPERCASE       reduce using rule 85 (expresion -> UPPERCASE .)
-    LOWERCASE       reduce using rule 85 (expresion -> UPPERCASE .)
-    CORIZQ          reduce using rule 85 (expresion -> UPPERCASE .)
-    DOSPUNTOS       reduce using rule 85 (expresion -> UPPERCASE .)
-    CORDER          reduce using rule 85 (expresion -> UPPERCASE .)
-    COMA            reduce using rule 85 (expresion -> UPPERCASE .)
-    PARDER          reduce using rule 85 (expresion -> UPPERCASE .)
-    DOSPUNTOSDOSPUNTOS reduce using rule 85 (expresion -> UPPERCASE .)
-    PUNTOYCOMA      reduce using rule 85 (expresion -> UPPERCASE .)
+    PARIZQ          shift and go to state 101
 
 
 state 52
 
-    (86) expresion -> LOWERCASE .
+    (86) expresion -> LOWERCASE . PARIZQ expresion PARDER
 
-    IGUAL           reduce using rule 86 (expresion -> LOWERCASE .)
-    MAS             reduce using rule 86 (expresion -> LOWERCASE .)
-    MENOS           reduce using rule 86 (expresion -> LOWERCASE .)
-    POR             reduce using rule 86 (expresion -> LOWERCASE .)
-    DIV             reduce using rule 86 (expresion -> LOWERCASE .)
-    POTENCIA        reduce using rule 86 (expresion -> LOWERCASE .)
-    MODULO          reduce using rule 86 (expresion -> LOWERCASE .)
-    MAYOR           reduce using rule 86 (expresion -> LOWERCASE .)
-    MENOR           reduce using rule 86 (expresion -> LOWERCASE .)
-    MAYORIGUAL      reduce using rule 86 (expresion -> LOWERCASE .)
-    MENORIGUAL      reduce using rule 86 (expresion -> LOWERCASE .)
-    IGUALIGUAL      reduce using rule 86 (expresion -> LOWERCASE .)
-    DIFERENTE       reduce using rule 86 (expresion -> LOWERCASE .)
-    OR              reduce using rule 86 (expresion -> LOWERCASE .)
-    AND             reduce using rule 86 (expresion -> LOWERCASE .)
-    PUNTO           reduce using rule 86 (expresion -> LOWERCASE .)
-    BREAK           reduce using rule 86 (expresion -> LOWERCASE .)
-    CONTINUE        reduce using rule 86 (expresion -> LOWERCASE .)
-    RETURN          reduce using rule 86 (expresion -> LOWERCASE .)
-    PRINTLN         reduce using rule 86 (expresion -> LOWERCASE .)
-    PRINT           reduce using rule 86 (expresion -> LOWERCASE .)
-    LOCAL           reduce using rule 86 (expresion -> LOWERCASE .)
-    GLOBAL          reduce using rule 86 (expresion -> LOWERCASE .)
-    STRUCT          reduce using rule 86 (expresion -> LOWERCASE .)
-    MUTABLE         reduce using rule 86 (expresion -> LOWERCASE .)
-    ID              reduce using rule 86 (expresion -> LOWERCASE .)
-    FUNCTION        reduce using rule 86 (expresion -> LOWERCASE .)
-    IF              reduce using rule 86 (expresion -> LOWERCASE .)
-    WHILE           reduce using rule 86 (expresion -> LOWERCASE .)
-    FOR             reduce using rule 86 (expresion -> LOWERCASE .)
-    NOT             reduce using rule 86 (expresion -> LOWERCASE .)
-    DECIMAL         reduce using rule 86 (expresion -> LOWERCASE .)
-    ENTERO          reduce using rule 86 (expresion -> LOWERCASE .)
-    CARACTER        reduce using rule 86 (expresion -> LOWERCASE .)
-    CADENA          reduce using rule 86 (expresion -> LOWERCASE .)
-    TRUE            reduce using rule 86 (expresion -> LOWERCASE .)
-    FALSE           reduce using rule 86 (expresion -> LOWERCASE .)
-    NULO            reduce using rule 86 (expresion -> LOWERCASE .)
-    SQRT            reduce using rule 86 (expresion -> LOWERCASE .)
-    TAN             reduce using rule 86 (expresion -> LOWERCASE .)
-    COS             reduce using rule 86 (expresion -> LOWERCASE .)
-    SIN             reduce using rule 86 (expresion -> LOWERCASE .)
-    LOG             reduce using rule 86 (expresion -> LOWERCASE .)
-    LOG10           reduce using rule 86 (expresion -> LOWERCASE .)
-    PARSE           reduce using rule 86 (expresion -> LOWERCASE .)
-    TRUNC           reduce using rule 86 (expresion -> LOWERCASE .)
-    FLOAT           reduce using rule 86 (expresion -> LOWERCASE .)
-    STRING          reduce using rule 86 (expresion -> LOWERCASE .)
-    TYPEOF          reduce using rule 86 (expresion -> LOWERCASE .)
-    PUSH            reduce using rule 86 (expresion -> LOWERCASE .)
-    POP             reduce using rule 86 (expresion -> LOWERCASE .)
-    LENGTH          reduce using rule 86 (expresion -> LOWERCASE .)
-    UPPERCASE       reduce using rule 86 (expresion -> LOWERCASE .)
-    LOWERCASE       reduce using rule 86 (expresion -> LOWERCASE .)
-    CORIZQ          reduce using rule 86 (expresion -> LOWERCASE .)
-    DOSPUNTOS       reduce using rule 86 (expresion -> LOWERCASE .)
-    CORDER          reduce using rule 86 (expresion -> LOWERCASE .)
-    COMA            reduce using rule 86 (expresion -> LOWERCASE .)
-    PARDER          reduce using rule 86 (expresion -> LOWERCASE .)
-    DOSPUNTOSDOSPUNTOS reduce using rule 86 (expresion -> LOWERCASE .)
-    PUNTOYCOMA      reduce using rule 86 (expresion -> LOWERCASE .)
+    PARIZQ          shift and go to state 102
 
 
 state 53
@@ -2401,8 +2281,8 @@ state 53
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -2440,8 +2320,8 @@ state 53
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 101
-    expresiones                    shift and go to state 102
+    expresion                      shift and go to state 103
+    expresiones                    shift and go to state 104
 
 state 54
 
@@ -2536,8 +2416,8 @@ state 55
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -2573,8 +2453,8 @@ state 55
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresiones                    shift and go to state 103
-    expresion                      shift and go to state 104
+    expresiones                    shift and go to state 105
+    expresion                      shift and go to state 106
 
 state 56
 
@@ -2618,8 +2498,8 @@ state 56
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -2655,16 +2535,16 @@ state 56
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresiones                    shift and go to state 105
-    expresion                      shift and go to state 104
+    expresiones                    shift and go to state 107
+    expresion                      shift and go to state 106
 
 state 57
 
     (18) declaracion_instr -> LOCAL ID . IGUAL expresion PUNTOYCOMA
     (20) declaracion_instr -> LOCAL ID . PUNTOYCOMA
 
-    IGUAL           shift and go to state 106
-    PUNTOYCOMA      shift and go to state 107
+    IGUAL           shift and go to state 108
+    PUNTOYCOMA      shift and go to state 109
 
 
 state 58
@@ -2709,8 +2589,8 @@ state 58
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -2745,7 +2625,7 @@ state 58
   ! shift/reduce conflict for LOWERCASE resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for CORIZQ resolved as shift
-    PARIZQ          shift and go to state 108
+    PARIZQ          shift and go to state 110
     MAS             reduce using rule 90 (expresion -> ID .)
     POR             reduce using rule 90 (expresion -> ID .)
     DIV             reduce using rule 90 (expresion -> ID .)
@@ -2878,8 +2758,8 @@ state 59
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -2915,7 +2795,7 @@ state 59
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 109
+    expresion                      shift and go to state 111
 
 state 60
 
@@ -3073,8 +2953,8 @@ state 61
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -3110,8 +2990,8 @@ state 61
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresiones                    shift and go to state 110
-    expresion                      shift and go to state 104
+    expresiones                    shift and go to state 112
+    expresion                      shift and go to state 106
 
 state 62
 
@@ -3153,8 +3033,8 @@ state 62
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -3190,7 +3070,7 @@ state 62
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 111
+    expresion                      shift and go to state 113
 
 state 63
 
@@ -3232,8 +3112,8 @@ state 63
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -3269,7 +3149,7 @@ state 63
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 112
+    expresion                      shift and go to state 114
 
 state 64
 
@@ -3311,8 +3191,8 @@ state 64
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -3348,7 +3228,7 @@ state 64
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 113
+    expresion                      shift and go to state 115
 
 state 65
 
@@ -3390,8 +3270,8 @@ state 65
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -3427,7 +3307,7 @@ state 65
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 114
+    expresion                      shift and go to state 116
 
 state 66
 
@@ -3469,8 +3349,8 @@ state 66
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -3506,7 +3386,7 @@ state 66
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 115
+    expresion                      shift and go to state 117
 
 state 67
 
@@ -3548,8 +3428,8 @@ state 67
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -3585,7 +3465,7 @@ state 67
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 116
+    expresion                      shift and go to state 118
 
 state 68
 
@@ -3627,8 +3507,8 @@ state 68
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -3664,7 +3544,7 @@ state 68
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 117
+    expresion                      shift and go to state 119
 
 state 69
 
@@ -3706,8 +3586,8 @@ state 69
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -3743,7 +3623,7 @@ state 69
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 118
+    expresion                      shift and go to state 120
 
 state 70
 
@@ -3785,8 +3665,8 @@ state 70
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -3822,7 +3702,7 @@ state 70
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 119
+    expresion                      shift and go to state 121
 
 state 71
 
@@ -3864,8 +3744,8 @@ state 71
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -3901,7 +3781,7 @@ state 71
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 120
+    expresion                      shift and go to state 122
 
 state 72
 
@@ -3943,8 +3823,8 @@ state 72
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -3980,7 +3860,7 @@ state 72
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 121
+    expresion                      shift and go to state 123
 
 state 73
 
@@ -4022,8 +3902,8 @@ state 73
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -4059,7 +3939,7 @@ state 73
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 122
+    expresion                      shift and go to state 124
 
 state 74
 
@@ -4101,8 +3981,8 @@ state 74
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -4138,7 +4018,7 @@ state 74
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 123
+    expresion                      shift and go to state 125
 
 state 75
 
@@ -4180,8 +4060,8 @@ state 75
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -4217,7 +4097,7 @@ state 75
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 124
+    expresion                      shift and go to state 126
 
 state 76
 
@@ -4259,8 +4139,8 @@ state 76
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -4296,7 +4176,7 @@ state 76
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 125
+    expresion                      shift and go to state 127
 
 state 77
 
@@ -4338,8 +4218,8 @@ state 77
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -4375,15 +4255,15 @@ state 77
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 126
+    expresion                      shift and go to state 128
 
 state 78
 
     (19) declaracion_instr -> GLOBAL ID . IGUAL expresion PUNTOYCOMA
     (21) declaracion_instr -> GLOBAL ID . PUNTOYCOMA
 
-    IGUAL           shift and go to state 127
-    PUNTOYCOMA      shift and go to state 128
+    IGUAL           shift and go to state 129
+    PUNTOYCOMA      shift and go to state 130
 
 
 state 79
@@ -4394,23 +4274,23 @@ state 79
     (26) struct_variable -> . ID DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA
     (27) struct_variable -> . ID PUNTOYCOMA
 
-    ID              shift and go to state 129
+    ID              shift and go to state 131
 
-    struct_variables               shift and go to state 130
-    struct_variable                shift and go to state 131
+    struct_variables               shift and go to state 132
+    struct_variable                shift and go to state 133
 
 state 80
 
     (23) declaracion_instr -> MUTABLE STRUCT . ID struct_variables END PUNTOYCOMA
 
-    ID              shift and go to state 132
+    ID              shift and go to state 134
 
 
 state 81
 
     (31) funcion_instr -> FUNCTION ID . PARIZQ parametros PARDER instrucciones END PUNTOYCOMA
 
-    PARIZQ          shift and go to state 133
+    PARIZQ          shift and go to state 135
 
 
 state 82
@@ -4501,8 +4381,8 @@ state 82
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -4511,7 +4391,7 @@ state 82
     (92) expresion -> . CORIZQ expresiones CORDER
 
     MAS             shift and go to state 63
-    MENOS           shift and go to state 135
+    MENOS           shift and go to state 137
     POR             shift and go to state 65
     DIV             shift and go to state 66
     POTENCIA        shift and go to state 67
@@ -4566,7 +4446,7 @@ state 82
     CORIZQ          shift and go to state 53
 
     expresion                      shift and go to state 20
-    instrucciones                  shift and go to state 134
+    instrucciones                  shift and go to state 136
     instruccion                    shift and go to state 3
     print_instr                    shift and go to state 4
     declaracion_instr              shift and go to state 5
@@ -4664,8 +4544,8 @@ state 83
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -4674,7 +4554,7 @@ state 83
     (92) expresion -> . CORIZQ expresiones CORDER
 
     MAS             shift and go to state 63
-    MENOS           shift and go to state 135
+    MENOS           shift and go to state 137
     POR             shift and go to state 65
     DIV             shift and go to state 66
     POTENCIA        shift and go to state 67
@@ -4729,7 +4609,7 @@ state 83
     CORIZQ          shift and go to state 53
 
     expresion                      shift and go to state 20
-    instrucciones                  shift and go to state 136
+    instrucciones                  shift and go to state 138
     instruccion                    shift and go to state 3
     print_instr                    shift and go to state 4
     declaracion_instr              shift and go to state 5
@@ -4745,7 +4625,7 @@ state 84
 
     (43) for_instr -> FOR ID . IN for_instr_opciones instrucciones END PUNTOYCOMA
 
-    IN              shift and go to state 137
+    IN              shift and go to state 139
 
 
 state 85
@@ -4984,8 +4864,8 @@ state 87
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -5021,7 +4901,7 @@ state 87
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 138
+    expresion                      shift and go to state 140
 
 state 88
 
@@ -5063,8 +4943,8 @@ state 88
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -5100,7 +4980,7 @@ state 88
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 139
+    expresion                      shift and go to state 141
 
 state 89
 
@@ -5142,8 +5022,8 @@ state 89
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -5179,7 +5059,7 @@ state 89
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 140
+    expresion                      shift and go to state 142
 
 state 90
 
@@ -5221,8 +5101,8 @@ state 90
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -5258,7 +5138,7 @@ state 90
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 141
+    expresion                      shift and go to state 143
 
 state 91
 
@@ -5300,8 +5180,8 @@ state 91
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -5337,7 +5217,7 @@ state 91
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 142
+    expresion                      shift and go to state 144
 
 state 92
 
@@ -5379,8 +5259,8 @@ state 92
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -5416,7 +5296,7 @@ state 92
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 143
+    expresion                      shift and go to state 145
 
 state 93
 
@@ -5429,15 +5309,15 @@ state 93
     (98) tipoDato -> . STRING
     (99) tipoDato -> . ID
 
-    NULO            shift and go to state 145
-    FLOAT64         shift and go to state 146
-    INT64           shift and go to state 147
-    BOOL            shift and go to state 148
-    CHAR            shift and go to state 149
-    STRING          shift and go to state 150
-    ID              shift and go to state 151
+    NULO            shift and go to state 147
+    FLOAT64         shift and go to state 148
+    INT64           shift and go to state 149
+    BOOL            shift and go to state 150
+    CHAR            shift and go to state 151
+    STRING          shift and go to state 152
+    ID              shift and go to state 153
 
-    tipoDato                       shift and go to state 144
+    tipoDato                       shift and go to state 146
 
 state 94
 
@@ -5450,15 +5330,15 @@ state 94
     (98) tipoDato -> . STRING
     (99) tipoDato -> . ID
 
-    NULO            shift and go to state 145
-    FLOAT64         shift and go to state 146
-    INT64           shift and go to state 147
-    BOOL            shift and go to state 148
-    CHAR            shift and go to state 149
-    STRING          shift and go to state 150
-    ID              shift and go to state 151
+    NULO            shift and go to state 147
+    FLOAT64         shift and go to state 148
+    INT64           shift and go to state 149
+    BOOL            shift and go to state 150
+    CHAR            shift and go to state 151
+    STRING          shift and go to state 152
+    ID              shift and go to state 153
 
-    tipoDato                       shift and go to state 152
+    tipoDato                       shift and go to state 154
 
 state 95
 
@@ -5500,8 +5380,8 @@ state 95
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -5537,7 +5417,7 @@ state 95
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 153
+    expresion                      shift and go to state 155
 
 state 96
 
@@ -5579,8 +5459,8 @@ state 96
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -5616,7 +5496,7 @@ state 96
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 154
+    expresion                      shift and go to state 156
 
 state 97
 
@@ -5658,8 +5538,8 @@ state 97
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -5695,20 +5575,20 @@ state 97
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 155
+    expresion                      shift and go to state 157
 
 state 98
 
     (82) expresion -> PUSH NOT . PARIZQ expresion COMA expresion PARDER
 
-    PARIZQ          shift and go to state 156
+    PARIZQ          shift and go to state 158
 
 
 state 99
 
     (83) expresion -> POP NOT . PARIZQ expresion PARDER
 
-    PARIZQ          shift and go to state 157
+    PARIZQ          shift and go to state 159
 
 
 state 100
@@ -5751,8 +5631,8 @@ state 100
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -5788,9 +5668,167 @@ state 100
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 158
+    expresion                      shift and go to state 160
 
 state 101
+
+    (85) expresion -> UPPERCASE PARIZQ . expresion PARDER
+    (48) expresion -> . expresion MAS expresion
+    (49) expresion -> . expresion MENOS expresion
+    (50) expresion -> . expresion POR expresion
+    (51) expresion -> . expresion DIV expresion
+    (52) expresion -> . expresion POTENCIA expresion
+    (53) expresion -> . expresion MODULO expresion
+    (54) expresion -> . expresion MAYOR expresion
+    (55) expresion -> . expresion MENOR expresion
+    (56) expresion -> . expresion MAYORIGUAL expresion
+    (57) expresion -> . expresion MENORIGUAL expresion
+    (58) expresion -> . expresion IGUALIGUAL expresion
+    (59) expresion -> . expresion DIFERENTE expresion
+    (60) expresion -> . expresion OR expresion
+    (61) expresion -> . expresion AND expresion
+    (62) expresion -> . MENOS expresion
+    (63) expresion -> . NOT expresion
+    (64) expresion -> . DECIMAL
+    (65) expresion -> . ENTERO
+    (66) expresion -> . CARACTER
+    (67) expresion -> . CADENA
+    (68) expresion -> . TRUE
+    (69) expresion -> . FALSE
+    (70) expresion -> . NULO
+    (71) expresion -> . SQRT PARIZQ expresion PARDER
+    (72) expresion -> . TAN PARIZQ expresion PARDER
+    (73) expresion -> . COS PARIZQ expresion PARDER
+    (74) expresion -> . SIN PARIZQ expresion PARDER
+    (75) expresion -> . LOG PARIZQ expresion COMA expresion PARDER
+    (76) expresion -> . LOG10 PARIZQ expresion PARDER
+    (77) expresion -> . PARSE PARIZQ tipoDato COMA expresion PARDER
+    (78) expresion -> . TRUNC PARIZQ tipoDato COMA expresion PARDER
+    (79) expresion -> . FLOAT PARIZQ expresion PARDER
+    (80) expresion -> . STRING PARIZQ expresion PARDER
+    (81) expresion -> . TYPEOF PARIZQ expresion PARDER
+    (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
+    (83) expresion -> . POP NOT PARIZQ expresion PARDER
+    (84) expresion -> . LENGTH PARIZQ expresion PARDER
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
+    (87) expresion -> . expresion PUNTO expresion
+    (88) expresion -> . ID PARIZQ expresiones PARDER
+    (89) expresion -> . ID expresion
+    (90) expresion -> . ID
+    (91) expresion -> . CORIZQ expresion DOSPUNTOS expresion CORDER
+    (92) expresion -> . CORIZQ expresiones CORDER
+
+    MENOS           shift and go to state 28
+    NOT             shift and go to state 29
+    DECIMAL         shift and go to state 30
+    ENTERO          shift and go to state 31
+    CARACTER        shift and go to state 32
+    CADENA          shift and go to state 33
+    TRUE            shift and go to state 34
+    FALSE           shift and go to state 35
+    NULO            shift and go to state 36
+    SQRT            shift and go to state 37
+    TAN             shift and go to state 38
+    COS             shift and go to state 39
+    SIN             shift and go to state 40
+    LOG             shift and go to state 41
+    LOG10           shift and go to state 42
+    PARSE           shift and go to state 43
+    TRUNC           shift and go to state 44
+    FLOAT           shift and go to state 45
+    STRING          shift and go to state 46
+    TYPEOF          shift and go to state 47
+    PUSH            shift and go to state 48
+    POP             shift and go to state 49
+    LENGTH          shift and go to state 50
+    UPPERCASE       shift and go to state 51
+    LOWERCASE       shift and go to state 52
+    ID              shift and go to state 58
+    CORIZQ          shift and go to state 53
+
+    expresion                      shift and go to state 161
+
+state 102
+
+    (86) expresion -> LOWERCASE PARIZQ . expresion PARDER
+    (48) expresion -> . expresion MAS expresion
+    (49) expresion -> . expresion MENOS expresion
+    (50) expresion -> . expresion POR expresion
+    (51) expresion -> . expresion DIV expresion
+    (52) expresion -> . expresion POTENCIA expresion
+    (53) expresion -> . expresion MODULO expresion
+    (54) expresion -> . expresion MAYOR expresion
+    (55) expresion -> . expresion MENOR expresion
+    (56) expresion -> . expresion MAYORIGUAL expresion
+    (57) expresion -> . expresion MENORIGUAL expresion
+    (58) expresion -> . expresion IGUALIGUAL expresion
+    (59) expresion -> . expresion DIFERENTE expresion
+    (60) expresion -> . expresion OR expresion
+    (61) expresion -> . expresion AND expresion
+    (62) expresion -> . MENOS expresion
+    (63) expresion -> . NOT expresion
+    (64) expresion -> . DECIMAL
+    (65) expresion -> . ENTERO
+    (66) expresion -> . CARACTER
+    (67) expresion -> . CADENA
+    (68) expresion -> . TRUE
+    (69) expresion -> . FALSE
+    (70) expresion -> . NULO
+    (71) expresion -> . SQRT PARIZQ expresion PARDER
+    (72) expresion -> . TAN PARIZQ expresion PARDER
+    (73) expresion -> . COS PARIZQ expresion PARDER
+    (74) expresion -> . SIN PARIZQ expresion PARDER
+    (75) expresion -> . LOG PARIZQ expresion COMA expresion PARDER
+    (76) expresion -> . LOG10 PARIZQ expresion PARDER
+    (77) expresion -> . PARSE PARIZQ tipoDato COMA expresion PARDER
+    (78) expresion -> . TRUNC PARIZQ tipoDato COMA expresion PARDER
+    (79) expresion -> . FLOAT PARIZQ expresion PARDER
+    (80) expresion -> . STRING PARIZQ expresion PARDER
+    (81) expresion -> . TYPEOF PARIZQ expresion PARDER
+    (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
+    (83) expresion -> . POP NOT PARIZQ expresion PARDER
+    (84) expresion -> . LENGTH PARIZQ expresion PARDER
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
+    (87) expresion -> . expresion PUNTO expresion
+    (88) expresion -> . ID PARIZQ expresiones PARDER
+    (89) expresion -> . ID expresion
+    (90) expresion -> . ID
+    (91) expresion -> . CORIZQ expresion DOSPUNTOS expresion CORDER
+    (92) expresion -> . CORIZQ expresiones CORDER
+
+    MENOS           shift and go to state 28
+    NOT             shift and go to state 29
+    DECIMAL         shift and go to state 30
+    ENTERO          shift and go to state 31
+    CARACTER        shift and go to state 32
+    CADENA          shift and go to state 33
+    TRUE            shift and go to state 34
+    FALSE           shift and go to state 35
+    NULO            shift and go to state 36
+    SQRT            shift and go to state 37
+    TAN             shift and go to state 38
+    COS             shift and go to state 39
+    SIN             shift and go to state 40
+    LOG             shift and go to state 41
+    LOG10           shift and go to state 42
+    PARSE           shift and go to state 43
+    TRUNC           shift and go to state 44
+    FLOAT           shift and go to state 45
+    STRING          shift and go to state 46
+    TYPEOF          shift and go to state 47
+    PUSH            shift and go to state 48
+    POP             shift and go to state 49
+    LENGTH          shift and go to state 50
+    UPPERCASE       shift and go to state 51
+    LOWERCASE       shift and go to state 52
+    ID              shift and go to state 58
+    CORIZQ          shift and go to state 53
+
+    expresion                      shift and go to state 162
+
+state 103
 
     (91) expresion -> CORIZQ expresion . DOSPUNTOS expresion CORDER
     (48) expresion -> expresion . MAS expresion
@@ -5810,7 +5848,7 @@ state 101
     (87) expresion -> expresion . PUNTO expresion
     (47) expresiones -> expresion .
 
-    DOSPUNTOS       shift and go to state 159
+    DOSPUNTOS       shift and go to state 163
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -5830,25 +5868,25 @@ state 101
     COMA            reduce using rule 47 (expresiones -> expresion .)
 
 
-state 102
+state 104
 
     (92) expresion -> CORIZQ expresiones . CORDER
     (46) expresiones -> expresiones . COMA expresion
 
-    CORDER          shift and go to state 160
-    COMA            shift and go to state 161
+    CORDER          shift and go to state 164
+    COMA            shift and go to state 165
 
 
-state 103
+state 105
 
     (16) print_instr -> PRINTLN PARIZQ expresiones . PARDER PUNTOYCOMA
     (46) expresiones -> expresiones . COMA expresion
 
-    PARDER          shift and go to state 162
-    COMA            shift and go to state 161
+    PARDER          shift and go to state 166
+    COMA            shift and go to state 165
 
 
-state 104
+state 106
 
     (47) expresiones -> expresion .
     (48) expresion -> expresion . MAS expresion
@@ -5886,16 +5924,16 @@ state 104
     PUNTO           shift and go to state 77
 
 
-state 105
+state 107
 
     (17) print_instr -> PRINT PARIZQ expresiones . PARDER PUNTOYCOMA
     (46) expresiones -> expresiones . COMA expresion
 
-    PARDER          shift and go to state 163
-    COMA            shift and go to state 161
+    PARDER          shift and go to state 167
+    COMA            shift and go to state 165
 
 
-state 106
+state 108
 
     (18) declaracion_instr -> LOCAL ID IGUAL . expresion PUNTOYCOMA
     (48) expresion -> . expresion MAS expresion
@@ -5935,8 +5973,8 @@ state 106
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -5972,9 +6010,9 @@ state 106
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 164
+    expresion                      shift and go to state 168
 
-state 107
+state 109
 
     (20) declaracion_instr -> LOCAL ID PUNTOYCOMA .
 
@@ -6025,7 +6063,7 @@ state 107
     COMA            reduce using rule 20 (declaracion_instr -> LOCAL ID PUNTOYCOMA .)
 
 
-state 108
+state 110
 
     (88) expresion -> ID PARIZQ . expresiones PARDER
     (46) expresiones -> . expresiones COMA expresion
@@ -6067,8 +6105,8 @@ state 108
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -6104,10 +6142,10 @@ state 108
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresiones                    shift and go to state 165
-    expresion                      shift and go to state 104
+    expresiones                    shift and go to state 169
+    expresion                      shift and go to state 106
 
-state 109
+state 111
 
     (29) declaracion_asignacion_instr -> ID IGUAL expresion . DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA
     (48) expresion -> expresion . MAS expresion
@@ -6126,54 +6164,7 @@ state 109
     (61) expresion -> expresion . AND expresion
     (87) expresion -> expresion . PUNTO expresion
 
-    DOSPUNTOSDOSPUNTOS shift and go to state 166
-    MAS             shift and go to state 63
-    MENOS           shift and go to state 64
-    POR             shift and go to state 65
-    DIV             shift and go to state 66
-    POTENCIA        shift and go to state 67
-    MODULO          shift and go to state 68
-    MAYOR           shift and go to state 69
-    MENOR           shift and go to state 70
-    MAYORIGUAL      shift and go to state 71
-    MENORIGUAL      shift and go to state 72
-    IGUALIGUAL      shift and go to state 73
-    DIFERENTE       shift and go to state 74
-    OR              shift and go to state 75
-    AND             shift and go to state 76
-    PUNTO           shift and go to state 77
-
-
-state 110
-
-    (30) llamadaFuncion_instr -> ID PARIZQ expresiones . PARDER PUNTOYCOMA
-    (88) expresion -> ID PARIZQ expresiones . PARDER
-    (46) expresiones -> expresiones . COMA expresion
-
-    PARDER          shift and go to state 167
-    COMA            shift and go to state 161
-
-
-state 111
-
-    (28) asignacion_instr -> expresion IGUAL expresion . PUNTOYCOMA
-    (48) expresion -> expresion . MAS expresion
-    (49) expresion -> expresion . MENOS expresion
-    (50) expresion -> expresion . POR expresion
-    (51) expresion -> expresion . DIV expresion
-    (52) expresion -> expresion . POTENCIA expresion
-    (53) expresion -> expresion . MODULO expresion
-    (54) expresion -> expresion . MAYOR expresion
-    (55) expresion -> expresion . MENOR expresion
-    (56) expresion -> expresion . MAYORIGUAL expresion
-    (57) expresion -> expresion . MENORIGUAL expresion
-    (58) expresion -> expresion . IGUALIGUAL expresion
-    (59) expresion -> expresion . DIFERENTE expresion
-    (60) expresion -> expresion . OR expresion
-    (61) expresion -> expresion . AND expresion
-    (87) expresion -> expresion . PUNTO expresion
-
-    PUNTOYCOMA      shift and go to state 168
+    DOSPUNTOSDOSPUNTOS shift and go to state 170
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -6192,6 +6183,53 @@ state 111
 
 
 state 112
+
+    (30) llamadaFuncion_instr -> ID PARIZQ expresiones . PARDER PUNTOYCOMA
+    (88) expresion -> ID PARIZQ expresiones . PARDER
+    (46) expresiones -> expresiones . COMA expresion
+
+    PARDER          shift and go to state 171
+    COMA            shift and go to state 165
+
+
+state 113
+
+    (28) asignacion_instr -> expresion IGUAL expresion . PUNTOYCOMA
+    (48) expresion -> expresion . MAS expresion
+    (49) expresion -> expresion . MENOS expresion
+    (50) expresion -> expresion . POR expresion
+    (51) expresion -> expresion . DIV expresion
+    (52) expresion -> expresion . POTENCIA expresion
+    (53) expresion -> expresion . MODULO expresion
+    (54) expresion -> expresion . MAYOR expresion
+    (55) expresion -> expresion . MENOR expresion
+    (56) expresion -> expresion . MAYORIGUAL expresion
+    (57) expresion -> expresion . MENORIGUAL expresion
+    (58) expresion -> expresion . IGUALIGUAL expresion
+    (59) expresion -> expresion . DIFERENTE expresion
+    (60) expresion -> expresion . OR expresion
+    (61) expresion -> expresion . AND expresion
+    (87) expresion -> expresion . PUNTO expresion
+
+    PUNTOYCOMA      shift and go to state 172
+    MAS             shift and go to state 63
+    MENOS           shift and go to state 64
+    POR             shift and go to state 65
+    DIV             shift and go to state 66
+    POTENCIA        shift and go to state 67
+    MODULO          shift and go to state 68
+    MAYOR           shift and go to state 69
+    MENOR           shift and go to state 70
+    MAYORIGUAL      shift and go to state 71
+    MENORIGUAL      shift and go to state 72
+    IGUALIGUAL      shift and go to state 73
+    DIFERENTE       shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+    PUNTO           shift and go to state 77
+
+
+state 114
 
     (48) expresion -> expresion MAS expresion .
     (48) expresion -> expresion . MAS expresion
@@ -6289,7 +6327,7 @@ state 112
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 113
+state 115
 
     (49) expresion -> expresion MENOS expresion .
     (48) expresion -> expresion . MAS expresion
@@ -6387,7 +6425,7 @@ state 113
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 114
+state 116
 
     (50) expresion -> expresion POR expresion .
     (48) expresion -> expresion . MAS expresion
@@ -6485,7 +6523,7 @@ state 114
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 115
+state 117
 
     (51) expresion -> expresion DIV expresion .
     (48) expresion -> expresion . MAS expresion
@@ -6583,7 +6621,7 @@ state 115
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 116
+state 118
 
     (52) expresion -> expresion POTENCIA expresion .
     (48) expresion -> expresion . MAS expresion
@@ -6681,7 +6719,7 @@ state 116
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 117
+state 119
 
     (53) expresion -> expresion MODULO expresion .
     (48) expresion -> expresion . MAS expresion
@@ -6779,7 +6817,7 @@ state 117
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 118
+state 120
 
     (54) expresion -> expresion MAYOR expresion .
     (48) expresion -> expresion . MAS expresion
@@ -6877,7 +6915,7 @@ state 118
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 119
+state 121
 
     (55) expresion -> expresion MENOR expresion .
     (48) expresion -> expresion . MAS expresion
@@ -6975,7 +7013,7 @@ state 119
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 120
+state 122
 
     (56) expresion -> expresion MAYORIGUAL expresion .
     (48) expresion -> expresion . MAS expresion
@@ -7073,7 +7111,7 @@ state 120
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 121
+state 123
 
     (57) expresion -> expresion MENORIGUAL expresion .
     (48) expresion -> expresion . MAS expresion
@@ -7171,7 +7209,7 @@ state 121
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 122
+state 124
 
     (58) expresion -> expresion IGUALIGUAL expresion .
     (48) expresion -> expresion . MAS expresion
@@ -7269,7 +7307,7 @@ state 122
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 123
+state 125
 
     (59) expresion -> expresion DIFERENTE expresion .
     (48) expresion -> expresion . MAS expresion
@@ -7367,7 +7405,7 @@ state 123
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 124
+state 126
 
     (60) expresion -> expresion OR expresion .
     (48) expresion -> expresion . MAS expresion
@@ -7465,7 +7503,7 @@ state 124
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 125
+state 127
 
     (61) expresion -> expresion AND expresion .
     (48) expresion -> expresion . MAS expresion
@@ -7563,7 +7601,7 @@ state 125
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 126
+state 128
 
     (87) expresion -> expresion PUNTO expresion .
     (48) expresion -> expresion . MAS expresion
@@ -7676,7 +7714,7 @@ state 126
   ! PUNTO           [ reduce using rule 87 (expresion -> expresion PUNTO expresion .) ]
 
 
-state 127
+state 129
 
     (19) declaracion_instr -> GLOBAL ID IGUAL . expresion PUNTOYCOMA
     (48) expresion -> . expresion MAS expresion
@@ -7716,8 +7754,8 @@ state 127
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -7753,9 +7791,9 @@ state 127
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 169
+    expresion                      shift and go to state 173
 
-state 128
+state 130
 
     (21) declaracion_instr -> GLOBAL ID PUNTOYCOMA .
 
@@ -7806,28 +7844,28 @@ state 128
     COMA            reduce using rule 21 (declaracion_instr -> GLOBAL ID PUNTOYCOMA .)
 
 
-state 129
+state 131
 
     (26) struct_variable -> ID . DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA
     (27) struct_variable -> ID . PUNTOYCOMA
 
-    DOSPUNTOSDOSPUNTOS shift and go to state 170
-    PUNTOYCOMA      shift and go to state 171
+    DOSPUNTOSDOSPUNTOS shift and go to state 174
+    PUNTOYCOMA      shift and go to state 175
 
 
-state 130
+state 132
 
     (22) declaracion_instr -> STRUCT ID struct_variables . END PUNTOYCOMA
     (24) struct_variables -> struct_variables . struct_variable
     (26) struct_variable -> . ID DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA
     (27) struct_variable -> . ID PUNTOYCOMA
 
-    END             shift and go to state 172
-    ID              shift and go to state 129
+    END             shift and go to state 176
+    ID              shift and go to state 131
 
-    struct_variable                shift and go to state 173
+    struct_variable                shift and go to state 177
 
-state 131
+state 133
 
     (25) struct_variables -> struct_variable .
 
@@ -7835,7 +7873,7 @@ state 131
     ID              reduce using rule 25 (struct_variables -> struct_variable .)
 
 
-state 132
+state 134
 
     (23) declaracion_instr -> MUTABLE STRUCT ID . struct_variables END PUNTOYCOMA
     (24) struct_variables -> . struct_variables struct_variable
@@ -7843,12 +7881,12 @@ state 132
     (26) struct_variable -> . ID DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA
     (27) struct_variable -> . ID PUNTOYCOMA
 
-    ID              shift and go to state 129
+    ID              shift and go to state 131
 
-    struct_variables               shift and go to state 174
-    struct_variable                shift and go to state 131
+    struct_variables               shift and go to state 178
+    struct_variable                shift and go to state 133
 
-state 133
+state 135
 
     (31) funcion_instr -> FUNCTION ID PARIZQ . parametros PARDER instrucciones END PUNTOYCOMA
     (32) parametros -> . parametros COMA parametro
@@ -7856,12 +7894,12 @@ state 133
     (34) parametro -> . ID DOSPUNTOSDOSPUNTOS tipoDato
     (35) parametro -> . ID
 
-    ID              shift and go to state 175
+    ID              shift and go to state 179
 
-    parametros                     shift and go to state 176
-    parametro                      shift and go to state 177
+    parametros                     shift and go to state 180
+    parametro                      shift and go to state 181
 
-state 134
+state 136
 
     (36) if_instr -> IF expresion instrucciones . END PUNTOYCOMA
     (37) if_instr -> IF expresion instrucciones . elseifs ELSE instrucciones END PUNTOYCOMA
@@ -7936,8 +7974,8 @@ state 134
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -7945,12 +7983,12 @@ state 134
     (91) expresion -> . CORIZQ expresion DOSPUNTOS expresion CORDER
     (92) expresion -> . CORIZQ expresiones CORDER
 
-    END             shift and go to state 178
-    ELSE            shift and go to state 180
+    END             shift and go to state 182
+    ELSE            shift and go to state 184
     BREAK           shift and go to state 13
     CONTINUE        shift and go to state 14
     RETURN          shift and go to state 15
-    ELSEIF          shift and go to state 182
+    ELSEIF          shift and go to state 186
     PRINTLN         shift and go to state 16
     PRINT           shift and go to state 17
     LOCAL           shift and go to state 18
@@ -7990,9 +8028,9 @@ state 134
     CORIZQ          shift and go to state 53
 
     expresion                      shift and go to state 20
-    elseifs                        shift and go to state 179
+    elseifs                        shift and go to state 183
     instruccion                    shift and go to state 54
-    elseif_instr                   shift and go to state 181
+    elseif_instr                   shift and go to state 185
     print_instr                    shift and go to state 4
     declaracion_instr              shift and go to state 5
     asignacion_instr               shift and go to state 6
@@ -8003,7 +8041,7 @@ state 134
     while_instr                    shift and go to state 11
     for_instr                      shift and go to state 12
 
-state 135
+state 137
 
     (49) expresion -> expresion MENOS . expresion
     (62) expresion -> MENOS . expresion
@@ -8044,8 +8082,8 @@ state 135
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -8081,9 +8119,9 @@ state 135
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 183
+    expresion                      shift and go to state 187
 
-state 136
+state 138
 
     (42) while_instr -> WHILE expresion instrucciones . END PUNTOYCOMA
     (2) instrucciones -> instrucciones . instruccion
@@ -8153,8 +8191,8 @@ state 136
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -8162,7 +8200,7 @@ state 136
     (91) expresion -> . CORIZQ expresion DOSPUNTOS expresion CORDER
     (92) expresion -> . CORIZQ expresiones CORDER
 
-    END             shift and go to state 184
+    END             shift and go to state 188
     BREAK           shift and go to state 13
     CONTINUE        shift and go to state 14
     RETURN          shift and go to state 15
@@ -8216,7 +8254,7 @@ state 136
     while_instr                    shift and go to state 11
     for_instr                      shift and go to state 12
 
-state 137
+state 139
 
     (43) for_instr -> FOR ID IN . for_instr_opciones instrucciones END PUNTOYCOMA
     (44) for_instr_opciones -> . ENTERO DOSPUNTOS ENTERO
@@ -8258,8 +8296,8 @@ state 137
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -8267,7 +8305,7 @@ state 137
     (91) expresion -> . CORIZQ expresion DOSPUNTOS expresion CORDER
     (92) expresion -> . CORIZQ expresiones CORDER
 
-    ENTERO          shift and go to state 186
+    ENTERO          shift and go to state 190
     MENOS           shift and go to state 28
     NOT             shift and go to state 29
     DECIMAL         shift and go to state 30
@@ -8295,10 +8333,10 @@ state 137
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    for_instr_opciones             shift and go to state 185
-    expresion                      shift and go to state 187
+    for_instr_opciones             shift and go to state 189
+    expresion                      shift and go to state 191
 
-state 138
+state 140
 
     (71) expresion -> SQRT PARIZQ expresion . PARDER
     (48) expresion -> expresion . MAS expresion
@@ -8317,81 +8355,7 @@ state 138
     (61) expresion -> expresion . AND expresion
     (87) expresion -> expresion . PUNTO expresion
 
-    PARDER          shift and go to state 188
-    MAS             shift and go to state 63
-    MENOS           shift and go to state 64
-    POR             shift and go to state 65
-    DIV             shift and go to state 66
-    POTENCIA        shift and go to state 67
-    MODULO          shift and go to state 68
-    MAYOR           shift and go to state 69
-    MENOR           shift and go to state 70
-    MAYORIGUAL      shift and go to state 71
-    MENORIGUAL      shift and go to state 72
-    IGUALIGUAL      shift and go to state 73
-    DIFERENTE       shift and go to state 74
-    OR              shift and go to state 75
-    AND             shift and go to state 76
-    PUNTO           shift and go to state 77
-
-
-state 139
-
-    (72) expresion -> TAN PARIZQ expresion . PARDER
-    (48) expresion -> expresion . MAS expresion
-    (49) expresion -> expresion . MENOS expresion
-    (50) expresion -> expresion . POR expresion
-    (51) expresion -> expresion . DIV expresion
-    (52) expresion -> expresion . POTENCIA expresion
-    (53) expresion -> expresion . MODULO expresion
-    (54) expresion -> expresion . MAYOR expresion
-    (55) expresion -> expresion . MENOR expresion
-    (56) expresion -> expresion . MAYORIGUAL expresion
-    (57) expresion -> expresion . MENORIGUAL expresion
-    (58) expresion -> expresion . IGUALIGUAL expresion
-    (59) expresion -> expresion . DIFERENTE expresion
-    (60) expresion -> expresion . OR expresion
-    (61) expresion -> expresion . AND expresion
-    (87) expresion -> expresion . PUNTO expresion
-
-    PARDER          shift and go to state 189
-    MAS             shift and go to state 63
-    MENOS           shift and go to state 64
-    POR             shift and go to state 65
-    DIV             shift and go to state 66
-    POTENCIA        shift and go to state 67
-    MODULO          shift and go to state 68
-    MAYOR           shift and go to state 69
-    MENOR           shift and go to state 70
-    MAYORIGUAL      shift and go to state 71
-    MENORIGUAL      shift and go to state 72
-    IGUALIGUAL      shift and go to state 73
-    DIFERENTE       shift and go to state 74
-    OR              shift and go to state 75
-    AND             shift and go to state 76
-    PUNTO           shift and go to state 77
-
-
-state 140
-
-    (73) expresion -> COS PARIZQ expresion . PARDER
-    (48) expresion -> expresion . MAS expresion
-    (49) expresion -> expresion . MENOS expresion
-    (50) expresion -> expresion . POR expresion
-    (51) expresion -> expresion . DIV expresion
-    (52) expresion -> expresion . POTENCIA expresion
-    (53) expresion -> expresion . MODULO expresion
-    (54) expresion -> expresion . MAYOR expresion
-    (55) expresion -> expresion . MENOR expresion
-    (56) expresion -> expresion . MAYORIGUAL expresion
-    (57) expresion -> expresion . MENORIGUAL expresion
-    (58) expresion -> expresion . IGUALIGUAL expresion
-    (59) expresion -> expresion . DIFERENTE expresion
-    (60) expresion -> expresion . OR expresion
-    (61) expresion -> expresion . AND expresion
-    (87) expresion -> expresion . PUNTO expresion
-
-    PARDER          shift and go to state 190
+    PARDER          shift and go to state 192
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -8411,81 +8375,7 @@ state 140
 
 state 141
 
-    (74) expresion -> SIN PARIZQ expresion . PARDER
-    (48) expresion -> expresion . MAS expresion
-    (49) expresion -> expresion . MENOS expresion
-    (50) expresion -> expresion . POR expresion
-    (51) expresion -> expresion . DIV expresion
-    (52) expresion -> expresion . POTENCIA expresion
-    (53) expresion -> expresion . MODULO expresion
-    (54) expresion -> expresion . MAYOR expresion
-    (55) expresion -> expresion . MENOR expresion
-    (56) expresion -> expresion . MAYORIGUAL expresion
-    (57) expresion -> expresion . MENORIGUAL expresion
-    (58) expresion -> expresion . IGUALIGUAL expresion
-    (59) expresion -> expresion . DIFERENTE expresion
-    (60) expresion -> expresion . OR expresion
-    (61) expresion -> expresion . AND expresion
-    (87) expresion -> expresion . PUNTO expresion
-
-    PARDER          shift and go to state 191
-    MAS             shift and go to state 63
-    MENOS           shift and go to state 64
-    POR             shift and go to state 65
-    DIV             shift and go to state 66
-    POTENCIA        shift and go to state 67
-    MODULO          shift and go to state 68
-    MAYOR           shift and go to state 69
-    MENOR           shift and go to state 70
-    MAYORIGUAL      shift and go to state 71
-    MENORIGUAL      shift and go to state 72
-    IGUALIGUAL      shift and go to state 73
-    DIFERENTE       shift and go to state 74
-    OR              shift and go to state 75
-    AND             shift and go to state 76
-    PUNTO           shift and go to state 77
-
-
-state 142
-
-    (75) expresion -> LOG PARIZQ expresion . COMA expresion PARDER
-    (48) expresion -> expresion . MAS expresion
-    (49) expresion -> expresion . MENOS expresion
-    (50) expresion -> expresion . POR expresion
-    (51) expresion -> expresion . DIV expresion
-    (52) expresion -> expresion . POTENCIA expresion
-    (53) expresion -> expresion . MODULO expresion
-    (54) expresion -> expresion . MAYOR expresion
-    (55) expresion -> expresion . MENOR expresion
-    (56) expresion -> expresion . MAYORIGUAL expresion
-    (57) expresion -> expresion . MENORIGUAL expresion
-    (58) expresion -> expresion . IGUALIGUAL expresion
-    (59) expresion -> expresion . DIFERENTE expresion
-    (60) expresion -> expresion . OR expresion
-    (61) expresion -> expresion . AND expresion
-    (87) expresion -> expresion . PUNTO expresion
-
-    COMA            shift and go to state 192
-    MAS             shift and go to state 63
-    MENOS           shift and go to state 64
-    POR             shift and go to state 65
-    DIV             shift and go to state 66
-    POTENCIA        shift and go to state 67
-    MODULO          shift and go to state 68
-    MAYOR           shift and go to state 69
-    MENOR           shift and go to state 70
-    MAYORIGUAL      shift and go to state 71
-    MENORIGUAL      shift and go to state 72
-    IGUALIGUAL      shift and go to state 73
-    DIFERENTE       shift and go to state 74
-    OR              shift and go to state 75
-    AND             shift and go to state 76
-    PUNTO           shift and go to state 77
-
-
-state 143
-
-    (76) expresion -> LOG10 PARIZQ expresion . PARDER
+    (72) expresion -> TAN PARIZQ expresion . PARDER
     (48) expresion -> expresion . MAS expresion
     (49) expresion -> expresion . MENOS expresion
     (50) expresion -> expresion . POR expresion
@@ -8520,86 +8410,9 @@ state 143
     PUNTO           shift and go to state 77
 
 
-state 144
+state 142
 
-    (77) expresion -> PARSE PARIZQ tipoDato . COMA expresion PARDER
-
-    COMA            shift and go to state 194
-
-
-state 145
-
-    (93) tipoDato -> NULO .
-
-    COMA            reduce using rule 93 (tipoDato -> NULO .)
-    PUNTOYCOMA      reduce using rule 93 (tipoDato -> NULO .)
-    PARDER          reduce using rule 93 (tipoDato -> NULO .)
-
-
-state 146
-
-    (94) tipoDato -> FLOAT64 .
-
-    COMA            reduce using rule 94 (tipoDato -> FLOAT64 .)
-    PUNTOYCOMA      reduce using rule 94 (tipoDato -> FLOAT64 .)
-    PARDER          reduce using rule 94 (tipoDato -> FLOAT64 .)
-
-
-state 147
-
-    (95) tipoDato -> INT64 .
-
-    COMA            reduce using rule 95 (tipoDato -> INT64 .)
-    PUNTOYCOMA      reduce using rule 95 (tipoDato -> INT64 .)
-    PARDER          reduce using rule 95 (tipoDato -> INT64 .)
-
-
-state 148
-
-    (96) tipoDato -> BOOL .
-
-    COMA            reduce using rule 96 (tipoDato -> BOOL .)
-    PUNTOYCOMA      reduce using rule 96 (tipoDato -> BOOL .)
-    PARDER          reduce using rule 96 (tipoDato -> BOOL .)
-
-
-state 149
-
-    (97) tipoDato -> CHAR .
-
-    COMA            reduce using rule 97 (tipoDato -> CHAR .)
-    PUNTOYCOMA      reduce using rule 97 (tipoDato -> CHAR .)
-    PARDER          reduce using rule 97 (tipoDato -> CHAR .)
-
-
-state 150
-
-    (98) tipoDato -> STRING .
-
-    COMA            reduce using rule 98 (tipoDato -> STRING .)
-    PUNTOYCOMA      reduce using rule 98 (tipoDato -> STRING .)
-    PARDER          reduce using rule 98 (tipoDato -> STRING .)
-
-
-state 151
-
-    (99) tipoDato -> ID .
-
-    COMA            reduce using rule 99 (tipoDato -> ID .)
-    PUNTOYCOMA      reduce using rule 99 (tipoDato -> ID .)
-    PARDER          reduce using rule 99 (tipoDato -> ID .)
-
-
-state 152
-
-    (78) expresion -> TRUNC PARIZQ tipoDato . COMA expresion PARDER
-
-    COMA            shift and go to state 195
-
-
-state 153
-
-    (79) expresion -> FLOAT PARIZQ expresion . PARDER
+    (73) expresion -> COS PARIZQ expresion . PARDER
     (48) expresion -> expresion . MAS expresion
     (49) expresion -> expresion . MENOS expresion
     (50) expresion -> expresion . POR expresion
@@ -8616,7 +8429,7 @@ state 153
     (61) expresion -> expresion . AND expresion
     (87) expresion -> expresion . PUNTO expresion
 
-    PARDER          shift and go to state 196
+    PARDER          shift and go to state 194
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -8634,9 +8447,83 @@ state 153
     PUNTO           shift and go to state 77
 
 
-state 154
+state 143
 
-    (80) expresion -> STRING PARIZQ expresion . PARDER
+    (74) expresion -> SIN PARIZQ expresion . PARDER
+    (48) expresion -> expresion . MAS expresion
+    (49) expresion -> expresion . MENOS expresion
+    (50) expresion -> expresion . POR expresion
+    (51) expresion -> expresion . DIV expresion
+    (52) expresion -> expresion . POTENCIA expresion
+    (53) expresion -> expresion . MODULO expresion
+    (54) expresion -> expresion . MAYOR expresion
+    (55) expresion -> expresion . MENOR expresion
+    (56) expresion -> expresion . MAYORIGUAL expresion
+    (57) expresion -> expresion . MENORIGUAL expresion
+    (58) expresion -> expresion . IGUALIGUAL expresion
+    (59) expresion -> expresion . DIFERENTE expresion
+    (60) expresion -> expresion . OR expresion
+    (61) expresion -> expresion . AND expresion
+    (87) expresion -> expresion . PUNTO expresion
+
+    PARDER          shift and go to state 195
+    MAS             shift and go to state 63
+    MENOS           shift and go to state 64
+    POR             shift and go to state 65
+    DIV             shift and go to state 66
+    POTENCIA        shift and go to state 67
+    MODULO          shift and go to state 68
+    MAYOR           shift and go to state 69
+    MENOR           shift and go to state 70
+    MAYORIGUAL      shift and go to state 71
+    MENORIGUAL      shift and go to state 72
+    IGUALIGUAL      shift and go to state 73
+    DIFERENTE       shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+    PUNTO           shift and go to state 77
+
+
+state 144
+
+    (75) expresion -> LOG PARIZQ expresion . COMA expresion PARDER
+    (48) expresion -> expresion . MAS expresion
+    (49) expresion -> expresion . MENOS expresion
+    (50) expresion -> expresion . POR expresion
+    (51) expresion -> expresion . DIV expresion
+    (52) expresion -> expresion . POTENCIA expresion
+    (53) expresion -> expresion . MODULO expresion
+    (54) expresion -> expresion . MAYOR expresion
+    (55) expresion -> expresion . MENOR expresion
+    (56) expresion -> expresion . MAYORIGUAL expresion
+    (57) expresion -> expresion . MENORIGUAL expresion
+    (58) expresion -> expresion . IGUALIGUAL expresion
+    (59) expresion -> expresion . DIFERENTE expresion
+    (60) expresion -> expresion . OR expresion
+    (61) expresion -> expresion . AND expresion
+    (87) expresion -> expresion . PUNTO expresion
+
+    COMA            shift and go to state 196
+    MAS             shift and go to state 63
+    MENOS           shift and go to state 64
+    POR             shift and go to state 65
+    DIV             shift and go to state 66
+    POTENCIA        shift and go to state 67
+    MODULO          shift and go to state 68
+    MAYOR           shift and go to state 69
+    MENOR           shift and go to state 70
+    MAYORIGUAL      shift and go to state 71
+    MENORIGUAL      shift and go to state 72
+    IGUALIGUAL      shift and go to state 73
+    DIFERENTE       shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+    PUNTO           shift and go to state 77
+
+
+state 145
+
+    (76) expresion -> LOG10 PARIZQ expresion . PARDER
     (48) expresion -> expresion . MAS expresion
     (49) expresion -> expresion . MENOS expresion
     (50) expresion -> expresion . POR expresion
@@ -8671,9 +8558,86 @@ state 154
     PUNTO           shift and go to state 77
 
 
+state 146
+
+    (77) expresion -> PARSE PARIZQ tipoDato . COMA expresion PARDER
+
+    COMA            shift and go to state 198
+
+
+state 147
+
+    (93) tipoDato -> NULO .
+
+    COMA            reduce using rule 93 (tipoDato -> NULO .)
+    PUNTOYCOMA      reduce using rule 93 (tipoDato -> NULO .)
+    PARDER          reduce using rule 93 (tipoDato -> NULO .)
+
+
+state 148
+
+    (94) tipoDato -> FLOAT64 .
+
+    COMA            reduce using rule 94 (tipoDato -> FLOAT64 .)
+    PUNTOYCOMA      reduce using rule 94 (tipoDato -> FLOAT64 .)
+    PARDER          reduce using rule 94 (tipoDato -> FLOAT64 .)
+
+
+state 149
+
+    (95) tipoDato -> INT64 .
+
+    COMA            reduce using rule 95 (tipoDato -> INT64 .)
+    PUNTOYCOMA      reduce using rule 95 (tipoDato -> INT64 .)
+    PARDER          reduce using rule 95 (tipoDato -> INT64 .)
+
+
+state 150
+
+    (96) tipoDato -> BOOL .
+
+    COMA            reduce using rule 96 (tipoDato -> BOOL .)
+    PUNTOYCOMA      reduce using rule 96 (tipoDato -> BOOL .)
+    PARDER          reduce using rule 96 (tipoDato -> BOOL .)
+
+
+state 151
+
+    (97) tipoDato -> CHAR .
+
+    COMA            reduce using rule 97 (tipoDato -> CHAR .)
+    PUNTOYCOMA      reduce using rule 97 (tipoDato -> CHAR .)
+    PARDER          reduce using rule 97 (tipoDato -> CHAR .)
+
+
+state 152
+
+    (98) tipoDato -> STRING .
+
+    COMA            reduce using rule 98 (tipoDato -> STRING .)
+    PUNTOYCOMA      reduce using rule 98 (tipoDato -> STRING .)
+    PARDER          reduce using rule 98 (tipoDato -> STRING .)
+
+
+state 153
+
+    (99) tipoDato -> ID .
+
+    COMA            reduce using rule 99 (tipoDato -> ID .)
+    PUNTOYCOMA      reduce using rule 99 (tipoDato -> ID .)
+    PARDER          reduce using rule 99 (tipoDato -> ID .)
+
+
+state 154
+
+    (78) expresion -> TRUNC PARIZQ tipoDato . COMA expresion PARDER
+
+    COMA            shift and go to state 199
+
+
 state 155
 
-    (81) expresion -> TYPEOF PARIZQ expresion . PARDER
+    (79) expresion -> FLOAT PARIZQ expresion . PARDER
     (48) expresion -> expresion . MAS expresion
     (49) expresion -> expresion . MENOS expresion
     (50) expresion -> expresion . POR expresion
@@ -8690,7 +8654,7 @@ state 155
     (61) expresion -> expresion . AND expresion
     (87) expresion -> expresion . PUNTO expresion
 
-    PARDER          shift and go to state 198
+    PARDER          shift and go to state 200
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -8709,6 +8673,80 @@ state 155
 
 
 state 156
+
+    (80) expresion -> STRING PARIZQ expresion . PARDER
+    (48) expresion -> expresion . MAS expresion
+    (49) expresion -> expresion . MENOS expresion
+    (50) expresion -> expresion . POR expresion
+    (51) expresion -> expresion . DIV expresion
+    (52) expresion -> expresion . POTENCIA expresion
+    (53) expresion -> expresion . MODULO expresion
+    (54) expresion -> expresion . MAYOR expresion
+    (55) expresion -> expresion . MENOR expresion
+    (56) expresion -> expresion . MAYORIGUAL expresion
+    (57) expresion -> expresion . MENORIGUAL expresion
+    (58) expresion -> expresion . IGUALIGUAL expresion
+    (59) expresion -> expresion . DIFERENTE expresion
+    (60) expresion -> expresion . OR expresion
+    (61) expresion -> expresion . AND expresion
+    (87) expresion -> expresion . PUNTO expresion
+
+    PARDER          shift and go to state 201
+    MAS             shift and go to state 63
+    MENOS           shift and go to state 64
+    POR             shift and go to state 65
+    DIV             shift and go to state 66
+    POTENCIA        shift and go to state 67
+    MODULO          shift and go to state 68
+    MAYOR           shift and go to state 69
+    MENOR           shift and go to state 70
+    MAYORIGUAL      shift and go to state 71
+    MENORIGUAL      shift and go to state 72
+    IGUALIGUAL      shift and go to state 73
+    DIFERENTE       shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+    PUNTO           shift and go to state 77
+
+
+state 157
+
+    (81) expresion -> TYPEOF PARIZQ expresion . PARDER
+    (48) expresion -> expresion . MAS expresion
+    (49) expresion -> expresion . MENOS expresion
+    (50) expresion -> expresion . POR expresion
+    (51) expresion -> expresion . DIV expresion
+    (52) expresion -> expresion . POTENCIA expresion
+    (53) expresion -> expresion . MODULO expresion
+    (54) expresion -> expresion . MAYOR expresion
+    (55) expresion -> expresion . MENOR expresion
+    (56) expresion -> expresion . MAYORIGUAL expresion
+    (57) expresion -> expresion . MENORIGUAL expresion
+    (58) expresion -> expresion . IGUALIGUAL expresion
+    (59) expresion -> expresion . DIFERENTE expresion
+    (60) expresion -> expresion . OR expresion
+    (61) expresion -> expresion . AND expresion
+    (87) expresion -> expresion . PUNTO expresion
+
+    PARDER          shift and go to state 202
+    MAS             shift and go to state 63
+    MENOS           shift and go to state 64
+    POR             shift and go to state 65
+    DIV             shift and go to state 66
+    POTENCIA        shift and go to state 67
+    MODULO          shift and go to state 68
+    MAYOR           shift and go to state 69
+    MENOR           shift and go to state 70
+    MAYORIGUAL      shift and go to state 71
+    MENORIGUAL      shift and go to state 72
+    IGUALIGUAL      shift and go to state 73
+    DIFERENTE       shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+    PUNTO           shift and go to state 77
+
+
+state 158
 
     (82) expresion -> PUSH NOT PARIZQ . expresion COMA expresion PARDER
     (48) expresion -> . expresion MAS expresion
@@ -8748,8 +8786,8 @@ state 156
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -8785,9 +8823,9 @@ state 156
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 199
+    expresion                      shift and go to state 203
 
-state 157
+state 159
 
     (83) expresion -> POP NOT PARIZQ . expresion PARDER
     (48) expresion -> . expresion MAS expresion
@@ -8827,8 +8865,8 @@ state 157
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -8864,9 +8902,9 @@ state 157
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 200
+    expresion                      shift and go to state 204
 
-state 158
+state 160
 
     (84) expresion -> LENGTH PARIZQ expresion . PARDER
     (48) expresion -> expresion . MAS expresion
@@ -8885,7 +8923,7 @@ state 158
     (61) expresion -> expresion . AND expresion
     (87) expresion -> expresion . PUNTO expresion
 
-    PARDER          shift and go to state 201
+    PARDER          shift and go to state 205
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -8903,7 +8941,81 @@ state 158
     PUNTO           shift and go to state 77
 
 
-state 159
+state 161
+
+    (85) expresion -> UPPERCASE PARIZQ expresion . PARDER
+    (48) expresion -> expresion . MAS expresion
+    (49) expresion -> expresion . MENOS expresion
+    (50) expresion -> expresion . POR expresion
+    (51) expresion -> expresion . DIV expresion
+    (52) expresion -> expresion . POTENCIA expresion
+    (53) expresion -> expresion . MODULO expresion
+    (54) expresion -> expresion . MAYOR expresion
+    (55) expresion -> expresion . MENOR expresion
+    (56) expresion -> expresion . MAYORIGUAL expresion
+    (57) expresion -> expresion . MENORIGUAL expresion
+    (58) expresion -> expresion . IGUALIGUAL expresion
+    (59) expresion -> expresion . DIFERENTE expresion
+    (60) expresion -> expresion . OR expresion
+    (61) expresion -> expresion . AND expresion
+    (87) expresion -> expresion . PUNTO expresion
+
+    PARDER          shift and go to state 206
+    MAS             shift and go to state 63
+    MENOS           shift and go to state 64
+    POR             shift and go to state 65
+    DIV             shift and go to state 66
+    POTENCIA        shift and go to state 67
+    MODULO          shift and go to state 68
+    MAYOR           shift and go to state 69
+    MENOR           shift and go to state 70
+    MAYORIGUAL      shift and go to state 71
+    MENORIGUAL      shift and go to state 72
+    IGUALIGUAL      shift and go to state 73
+    DIFERENTE       shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+    PUNTO           shift and go to state 77
+
+
+state 162
+
+    (86) expresion -> LOWERCASE PARIZQ expresion . PARDER
+    (48) expresion -> expresion . MAS expresion
+    (49) expresion -> expresion . MENOS expresion
+    (50) expresion -> expresion . POR expresion
+    (51) expresion -> expresion . DIV expresion
+    (52) expresion -> expresion . POTENCIA expresion
+    (53) expresion -> expresion . MODULO expresion
+    (54) expresion -> expresion . MAYOR expresion
+    (55) expresion -> expresion . MENOR expresion
+    (56) expresion -> expresion . MAYORIGUAL expresion
+    (57) expresion -> expresion . MENORIGUAL expresion
+    (58) expresion -> expresion . IGUALIGUAL expresion
+    (59) expresion -> expresion . DIFERENTE expresion
+    (60) expresion -> expresion . OR expresion
+    (61) expresion -> expresion . AND expresion
+    (87) expresion -> expresion . PUNTO expresion
+
+    PARDER          shift and go to state 207
+    MAS             shift and go to state 63
+    MENOS           shift and go to state 64
+    POR             shift and go to state 65
+    DIV             shift and go to state 66
+    POTENCIA        shift and go to state 67
+    MODULO          shift and go to state 68
+    MAYOR           shift and go to state 69
+    MENOR           shift and go to state 70
+    MAYORIGUAL      shift and go to state 71
+    MENORIGUAL      shift and go to state 72
+    IGUALIGUAL      shift and go to state 73
+    DIFERENTE       shift and go to state 74
+    OR              shift and go to state 75
+    AND             shift and go to state 76
+    PUNTO           shift and go to state 77
+
+
+state 163
 
     (91) expresion -> CORIZQ expresion DOSPUNTOS . expresion CORDER
     (48) expresion -> . expresion MAS expresion
@@ -8943,8 +9055,8 @@ state 159
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -8980,9 +9092,9 @@ state 159
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 202
+    expresion                      shift and go to state 208
 
-state 160
+state 164
 
     (92) expresion -> CORIZQ expresiones CORDER .
 
@@ -9049,7 +9161,7 @@ state 160
     PUNTOYCOMA      reduce using rule 92 (expresion -> CORIZQ expresiones CORDER .)
 
 
-state 161
+state 165
 
     (46) expresiones -> expresiones COMA . expresion
     (48) expresion -> . expresion MAS expresion
@@ -9089,8 +9201,8 @@ state 161
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -9126,23 +9238,23 @@ state 161
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 203
+    expresion                      shift and go to state 209
 
-state 162
+state 166
 
     (16) print_instr -> PRINTLN PARIZQ expresiones PARDER . PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 204
+    PUNTOYCOMA      shift and go to state 210
 
 
-state 163
+state 167
 
     (17) print_instr -> PRINT PARIZQ expresiones PARDER . PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 205
+    PUNTOYCOMA      shift and go to state 211
 
 
-state 164
+state 168
 
     (18) declaracion_instr -> LOCAL ID IGUAL expresion . PUNTOYCOMA
     (48) expresion -> expresion . MAS expresion
@@ -9161,7 +9273,7 @@ state 164
     (61) expresion -> expresion . AND expresion
     (87) expresion -> expresion . PUNTO expresion
 
-    PUNTOYCOMA      shift and go to state 206
+    PUNTOYCOMA      shift and go to state 212
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -9179,16 +9291,16 @@ state 164
     PUNTO           shift and go to state 77
 
 
-state 165
+state 169
 
     (88) expresion -> ID PARIZQ expresiones . PARDER
     (46) expresiones -> expresiones . COMA expresion
 
-    PARDER          shift and go to state 207
-    COMA            shift and go to state 161
+    PARDER          shift and go to state 213
+    COMA            shift and go to state 165
 
 
-state 166
+state 170
 
     (29) declaracion_asignacion_instr -> ID IGUAL expresion DOSPUNTOSDOSPUNTOS . tipoDato PUNTOYCOMA
     (93) tipoDato -> . NULO
@@ -9199,22 +9311,22 @@ state 166
     (98) tipoDato -> . STRING
     (99) tipoDato -> . ID
 
-    NULO            shift and go to state 145
-    FLOAT64         shift and go to state 146
-    INT64           shift and go to state 147
-    BOOL            shift and go to state 148
-    CHAR            shift and go to state 149
-    STRING          shift and go to state 150
-    ID              shift and go to state 151
+    NULO            shift and go to state 147
+    FLOAT64         shift and go to state 148
+    INT64           shift and go to state 149
+    BOOL            shift and go to state 150
+    CHAR            shift and go to state 151
+    STRING          shift and go to state 152
+    ID              shift and go to state 153
 
-    tipoDato                       shift and go to state 208
+    tipoDato                       shift and go to state 214
 
-state 167
+state 171
 
     (30) llamadaFuncion_instr -> ID PARIZQ expresiones PARDER . PUNTOYCOMA
     (88) expresion -> ID PARIZQ expresiones PARDER .
 
-    PUNTOYCOMA      shift and go to state 209
+    PUNTOYCOMA      shift and go to state 215
     IGUAL           reduce using rule 88 (expresion -> ID PARIZQ expresiones PARDER .)
     MAS             reduce using rule 88 (expresion -> ID PARIZQ expresiones PARDER .)
     MENOS           reduce using rule 88 (expresion -> ID PARIZQ expresiones PARDER .)
@@ -9233,7 +9345,7 @@ state 167
     PUNTO           reduce using rule 88 (expresion -> ID PARIZQ expresiones PARDER .)
 
 
-state 168
+state 172
 
     (28) asignacion_instr -> expresion IGUAL expresion PUNTOYCOMA .
 
@@ -9284,7 +9396,7 @@ state 168
     COMA            reduce using rule 28 (asignacion_instr -> expresion IGUAL expresion PUNTOYCOMA .)
 
 
-state 169
+state 173
 
     (19) declaracion_instr -> GLOBAL ID IGUAL expresion . PUNTOYCOMA
     (48) expresion -> expresion . MAS expresion
@@ -9303,7 +9415,7 @@ state 169
     (61) expresion -> expresion . AND expresion
     (87) expresion -> expresion . PUNTO expresion
 
-    PUNTOYCOMA      shift and go to state 210
+    PUNTOYCOMA      shift and go to state 216
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -9321,7 +9433,7 @@ state 169
     PUNTO           shift and go to state 77
 
 
-state 170
+state 174
 
     (26) struct_variable -> ID DOSPUNTOSDOSPUNTOS . tipoDato PUNTOYCOMA
     (93) tipoDato -> . NULO
@@ -9332,17 +9444,17 @@ state 170
     (98) tipoDato -> . STRING
     (99) tipoDato -> . ID
 
-    NULO            shift and go to state 145
-    FLOAT64         shift and go to state 146
-    INT64           shift and go to state 147
-    BOOL            shift and go to state 148
-    CHAR            shift and go to state 149
-    STRING          shift and go to state 150
-    ID              shift and go to state 151
+    NULO            shift and go to state 147
+    FLOAT64         shift and go to state 148
+    INT64           shift and go to state 149
+    BOOL            shift and go to state 150
+    CHAR            shift and go to state 151
+    STRING          shift and go to state 152
+    ID              shift and go to state 153
 
-    tipoDato                       shift and go to state 211
+    tipoDato                       shift and go to state 217
 
-state 171
+state 175
 
     (27) struct_variable -> ID PUNTOYCOMA .
 
@@ -9350,14 +9462,14 @@ state 171
     ID              reduce using rule 27 (struct_variable -> ID PUNTOYCOMA .)
 
 
-state 172
+state 176
 
     (22) declaracion_instr -> STRUCT ID struct_variables END . PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 212
+    PUNTOYCOMA      shift and go to state 218
 
 
-state 173
+state 177
 
     (24) struct_variables -> struct_variables struct_variable .
 
@@ -9365,38 +9477,38 @@ state 173
     ID              reduce using rule 24 (struct_variables -> struct_variables struct_variable .)
 
 
-state 174
+state 178
 
     (23) declaracion_instr -> MUTABLE STRUCT ID struct_variables . END PUNTOYCOMA
     (24) struct_variables -> struct_variables . struct_variable
     (26) struct_variable -> . ID DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA
     (27) struct_variable -> . ID PUNTOYCOMA
 
-    END             shift and go to state 213
-    ID              shift and go to state 129
+    END             shift and go to state 219
+    ID              shift and go to state 131
 
-    struct_variable                shift and go to state 173
+    struct_variable                shift and go to state 177
 
-state 175
+state 179
 
     (34) parametro -> ID . DOSPUNTOSDOSPUNTOS tipoDato
     (35) parametro -> ID .
 
-    DOSPUNTOSDOSPUNTOS shift and go to state 214
+    DOSPUNTOSDOSPUNTOS shift and go to state 220
     PARDER          reduce using rule 35 (parametro -> ID .)
     COMA            reduce using rule 35 (parametro -> ID .)
 
 
-state 176
+state 180
 
     (31) funcion_instr -> FUNCTION ID PARIZQ parametros . PARDER instrucciones END PUNTOYCOMA
     (32) parametros -> parametros . COMA parametro
 
-    PARDER          shift and go to state 215
-    COMA            shift and go to state 216
+    PARDER          shift and go to state 221
+    COMA            shift and go to state 222
 
 
-state 177
+state 181
 
     (33) parametros -> parametro .
 
@@ -9404,23 +9516,23 @@ state 177
     COMA            reduce using rule 33 (parametros -> parametro .)
 
 
-state 178
+state 182
 
     (36) if_instr -> IF expresion instrucciones END . PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 217
+    PUNTOYCOMA      shift and go to state 223
 
 
-state 179
+state 183
 
     (37) if_instr -> IF expresion instrucciones elseifs . ELSE instrucciones END PUNTOYCOMA
     (39) elseifs -> elseifs . COMA elseif_instr
 
-    ELSE            shift and go to state 218
-    COMA            shift and go to state 219
+    ELSE            shift and go to state 224
+    COMA            shift and go to state 225
 
 
-state 180
+state 184
 
     (38) if_instr -> IF expresion instrucciones ELSE . instrucciones END PUNTOYCOMA
     (2) instrucciones -> . instrucciones instruccion
@@ -9491,8 +9603,8 @@ state 180
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -9542,7 +9654,7 @@ state 180
     CORIZQ          shift and go to state 53
 
     expresion                      shift and go to state 20
-    instrucciones                  shift and go to state 220
+    instrucciones                  shift and go to state 226
     instruccion                    shift and go to state 3
     print_instr                    shift and go to state 4
     declaracion_instr              shift and go to state 5
@@ -9554,7 +9666,7 @@ state 180
     while_instr                    shift and go to state 11
     for_instr                      shift and go to state 12
 
-state 181
+state 185
 
     (40) elseifs -> elseif_instr .
 
@@ -9562,7 +9674,7 @@ state 181
     COMA            reduce using rule 40 (elseifs -> elseif_instr .)
 
 
-state 182
+state 186
 
     (41) elseif_instr -> ELSEIF . expresion instrucciones
     (48) expresion -> . expresion MAS expresion
@@ -9602,8 +9714,8 @@ state 182
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -9639,9 +9751,9 @@ state 182
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 221
+    expresion                      shift and go to state 227
 
-state 183
+state 187
 
     (49) expresion -> expresion MENOS expresion .
     (62) expresion -> MENOS expresion .
@@ -9764,14 +9876,14 @@ state 183
   ! PUNTO           [ shift and go to state 77 ]
 
 
-state 184
+state 188
 
     (42) while_instr -> WHILE expresion instrucciones END . PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 222
+    PUNTOYCOMA      shift and go to state 228
 
 
-state 185
+state 189
 
     (43) for_instr -> FOR ID IN for_instr_opciones . instrucciones END PUNTOYCOMA
     (2) instrucciones -> . instrucciones instruccion
@@ -9842,8 +9954,8 @@ state 185
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -9892,7 +10004,7 @@ state 185
     LOWERCASE       shift and go to state 52
     CORIZQ          shift and go to state 53
 
-    instrucciones                  shift and go to state 223
+    instrucciones                  shift and go to state 229
     instruccion                    shift and go to state 3
     print_instr                    shift and go to state 4
     declaracion_instr              shift and go to state 5
@@ -9905,12 +10017,12 @@ state 185
     for_instr                      shift and go to state 12
     expresion                      shift and go to state 20
 
-state 186
+state 190
 
     (44) for_instr_opciones -> ENTERO . DOSPUNTOS ENTERO
     (65) expresion -> ENTERO .
 
-    DOSPUNTOS       shift and go to state 224
+    DOSPUNTOS       shift and go to state 230
     MAS             reduce using rule 65 (expresion -> ENTERO .)
     MENOS           reduce using rule 65 (expresion -> ENTERO .)
     POR             reduce using rule 65 (expresion -> ENTERO .)
@@ -9967,7 +10079,7 @@ state 186
     CORIZQ          reduce using rule 65 (expresion -> ENTERO .)
 
 
-state 187
+state 191
 
     (45) for_instr_opciones -> expresion .
     (48) expresion -> expresion . MAS expresion
@@ -10045,7 +10157,7 @@ state 187
   ! MENOS           [ reduce using rule 45 (for_instr_opciones -> expresion .) ]
 
 
-state 188
+state 192
 
     (71) expresion -> SQRT PARIZQ expresion PARDER .
 
@@ -10112,7 +10224,7 @@ state 188
     PUNTOYCOMA      reduce using rule 71 (expresion -> SQRT PARIZQ expresion PARDER .)
 
 
-state 189
+state 193
 
     (72) expresion -> TAN PARIZQ expresion PARDER .
 
@@ -10179,7 +10291,7 @@ state 189
     PUNTOYCOMA      reduce using rule 72 (expresion -> TAN PARIZQ expresion PARDER .)
 
 
-state 190
+state 194
 
     (73) expresion -> COS PARIZQ expresion PARDER .
 
@@ -10246,7 +10358,7 @@ state 190
     PUNTOYCOMA      reduce using rule 73 (expresion -> COS PARIZQ expresion PARDER .)
 
 
-state 191
+state 195
 
     (74) expresion -> SIN PARIZQ expresion PARDER .
 
@@ -10313,7 +10425,7 @@ state 191
     PUNTOYCOMA      reduce using rule 74 (expresion -> SIN PARIZQ expresion PARDER .)
 
 
-state 192
+state 196
 
     (75) expresion -> LOG PARIZQ expresion COMA . expresion PARDER
     (48) expresion -> . expresion MAS expresion
@@ -10353,8 +10465,8 @@ state 192
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -10390,9 +10502,9 @@ state 192
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 225
+    expresion                      shift and go to state 231
 
-state 193
+state 197
 
     (76) expresion -> LOG10 PARIZQ expresion PARDER .
 
@@ -10459,7 +10571,7 @@ state 193
     PUNTOYCOMA      reduce using rule 76 (expresion -> LOG10 PARIZQ expresion PARDER .)
 
 
-state 194
+state 198
 
     (77) expresion -> PARSE PARIZQ tipoDato COMA . expresion PARDER
     (48) expresion -> . expresion MAS expresion
@@ -10499,8 +10611,8 @@ state 194
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -10536,9 +10648,9 @@ state 194
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 226
+    expresion                      shift and go to state 232
 
-state 195
+state 199
 
     (78) expresion -> TRUNC PARIZQ tipoDato COMA . expresion PARDER
     (48) expresion -> . expresion MAS expresion
@@ -10578,8 +10690,8 @@ state 195
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -10615,9 +10727,9 @@ state 195
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 227
+    expresion                      shift and go to state 233
 
-state 196
+state 200
 
     (79) expresion -> FLOAT PARIZQ expresion PARDER .
 
@@ -10684,7 +10796,7 @@ state 196
     PUNTOYCOMA      reduce using rule 79 (expresion -> FLOAT PARIZQ expresion PARDER .)
 
 
-state 197
+state 201
 
     (80) expresion -> STRING PARIZQ expresion PARDER .
 
@@ -10751,7 +10863,7 @@ state 197
     PUNTOYCOMA      reduce using rule 80 (expresion -> STRING PARIZQ expresion PARDER .)
 
 
-state 198
+state 202
 
     (81) expresion -> TYPEOF PARIZQ expresion PARDER .
 
@@ -10818,7 +10930,7 @@ state 198
     PUNTOYCOMA      reduce using rule 81 (expresion -> TYPEOF PARIZQ expresion PARDER .)
 
 
-state 199
+state 203
 
     (82) expresion -> PUSH NOT PARIZQ expresion . COMA expresion PARDER
     (48) expresion -> expresion . MAS expresion
@@ -10837,7 +10949,7 @@ state 199
     (61) expresion -> expresion . AND expresion
     (87) expresion -> expresion . PUNTO expresion
 
-    COMA            shift and go to state 228
+    COMA            shift and go to state 234
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -10855,7 +10967,7 @@ state 199
     PUNTO           shift and go to state 77
 
 
-state 200
+state 204
 
     (83) expresion -> POP NOT PARIZQ expresion . PARDER
     (48) expresion -> expresion . MAS expresion
@@ -10874,7 +10986,7 @@ state 200
     (61) expresion -> expresion . AND expresion
     (87) expresion -> expresion . PUNTO expresion
 
-    PARDER          shift and go to state 229
+    PARDER          shift and go to state 235
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -10892,7 +11004,7 @@ state 200
     PUNTO           shift and go to state 77
 
 
-state 201
+state 205
 
     (84) expresion -> LENGTH PARIZQ expresion PARDER .
 
@@ -10959,7 +11071,141 @@ state 201
     PUNTOYCOMA      reduce using rule 84 (expresion -> LENGTH PARIZQ expresion PARDER .)
 
 
-state 202
+state 206
+
+    (85) expresion -> UPPERCASE PARIZQ expresion PARDER .
+
+    IGUAL           reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    MAS             reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    MENOS           reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    POR             reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    DIV             reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    POTENCIA        reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    MODULO          reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    MAYOR           reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    MENOR           reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    MAYORIGUAL      reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    MENORIGUAL      reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    IGUALIGUAL      reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    DIFERENTE       reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    OR              reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    AND             reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    PUNTO           reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    BREAK           reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    CONTINUE        reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    RETURN          reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    PRINTLN         reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    PRINT           reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    LOCAL           reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    GLOBAL          reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    STRUCT          reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    MUTABLE         reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    ID              reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    FUNCTION        reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    IF              reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    WHILE           reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    FOR             reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    NOT             reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    DECIMAL         reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    ENTERO          reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    CARACTER        reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    CADENA          reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    TRUE            reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    FALSE           reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    NULO            reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    SQRT            reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    TAN             reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    COS             reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    SIN             reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    LOG             reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    LOG10           reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    PARSE           reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    TRUNC           reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    FLOAT           reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    STRING          reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    TYPEOF          reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    PUSH            reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    POP             reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    LENGTH          reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    UPPERCASE       reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    LOWERCASE       reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    CORIZQ          reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    DOSPUNTOS       reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    CORDER          reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    COMA            reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    PARDER          reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    DOSPUNTOSDOSPUNTOS reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+    PUNTOYCOMA      reduce using rule 85 (expresion -> UPPERCASE PARIZQ expresion PARDER .)
+
+
+state 207
+
+    (86) expresion -> LOWERCASE PARIZQ expresion PARDER .
+
+    IGUAL           reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    MAS             reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    MENOS           reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    POR             reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    DIV             reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    POTENCIA        reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    MODULO          reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    MAYOR           reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    MENOR           reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    MAYORIGUAL      reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    MENORIGUAL      reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    IGUALIGUAL      reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    DIFERENTE       reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    OR              reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    AND             reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    PUNTO           reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    BREAK           reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    CONTINUE        reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    RETURN          reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    PRINTLN         reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    PRINT           reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    LOCAL           reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    GLOBAL          reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    STRUCT          reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    MUTABLE         reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    ID              reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    FUNCTION        reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    IF              reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    WHILE           reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    FOR             reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    NOT             reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    DECIMAL         reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    ENTERO          reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    CARACTER        reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    CADENA          reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    TRUE            reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    FALSE           reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    NULO            reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    SQRT            reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    TAN             reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    COS             reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    SIN             reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    LOG             reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    LOG10           reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    PARSE           reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    TRUNC           reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    FLOAT           reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    STRING          reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    TYPEOF          reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    PUSH            reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    POP             reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    LENGTH          reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    UPPERCASE       reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    LOWERCASE       reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    CORIZQ          reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    DOSPUNTOS       reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    CORDER          reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    COMA            reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    PARDER          reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    DOSPUNTOSDOSPUNTOS reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+    PUNTOYCOMA      reduce using rule 86 (expresion -> LOWERCASE PARIZQ expresion PARDER .)
+
+
+state 208
 
     (91) expresion -> CORIZQ expresion DOSPUNTOS expresion . CORDER
     (48) expresion -> expresion . MAS expresion
@@ -10978,7 +11224,7 @@ state 202
     (61) expresion -> expresion . AND expresion
     (87) expresion -> expresion . PUNTO expresion
 
-    CORDER          shift and go to state 230
+    CORDER          shift and go to state 236
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -10996,7 +11242,7 @@ state 202
     PUNTO           shift and go to state 77
 
 
-state 203
+state 209
 
     (46) expresiones -> expresiones COMA expresion .
     (48) expresion -> expresion . MAS expresion
@@ -11035,7 +11281,7 @@ state 203
     PUNTO           shift and go to state 77
 
 
-state 204
+state 210
 
     (16) print_instr -> PRINTLN PARIZQ expresiones PARDER PUNTOYCOMA .
 
@@ -11086,7 +11332,7 @@ state 204
     COMA            reduce using rule 16 (print_instr -> PRINTLN PARIZQ expresiones PARDER PUNTOYCOMA .)
 
 
-state 205
+state 211
 
     (17) print_instr -> PRINT PARIZQ expresiones PARDER PUNTOYCOMA .
 
@@ -11137,7 +11383,7 @@ state 205
     COMA            reduce using rule 17 (print_instr -> PRINT PARIZQ expresiones PARDER PUNTOYCOMA .)
 
 
-state 206
+state 212
 
     (18) declaracion_instr -> LOCAL ID IGUAL expresion PUNTOYCOMA .
 
@@ -11188,7 +11434,7 @@ state 206
     COMA            reduce using rule 18 (declaracion_instr -> LOCAL ID IGUAL expresion PUNTOYCOMA .)
 
 
-state 207
+state 213
 
     (88) expresion -> ID PARIZQ expresiones PARDER .
 
@@ -11255,14 +11501,14 @@ state 207
     PUNTOYCOMA      reduce using rule 88 (expresion -> ID PARIZQ expresiones PARDER .)
 
 
-state 208
+state 214
 
     (29) declaracion_asignacion_instr -> ID IGUAL expresion DOSPUNTOSDOSPUNTOS tipoDato . PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 231
+    PUNTOYCOMA      shift and go to state 237
 
 
-state 209
+state 215
 
     (30) llamadaFuncion_instr -> ID PARIZQ expresiones PARDER PUNTOYCOMA .
 
@@ -11313,7 +11559,7 @@ state 209
     COMA            reduce using rule 30 (llamadaFuncion_instr -> ID PARIZQ expresiones PARDER PUNTOYCOMA .)
 
 
-state 210
+state 216
 
     (19) declaracion_instr -> GLOBAL ID IGUAL expresion PUNTOYCOMA .
 
@@ -11364,14 +11610,14 @@ state 210
     COMA            reduce using rule 19 (declaracion_instr -> GLOBAL ID IGUAL expresion PUNTOYCOMA .)
 
 
-state 211
+state 217
 
     (26) struct_variable -> ID DOSPUNTOSDOSPUNTOS tipoDato . PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 232
+    PUNTOYCOMA      shift and go to state 238
 
 
-state 212
+state 218
 
     (22) declaracion_instr -> STRUCT ID struct_variables END PUNTOYCOMA .
 
@@ -11422,14 +11668,14 @@ state 212
     COMA            reduce using rule 22 (declaracion_instr -> STRUCT ID struct_variables END PUNTOYCOMA .)
 
 
-state 213
+state 219
 
     (23) declaracion_instr -> MUTABLE STRUCT ID struct_variables END . PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 233
+    PUNTOYCOMA      shift and go to state 239
 
 
-state 214
+state 220
 
     (34) parametro -> ID DOSPUNTOSDOSPUNTOS . tipoDato
     (93) tipoDato -> . NULO
@@ -11440,17 +11686,17 @@ state 214
     (98) tipoDato -> . STRING
     (99) tipoDato -> . ID
 
-    NULO            shift and go to state 145
-    FLOAT64         shift and go to state 146
-    INT64           shift and go to state 147
-    BOOL            shift and go to state 148
-    CHAR            shift and go to state 149
-    STRING          shift and go to state 150
-    ID              shift and go to state 151
+    NULO            shift and go to state 147
+    FLOAT64         shift and go to state 148
+    INT64           shift and go to state 149
+    BOOL            shift and go to state 150
+    CHAR            shift and go to state 151
+    STRING          shift and go to state 152
+    ID              shift and go to state 153
 
-    tipoDato                       shift and go to state 234
+    tipoDato                       shift and go to state 240
 
-state 215
+state 221
 
     (31) funcion_instr -> FUNCTION ID PARIZQ parametros PARDER . instrucciones END PUNTOYCOMA
     (2) instrucciones -> . instrucciones instruccion
@@ -11521,8 +11767,8 @@ state 215
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -11571,7 +11817,7 @@ state 215
     LOWERCASE       shift and go to state 52
     CORIZQ          shift and go to state 53
 
-    instrucciones                  shift and go to state 235
+    instrucciones                  shift and go to state 241
     instruccion                    shift and go to state 3
     print_instr                    shift and go to state 4
     declaracion_instr              shift and go to state 5
@@ -11584,17 +11830,17 @@ state 215
     for_instr                      shift and go to state 12
     expresion                      shift and go to state 20
 
-state 216
+state 222
 
     (32) parametros -> parametros COMA . parametro
     (34) parametro -> . ID DOSPUNTOSDOSPUNTOS tipoDato
     (35) parametro -> . ID
 
-    ID              shift and go to state 175
+    ID              shift and go to state 179
 
-    parametro                      shift and go to state 236
+    parametro                      shift and go to state 242
 
-state 217
+state 223
 
     (36) if_instr -> IF expresion instrucciones END PUNTOYCOMA .
 
@@ -11645,7 +11891,7 @@ state 217
     COMA            reduce using rule 36 (if_instr -> IF expresion instrucciones END PUNTOYCOMA .)
 
 
-state 218
+state 224
 
     (37) if_instr -> IF expresion instrucciones elseifs ELSE . instrucciones END PUNTOYCOMA
     (2) instrucciones -> . instrucciones instruccion
@@ -11716,8 +11962,8 @@ state 218
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -11767,7 +12013,7 @@ state 218
     CORIZQ          shift and go to state 53
 
     expresion                      shift and go to state 20
-    instrucciones                  shift and go to state 237
+    instrucciones                  shift and go to state 243
     instruccion                    shift and go to state 3
     print_instr                    shift and go to state 4
     declaracion_instr              shift and go to state 5
@@ -11779,16 +12025,16 @@ state 218
     while_instr                    shift and go to state 11
     for_instr                      shift and go to state 12
 
-state 219
+state 225
 
     (39) elseifs -> elseifs COMA . elseif_instr
     (41) elseif_instr -> . ELSEIF expresion instrucciones
 
-    ELSEIF          shift and go to state 182
+    ELSEIF          shift and go to state 186
 
-    elseif_instr                   shift and go to state 238
+    elseif_instr                   shift and go to state 244
 
-state 220
+state 226
 
     (38) if_instr -> IF expresion instrucciones ELSE instrucciones . END PUNTOYCOMA
     (2) instrucciones -> instrucciones . instruccion
@@ -11858,8 +12104,8 @@ state 220
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -11867,7 +12113,7 @@ state 220
     (91) expresion -> . CORIZQ expresion DOSPUNTOS expresion CORDER
     (92) expresion -> . CORIZQ expresiones CORDER
 
-    END             shift and go to state 239
+    END             shift and go to state 245
     BREAK           shift and go to state 13
     CONTINUE        shift and go to state 14
     RETURN          shift and go to state 15
@@ -11921,7 +12167,7 @@ state 220
     while_instr                    shift and go to state 11
     for_instr                      shift and go to state 12
 
-state 221
+state 227
 
     (41) elseif_instr -> ELSEIF expresion . instrucciones
     (48) expresion -> expresion . MAS expresion
@@ -12007,8 +12253,8 @@ state 221
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -12017,7 +12263,7 @@ state 221
     (92) expresion -> . CORIZQ expresiones CORDER
 
     MAS             shift and go to state 63
-    MENOS           shift and go to state 135
+    MENOS           shift and go to state 137
     POR             shift and go to state 65
     DIV             shift and go to state 66
     POTENCIA        shift and go to state 67
@@ -12072,7 +12318,7 @@ state 221
     CORIZQ          shift and go to state 53
 
     expresion                      shift and go to state 20
-    instrucciones                  shift and go to state 240
+    instrucciones                  shift and go to state 246
     instruccion                    shift and go to state 3
     print_instr                    shift and go to state 4
     declaracion_instr              shift and go to state 5
@@ -12084,7 +12330,7 @@ state 221
     while_instr                    shift and go to state 11
     for_instr                      shift and go to state 12
 
-state 222
+state 228
 
     (42) while_instr -> WHILE expresion instrucciones END PUNTOYCOMA .
 
@@ -12135,7 +12381,7 @@ state 222
     COMA            reduce using rule 42 (while_instr -> WHILE expresion instrucciones END PUNTOYCOMA .)
 
 
-state 223
+state 229
 
     (43) for_instr -> FOR ID IN for_instr_opciones instrucciones . END PUNTOYCOMA
     (2) instrucciones -> instrucciones . instruccion
@@ -12205,8 +12451,8 @@ state 223
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -12214,7 +12460,7 @@ state 223
     (91) expresion -> . CORIZQ expresion DOSPUNTOS expresion CORDER
     (92) expresion -> . CORIZQ expresiones CORDER
 
-    END             shift and go to state 241
+    END             shift and go to state 247
     BREAK           shift and go to state 13
     CONTINUE        shift and go to state 14
     RETURN          shift and go to state 15
@@ -12268,14 +12514,14 @@ state 223
     for_instr                      shift and go to state 12
     expresion                      shift and go to state 20
 
-state 224
+state 230
 
     (44) for_instr_opciones -> ENTERO DOSPUNTOS . ENTERO
 
-    ENTERO          shift and go to state 242
+    ENTERO          shift and go to state 248
 
 
-state 225
+state 231
 
     (75) expresion -> LOG PARIZQ expresion COMA expresion . PARDER
     (48) expresion -> expresion . MAS expresion
@@ -12294,7 +12540,7 @@ state 225
     (61) expresion -> expresion . AND expresion
     (87) expresion -> expresion . PUNTO expresion
 
-    PARDER          shift and go to state 243
+    PARDER          shift and go to state 249
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -12312,7 +12558,7 @@ state 225
     PUNTO           shift and go to state 77
 
 
-state 226
+state 232
 
     (77) expresion -> PARSE PARIZQ tipoDato COMA expresion . PARDER
     (48) expresion -> expresion . MAS expresion
@@ -12331,7 +12577,7 @@ state 226
     (61) expresion -> expresion . AND expresion
     (87) expresion -> expresion . PUNTO expresion
 
-    PARDER          shift and go to state 244
+    PARDER          shift and go to state 250
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -12349,7 +12595,7 @@ state 226
     PUNTO           shift and go to state 77
 
 
-state 227
+state 233
 
     (78) expresion -> TRUNC PARIZQ tipoDato COMA expresion . PARDER
     (48) expresion -> expresion . MAS expresion
@@ -12368,7 +12614,7 @@ state 227
     (61) expresion -> expresion . AND expresion
     (87) expresion -> expresion . PUNTO expresion
 
-    PARDER          shift and go to state 245
+    PARDER          shift and go to state 251
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -12386,7 +12632,7 @@ state 227
     PUNTO           shift and go to state 77
 
 
-state 228
+state 234
 
     (82) expresion -> PUSH NOT PARIZQ expresion COMA . expresion PARDER
     (48) expresion -> . expresion MAS expresion
@@ -12426,8 +12672,8 @@ state 228
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -12463,9 +12709,9 @@ state 228
     ID              shift and go to state 58
     CORIZQ          shift and go to state 53
 
-    expresion                      shift and go to state 246
+    expresion                      shift and go to state 252
 
-state 229
+state 235
 
     (83) expresion -> POP NOT PARIZQ expresion PARDER .
 
@@ -12532,7 +12778,7 @@ state 229
     PUNTOYCOMA      reduce using rule 83 (expresion -> POP NOT PARIZQ expresion PARDER .)
 
 
-state 230
+state 236
 
     (91) expresion -> CORIZQ expresion DOSPUNTOS expresion CORDER .
 
@@ -12599,7 +12845,7 @@ state 230
     PUNTOYCOMA      reduce using rule 91 (expresion -> CORIZQ expresion DOSPUNTOS expresion CORDER .)
 
 
-state 231
+state 237
 
     (29) declaracion_asignacion_instr -> ID IGUAL expresion DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA .
 
@@ -12650,7 +12896,7 @@ state 231
     COMA            reduce using rule 29 (declaracion_asignacion_instr -> ID IGUAL expresion DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA .)
 
 
-state 232
+state 238
 
     (26) struct_variable -> ID DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA .
 
@@ -12658,7 +12904,7 @@ state 232
     ID              reduce using rule 26 (struct_variable -> ID DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA .)
 
 
-state 233
+state 239
 
     (23) declaracion_instr -> MUTABLE STRUCT ID struct_variables END PUNTOYCOMA .
 
@@ -12709,7 +12955,7 @@ state 233
     COMA            reduce using rule 23 (declaracion_instr -> MUTABLE STRUCT ID struct_variables END PUNTOYCOMA .)
 
 
-state 234
+state 240
 
     (34) parametro -> ID DOSPUNTOSDOSPUNTOS tipoDato .
 
@@ -12717,7 +12963,7 @@ state 234
     COMA            reduce using rule 34 (parametro -> ID DOSPUNTOSDOSPUNTOS tipoDato .)
 
 
-state 235
+state 241
 
     (31) funcion_instr -> FUNCTION ID PARIZQ parametros PARDER instrucciones . END PUNTOYCOMA
     (2) instrucciones -> instrucciones . instruccion
@@ -12787,8 +13033,8 @@ state 235
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -12796,7 +13042,7 @@ state 235
     (91) expresion -> . CORIZQ expresion DOSPUNTOS expresion CORDER
     (92) expresion -> . CORIZQ expresiones CORDER
 
-    END             shift and go to state 247
+    END             shift and go to state 253
     BREAK           shift and go to state 13
     CONTINUE        shift and go to state 14
     RETURN          shift and go to state 15
@@ -12850,7 +13096,7 @@ state 235
     for_instr                      shift and go to state 12
     expresion                      shift and go to state 20
 
-state 236
+state 242
 
     (32) parametros -> parametros COMA parametro .
 
@@ -12858,7 +13104,7 @@ state 236
     COMA            reduce using rule 32 (parametros -> parametros COMA parametro .)
 
 
-state 237
+state 243
 
     (37) if_instr -> IF expresion instrucciones elseifs ELSE instrucciones . END PUNTOYCOMA
     (2) instrucciones -> instrucciones . instruccion
@@ -12928,8 +13174,8 @@ state 237
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -12937,7 +13183,7 @@ state 237
     (91) expresion -> . CORIZQ expresion DOSPUNTOS expresion CORDER
     (92) expresion -> . CORIZQ expresiones CORDER
 
-    END             shift and go to state 248
+    END             shift and go to state 254
     BREAK           shift and go to state 13
     CONTINUE        shift and go to state 14
     RETURN          shift and go to state 15
@@ -12991,7 +13237,7 @@ state 237
     while_instr                    shift and go to state 11
     for_instr                      shift and go to state 12
 
-state 238
+state 244
 
     (39) elseifs -> elseifs COMA elseif_instr .
 
@@ -12999,14 +13245,14 @@ state 238
     COMA            reduce using rule 39 (elseifs -> elseifs COMA elseif_instr .)
 
 
-state 239
+state 245
 
     (38) if_instr -> IF expresion instrucciones ELSE instrucciones END . PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 249
+    PUNTOYCOMA      shift and go to state 255
 
 
-state 240
+state 246
 
     (41) elseif_instr -> ELSEIF expresion instrucciones .
     (2) instrucciones -> instrucciones . instruccion
@@ -13076,8 +13322,8 @@ state 240
     (82) expresion -> . PUSH NOT PARIZQ expresion COMA expresion PARDER
     (83) expresion -> . POP NOT PARIZQ expresion PARDER
     (84) expresion -> . LENGTH PARIZQ expresion PARDER
-    (85) expresion -> . UPPERCASE
-    (86) expresion -> . LOWERCASE
+    (85) expresion -> . UPPERCASE PARIZQ expresion PARDER
+    (86) expresion -> . LOWERCASE PARIZQ expresion PARDER
     (87) expresion -> . expresion PUNTO expresion
     (88) expresion -> . ID PARIZQ expresiones PARDER
     (89) expresion -> . ID expresion
@@ -13140,14 +13386,14 @@ state 240
     while_instr                    shift and go to state 11
     for_instr                      shift and go to state 12
 
-state 241
+state 247
 
     (43) for_instr -> FOR ID IN for_instr_opciones instrucciones END . PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 250
+    PUNTOYCOMA      shift and go to state 256
 
 
-state 242
+state 248
 
     (44) for_instr_opciones -> ENTERO DOSPUNTOS ENTERO .
 
@@ -13193,7 +13439,7 @@ state 242
     CORIZQ          reduce using rule 44 (for_instr_opciones -> ENTERO DOSPUNTOS ENTERO .)
 
 
-state 243
+state 249
 
     (75) expresion -> LOG PARIZQ expresion COMA expresion PARDER .
 
@@ -13260,7 +13506,7 @@ state 243
     PUNTOYCOMA      reduce using rule 75 (expresion -> LOG PARIZQ expresion COMA expresion PARDER .)
 
 
-state 244
+state 250
 
     (77) expresion -> PARSE PARIZQ tipoDato COMA expresion PARDER .
 
@@ -13327,7 +13573,7 @@ state 244
     PUNTOYCOMA      reduce using rule 77 (expresion -> PARSE PARIZQ tipoDato COMA expresion PARDER .)
 
 
-state 245
+state 251
 
     (78) expresion -> TRUNC PARIZQ tipoDato COMA expresion PARDER .
 
@@ -13394,7 +13640,7 @@ state 245
     PUNTOYCOMA      reduce using rule 78 (expresion -> TRUNC PARIZQ tipoDato COMA expresion PARDER .)
 
 
-state 246
+state 252
 
     (82) expresion -> PUSH NOT PARIZQ expresion COMA expresion . PARDER
     (48) expresion -> expresion . MAS expresion
@@ -13413,7 +13659,7 @@ state 246
     (61) expresion -> expresion . AND expresion
     (87) expresion -> expresion . PUNTO expresion
 
-    PARDER          shift and go to state 251
+    PARDER          shift and go to state 257
     MAS             shift and go to state 63
     MENOS           shift and go to state 64
     POR             shift and go to state 65
@@ -13431,21 +13677,21 @@ state 246
     PUNTO           shift and go to state 77
 
 
-state 247
+state 253
 
     (31) funcion_instr -> FUNCTION ID PARIZQ parametros PARDER instrucciones END . PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 252
+    PUNTOYCOMA      shift and go to state 258
 
 
-state 248
+state 254
 
     (37) if_instr -> IF expresion instrucciones elseifs ELSE instrucciones END . PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 253
+    PUNTOYCOMA      shift and go to state 259
 
 
-state 249
+state 255
 
     (38) if_instr -> IF expresion instrucciones ELSE instrucciones END PUNTOYCOMA .
 
@@ -13496,7 +13742,7 @@ state 249
     COMA            reduce using rule 38 (if_instr -> IF expresion instrucciones ELSE instrucciones END PUNTOYCOMA .)
 
 
-state 250
+state 256
 
     (43) for_instr -> FOR ID IN for_instr_opciones instrucciones END PUNTOYCOMA .
 
@@ -13547,7 +13793,7 @@ state 250
     COMA            reduce using rule 43 (for_instr -> FOR ID IN for_instr_opciones instrucciones END PUNTOYCOMA .)
 
 
-state 251
+state 257
 
     (82) expresion -> PUSH NOT PARIZQ expresion COMA expresion PARDER .
 
@@ -13614,7 +13860,7 @@ state 251
     PUNTOYCOMA      reduce using rule 82 (expresion -> PUSH NOT PARIZQ expresion COMA expresion PARDER .)
 
 
-state 252
+state 258
 
     (31) funcion_instr -> FUNCTION ID PARIZQ parametros PARDER instrucciones END PUNTOYCOMA .
 
@@ -13665,7 +13911,7 @@ state 252
     COMA            reduce using rule 31 (funcion_instr -> FUNCTION ID PARIZQ parametros PARDER instrucciones END PUNTOYCOMA .)
 
 
-state 253
+state 259
 
     (37) if_instr -> IF expresion instrucciones elseifs ELSE instrucciones END PUNTOYCOMA .
 
@@ -13762,21 +14008,21 @@ WARNING: shift/reduce conflict for DIFERENTE in state 60 resolved as shift
 WARNING: shift/reduce conflict for OR in state 60 resolved as shift
 WARNING: shift/reduce conflict for AND in state 60 resolved as shift
 WARNING: shift/reduce conflict for PUNTO in state 60 resolved as shift
-WARNING: shift/reduce conflict for MAS in state 126 resolved as shift
-WARNING: shift/reduce conflict for MENOS in state 126 resolved as shift
-WARNING: shift/reduce conflict for POR in state 126 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 126 resolved as shift
-WARNING: shift/reduce conflict for POTENCIA in state 126 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 126 resolved as shift
-WARNING: shift/reduce conflict for MAYOR in state 126 resolved as shift
-WARNING: shift/reduce conflict for MENOR in state 126 resolved as shift
-WARNING: shift/reduce conflict for MAYORIGUAL in state 126 resolved as shift
-WARNING: shift/reduce conflict for MENORIGUAL in state 126 resolved as shift
-WARNING: shift/reduce conflict for IGUALIGUAL in state 126 resolved as shift
-WARNING: shift/reduce conflict for DIFERENTE in state 126 resolved as shift
-WARNING: shift/reduce conflict for OR in state 126 resolved as shift
-WARNING: shift/reduce conflict for AND in state 126 resolved as shift
-WARNING: shift/reduce conflict for PUNTO in state 126 resolved as shift
-WARNING: shift/reduce conflict for MENOS in state 187 resolved as shift
-WARNING: reduce/reduce conflict in state 183 resolved using rule (expresion -> expresion MENOS expresion)
-WARNING: rejected rule (expresion -> MENOS expresion) in state 183
+WARNING: shift/reduce conflict for MAS in state 128 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 128 resolved as shift
+WARNING: shift/reduce conflict for POR in state 128 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 128 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 128 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 128 resolved as shift
+WARNING: shift/reduce conflict for MAYOR in state 128 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 128 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 128 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 128 resolved as shift
+WARNING: shift/reduce conflict for IGUALIGUAL in state 128 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 128 resolved as shift
+WARNING: shift/reduce conflict for OR in state 128 resolved as shift
+WARNING: shift/reduce conflict for AND in state 128 resolved as shift
+WARNING: shift/reduce conflict for PUNTO in state 128 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 191 resolved as shift
+WARNING: reduce/reduce conflict in state 187 resolved using rule (expresion -> expresion MENOS expresion)
+WARNING: rejected rule (expresion -> MENOS expresion) in state 187
