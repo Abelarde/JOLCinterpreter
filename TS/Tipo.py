@@ -74,3 +74,5 @@ class Instrucciones(Enum):
     STRUCT_VARIABLE = 8
     PRINT = 9
     PRINT_LN = 10
+    FOR_VARIABLE = 11
+    FOR_RANGO = 12

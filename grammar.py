@@ -183,7 +183,7 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
 
 def t_error(t):
-    errores.append(Excepcion("LEXICO", "error lexico ", t.value[0], t.lexer.lineno, find_column(input, t)))
+    errores.append(Excepcion("LEXICO", "Error lexico ", t.value[0], t.lexer.lineno, find_column(input, t)))
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
@@ -212,6 +212,33 @@ precedence = (
 )
 #ABSTRACTAS
 
+from Instrucciones.Asignacion import Asignacion
+from Instrucciones.BreakInstr import BreakInst
+from Instrucciones.ContinueInstr import ContinueInstr
+from Instrucciones.Declaracion import Declaracion
+from Instrucciones.DeclaracionAsignacion import DeclaracionAsignacion
+from Instrucciones.ForInstr import ForInst
+from Instrucciones.Funcion import Funcion
+from Instrucciones.FuncionParametros import FuncionParametros
+from Instrucciones.IfInstr import IfInstr
+from Instrucciones.Imprimir import Imprimir
+from Instrucciones.LlamadaFuncion import LlamadaFuncion
+from Instrucciones.ReturnInstr import ReturnInstr
+from Instrucciones.StructInstr import StructInst
+from Instrucciones.StructParametros import StructParametros
+from Instrucciones.WhileInstr import WhileInst
+from Instrucciones.ElseIfInstr import ElseIfInstr
+from Instrucciones.ForCondicionInstr import ForCondicionInstr
+
+from Expresiones.Aritmetica import Aritmetica
+from Expresiones.Constante import Constante
+from Expresiones.Especiales import Especiales
+from Expresiones.Identificador import Identificador
+from Expresiones.Logica import Logica
+from Expresiones.Nativas import Nativas
+from Expresiones.Relacional import Relacional
+
+from TS.Tipo import TIPO, Instrucciones, TiposEspeciales, OperadorLogico, OperadorAritmetico, OperadorRelacional, FuncionesPrimitivas
 
 
 
@@ -222,12 +249,16 @@ def p_init(t):
 
 def p_instrucciones_s1(t):
     'instrucciones      : instrucciones instruccion'
-    t[1].append(t[2])
+    if t[2] != "":
+        t[1].append(t[2])
     t[0] = t[1]
 
 def p_instrucciones_s2(t):
     'instrucciones      : instruccion'
-    t[0] = [t[1]]
+    if t[1] == "":
+        t[0] = []
+    else:
+        t[0] = [t[1]]
 
 def p_instruccion_s1(t):
     '''instruccion      : print_instr
@@ -247,24 +278,52 @@ def p_instruccion_s1(t):
                         # otro lado es error
                         # return = solo dentro de una funcion (si viene, ahi se acaba la ejecucion y retorna
                         # de una ese valor)
+    t[0] = t[1]
+
+def p_instruccion_s2(t):
+    'instruccion        : error PUNTOYCOMA'
+    errores.append(Excepcion("SINTACTICO","Error Sintactico:" + str(t[1].value) , t.lineno(1), find_column(input, t.slice[1])))
+    t[0] = ""
 
 def p_print_instr_s1(t): # TODO: agregar el simbolo $
     'print_instr            : PRINTLN PARIZQ expresiones PARDER PUNTOYCOMA'
+    t[0] = Imprimir(Instrucciones.PRINT_LN, t[3], t.lineno(1), find_column(input, t.slice[1]))
+
 def p_print_instr_s2(t):
     'print_instr            : PRINT PARIZQ expresiones PARDER PUNTOYCOMA'
+    t[0] = Imprimir(Instrucciones.PRINT, t[3], t.lineno(1), find_column(input, t.slice[1]))
+
 
 def p_declaracion_instr_s1(t): # VARIABLE
     '''declaracion_instr    : LOCAL ID IGUAL expresion PUNTOYCOMA
-                            | GLOBAL ID IGUAL expresion PUNTOYCOMA
-                            | LOCAL ID PUNTOYCOMA
+                            | GLOBAL ID IGUAL expresion PUNTOYCOMA'''
+    if t[1] == 'LOCAL':   # TODO: ver si se puede validar por el nombre del terminal y no por un string
+        t[0] = Declaracion(TIPO.LOCAL, t[2], t[4], t.lineno(1), find_column(input, t.slice[1]))
+    elif t[1] == 'GLOBAL':
+        t[0] = Declaracion(TIPO.GLOBAL, t[2], t[4], t.lineno(1), find_column(input, t.slice[1]))
+
+def p_declaracion_instr_s2(t): # VARIABLE
+    '''declaracion_instr    : LOCAL ID PUNTOYCOMA
                             | GLOBAL ID PUNTOYCOMA'''
-def p_declaracion_instr_s2(t): # STRUCT
+    if t[1] == 'LOCAL':
+        t[0] = Declaracion(TIPO.LOCAL, t[2], None, t.lineno(1), find_column(input, t.slice[1]))
+    elif t[1] == 'GLOBAL':
+        t[0] = Declaracion(TIPO.GLOBAL, t[2], None, t.lineno(1), find_column(input, t.slice[1]))
+
+def p_declaracion_instr_s3(t): # STRUCT
     '''structs_instr        : STRUCT ID struct_variables END PUNTOYCOMA
                             | MUTABLE STRUCT ID struct_variables END PUNTOYCOMA'''
+    if t[1] == 'STRUCT':
+        t[0] = StructInst(TIPO.STRUCT_NO_MUTABLE, t[2], t[3], t.lineno(1), find_column(input, t.slice[1]))
+    elif t[1] == 'MUTABLE':
+        t[0] = StructInst(TIPO.STRUCT_MUTABLE, t[2], t[3], t.lineno(1), find_column(input, t.slice[1]))
+
+
 def p_struct_variables_instr_s1(t):
     'struct_variables      : struct_variables struct_variable'
     t[1].append(t[2])
     t[0] = t[1]
+
 def p_struct_variables_instr_s2(t):
     'struct_variables      : struct_variable'
     t[0] = [t[1]]
@@ -272,6 +331,11 @@ def p_struct_variables_instr_s2(t):
 def p_struct_variable(t):
     '''struct_variable      : ID DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA
                             | ID PUNTOYCOMA'''
+    if len(t) == 5:
+        t[0] = StructParametros(Instrucciones.STRUCT_VARIABLE_TIPO, t[1], t[3], t.lineno(1), find_column(input, t.slice[1]))
+    elif len(t) == 3:
+        t[0] = StructParametros(Instrucciones.STRUCT_VARIABLE, t[1], None, t.lineno(1), find_column(input, t.slice[1]))
+
 
 def p_asignacion_instr_s1(t): # VARIABLE Y ARRAY  antes=[ID IGUAL CORIZQ expresiones CORDER expresion PUNTOYCOMA]
     'asignacion_instr       : expresion IGUAL expresion PUNTOYCOMA'
@@ -279,13 +343,20 @@ def p_asignacion_instr_s1(t): # VARIABLE Y ARRAY  antes=[ID IGUAL CORIZQ expresi
                             # ID
                             # arreglo
                             # arr = [1,2,3,4,5,6];  x[3][2]=55; x[1] = 3;  variable = 3;
+    t[0] = Asignacion(t[1], t[3], t.lineno(1), find_column(input, t.slice[1]))
+
 def p_declaracion_asignacion_instr_s1(t):
     'declaracion_asignacion_instr   :  ID IGUAL expresion DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA'
+    t[0] = DeclaracionAsignacion(t[1], t[3], t[5], t.lineno(1), find_column(input, t.slice[1]))
+
 
 def p_llamadaFuncion_instr_s1(t):
     'llamadaFuncion_instr   : ID PARIZQ expresiones PARDER PUNTOYCOMA'
+    t[0] = LlamadaFuncion(t[1], t[3], t.lineno(1), find_column(input, t.slice[1]))
+
 def p_funcion_instr_s1(t):  #VALIDAR EL RETURN EN EL SEMANTICO TODO:siempre retornar 'nothing'
     'funcion_instr          : FUNCTION ID PARIZQ parametros PARDER instrucciones END PUNTOYCOMA'
+    t[0] = Funcion(t[2], t[4], t[6], t.lineno(1), find_column(input, t.slice[1]))
 
 # ==========================
 def p_parametros_s1(t):
@@ -299,12 +370,23 @@ def p_parametro_s1(t):
     '''parametro        : ID DOSPUNTOSDOSPUNTOS tipoDato
                         | ID'''
                         # TODO: se permitira un id como parametro
+    if len(t) == 4:
+        t[0] = FuncionParametros(t[1], t[3], t.lineno(1), find_column(input, t.slice[1]))
+    elif len(t) == 2:
+        t[0] = FuncionParametros(t[1], None, t.lineno(1), find_column(input, t.slice[1]))
 
 # ==========================
 def p_if_instr(t):
     '''if_instr        : IF expresion instrucciones END PUNTOYCOMA
                         | IF expresion instrucciones elseifs ELSE instrucciones END PUNTOYCOMA
                         | IF expresion instrucciones ELSE instrucciones END PUNTOYCOMA'''
+    if len(t) == 6:
+        t[0] = IfInstr(Instrucciones.IF_1, t[2], t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
+    elif len(t) == 9:
+        t[0] = IfInstr(Instrucciones.IF_2, t[2], t[3], t[6], t[4], t.lineno(1), find_column(input, t.slice[1]))
+    elif len(t) == 8:
+        t[0] = IfInstr(Instrucciones.IF_3, t[2], t[3], t[5], None, t.lineno(1), find_column(input, t.slice[1]))
+
 def p_elseifs_s1(t):
     'elseifs            : elseifs COMA elseif_instr'
     t[1].append(t[2])
@@ -314,17 +396,27 @@ def p_elseif_s2(t):
     t[0] = [t[1]]
 def p_elseif_instr(t):
     'elseif_instr       : ELSEIF expresion instrucciones'
+    t[0] = ElseIfInstr(t[2], t[3], t.lineno(1), find_column(input, t.slice[1]))
 
 def p_while_instr(t):
     'while_instr        : WHILE expresion instrucciones END PUNTOYCOMA'
+    t[0] = WhileInst(t[2], t[3], t.lineno(1), find_column(input, t.slice[1]))
 
 def p_for_instr(t): # EN EL SEMANTICO VALIDAR QUE TIPO ES LO QUE ITERARA Y DE AHI PROGRAMAR LA ACCION
     'for_instr          : FOR ID IN for_instr_opciones instrucciones END PUNTOYCOMA'
+    t[0] = ForInst(t[2], t[4], t[5], t.lineno(1), find_column(input, t.slice[1]))
+
 def p_for_instr_opciones(t):
-    '''for_instr_opciones   : ENTERO DOSPUNTOS ENTERO 
+    '''for_instr_opciones   : expresion DOSPUNTOS expresion
                             | expresion'''
+                        # ENTERO :: ENTERO
                         # id, string, arreglo, variable === expresion
                         # TODO: validar estos parametros
+    if len(t) == 4:
+        t[0] = ForCondicionInstr(Instrucciones.FOR_RANGO, t[1], t[3], t.lineno(1), find_column(input, t.slice[1]))
+    elif len(t) == 2:
+        t[0] = ForCondicionInstr(Instrucciones.FOR_VARIABLE, t[1], None, t.lineno(1), find_column(input, t.slice[1]))
+
 
 # ==========================
 
@@ -353,11 +445,44 @@ def p_expresion_s1(t): # TODO: unario
                         | expresion DIFERENTE expresion
                         | expresion OR expresion
                         | expresion AND expresion'''
+    if t[2] == '+':
+        t[0] = Aritmetica(OperadorAritmetico.MAS, t[1],t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[2] == '-':
+        t[0] = Aritmetica(OperadorAritmetico.MENOS, t[1],t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[2] == '*':
+        t[0] = Aritmetica(OperadorAritmetico.POR, t[1],t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[2] == '/':
+        t[0] = Aritmetica(OperadorAritmetico.DIV, t[1],t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[2] == '^':
+        t[0] = Aritmetica(OperadorAritmetico.POTENCIA, t[1],t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[2] == '%':
+        t[0] = Aritmetica(OperadorAritmetico.MODULO, t[1],t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[2] == '<':
+        t[0] = Relacional(OperadorRelacional.MENORQUE, t[1],t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[2] == '>':
+        t[0] = Relacional(OperadorRelacional.MAYORQUE, t[1],t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[2] == '<=':
+        t[0] = Relacional(OperadorRelacional.MENORIGUAL, t[1],t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[2] == '>=':
+        t[0] = Relacional(OperadorRelacional.MAYORIGUAL, t[1],t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[2] == '==':
+        t[0] = Relacional(OperadorRelacional.IGUALIGUAL, t[1],t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[2] == '!=':
+        t[0] = Relacional(OperadorRelacional.DIFERENTE, t[1],t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[2] == '&&':
+        t[0] = Logica(OperadorLogico.AND, t[1],t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[2] == '||':
+        t[0] = Logica(OperadorLogico.OR, t[1],t[3], t.lineno(2), find_column(input, t.slice[2]))
 
 
 def p_expresion_s2(t): # TODO: unario
     '''expresion        : MENOS expresion %prec UMENOS
                         | NOT expresion'''
+    if len(t) == 3:
+        t[0] = Aritmetica(OperadorAritmetico.MENOS, t[2], None, t.lineno(2), find_column(input, t.slice[2]))
+    else:
+        t[0] = Logica(OperadorLogico.NOT, t[2], None, t.lineno(2), find_column(input, t.slice[2]))
+
 
 def p_expresion_s3(t): # TODO: unario
     '''expresion        : DECIMAL
@@ -385,6 +510,39 @@ def p_expresion_s4(t):
                         | LENGTH PARIZQ expresion PARDER
                         | UPPERCASE PARIZQ expresion PARDER
                         | LOWERCASE PARIZQ expresion PARDER'''
+    if t[1] == 'SQRT':
+        t[0] = Nativas(FuncionesPrimitivas.SQRT, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'TAN':
+        t[0] = Nativas(FuncionesPrimitivas.TAN, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'COS':
+        t[0] = Nativas(FuncionesPrimitivas.COS, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'SIN':
+        t[0] = Nativas(FuncionesPrimitivas.SIN, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'LOG':
+        t[0] = Nativas(FuncionesPrimitivas.LOG, t[3], t[5], None, t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'LOG10':
+        t[0] = Nativas(FuncionesPrimitivas.LOG10, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'PARSE':
+        t[0] = Nativas(FuncionesPrimitivas.PARSE, t[5], None, t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'TRUNC':
+        t[0] = Nativas(FuncionesPrimitivas.TRUNC, t[5], None, t[3], t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'FLOAT':
+        t[0] = Nativas(FuncionesPrimitivas.FLOAT, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'STRING':
+        t[0] = Nativas(FuncionesPrimitivas.STRING, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'TYPEOF':
+        t[0] = Nativas(FuncionesPrimitivas.TYPEOF, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'PUSH':
+        t[0] = Nativas(FuncionesPrimitivas.PUSH, t[4], t[6], None, t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'POP':
+        t[0] = Nativas(FuncionesPrimitivas.POP, t[4], None, None, t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'LENGTH':
+        t[0] = Nativas(FuncionesPrimitivas.LENGTH, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'UPPERCASE':
+        t[0] = Nativas(FuncionesPrimitivas.UPPERCASE, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+    elif t[1] == 'LOWERCASE':
+        t[0] = Nativas(FuncionesPrimitivas.LOWERCASE, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+
 
 def p_expresion_s5(t):
     '''expresion        : expresion PUNTO expresion
@@ -392,7 +550,8 @@ def p_expresion_s5(t):
                         | ID expresion
                         | ID
                         | CORIZQ expresion DOSPUNTOS expresion CORDER
-                        | CORIZQ expresiones CORDER'''
+                        | CORIZQ expresiones CORDER
+                        | PARIZQ expresiones PARDER'''
                         # x[1] = 3;
                         # x[3][2]=55;
                         # TODO: arreglo = [32, 21, 7, 89, 56, 909, 109, 2, 9, 1, 44, 3, 8200, 11, 8, 10];
@@ -409,6 +568,20 @@ def p_tipoDatos(t):
                         | STRING
                         | ID'''
                         # POR EJEMPLO ALGUN STRUCT
+    if t[1] == 'NULO':
+        t[0] = TIPO.NULO
+    elif t[1] == 'FLOAT64':
+        t[0] = TIPO.FLOAT64
+    elif t[1] == 'INT64':
+        t[0] = TIPO.INT64
+    elif t[1] == 'BOOL':
+        t[0] = TIPO.BOOL
+    elif t[1] == 'CHAR':
+        t[0] = TIPO.CHAR
+    elif t[1] == 'STRING':
+        t[0] = TIPO.STRING
+    elif t[1] == 'ID':
+        t[0] = TIPO.ID
 
 def p_error(t):
     print("Error sintáctico en '%s'" % str(t))

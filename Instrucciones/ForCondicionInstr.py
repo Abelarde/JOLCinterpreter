@@ -1,11 +1,11 @@
 from Abstract.NodoAST import NodoAST
 
 
-class StructParametros(NodoAST):
-    def __init__(self, var_tipo, identificador, tipo, fila, columna):
-        self.var_tipo = var_tipo
-        self.identificador = identificador
+class ForCondicionInstr(NodoAST):
+    def __init__(self, tipo, expresion_uno, expresion_dos, fila, columna):
         self.tipo = tipo
+        self.expresion_uno = expresion_uno
+        self.expresion_dos = expresion_dos
         self.fila = fila
         self.columna = columna
 
