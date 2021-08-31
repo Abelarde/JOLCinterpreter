@@ -1,3 +1,4 @@
+import re
 import sys
 import ply.lex as lex
 import ply.yacc as yacc
@@ -6,6 +7,7 @@ from TS.Excepcion import Excepcion
 sys.setrecursionlimit(3000)
 
 errores = []
+input = ''
 
 reservadas = {
     # PALABRAS RESERVADAS
@@ -187,8 +189,8 @@ def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
-def find_column(inp, token):
-    line_start = inp.rfind('\n', 0, token.lexpos) + 1
+def find_column(entrada, token):
+    line_start = entrada.rfind('\n', 0, token.lexpos) + 1
     return (token.lexpos - line_start) + 1
 
 # CONSTRUYENDO EL ANALIZADOR LEXICO==========
@@ -271,9 +273,9 @@ def p_instruccion_s1(t):
                         | if_instr
                         | while_instr
                         | for_instr
-                        | BREAK
-                        | CONTINUE
-                        | RETURN'''
+                        | break_instr
+                        | continue_instr
+                        | return_instr'''
                         # se puede validar que el break, continue, venga solo dentro de bucles y en cualquier
                         # otro lado es error
                         # return = solo dentro de una funcion (si viene, ahi se acaba la ejecucion y retorna
@@ -343,7 +345,7 @@ def p_asignacion_instr_s1(t): # VARIABLE Y ARRAY  antes=[ID IGUAL CORIZQ expresi
                             # ID
                             # arreglo
                             # arr = [1,2,3,4,5,6];  x[3][2]=55; x[1] = 3;  variable = 3;
-    t[0] = Asignacion(t[1], t[3], t.lineno(1), find_column(input, t.slice[1]))
+    t[0] = Asignacion(t[1], t[3], t.lineno(2), find_column(input, t.slice[2]))
 
 def p_declaracion_asignacion_instr_s1(t):
     'declaracion_asignacion_instr   :  ID IGUAL expresion DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA'
@@ -389,7 +391,7 @@ def p_if_instr(t):
 
 def p_elseifs_s1(t):
     'elseifs            : elseifs COMA elseif_instr'
-    t[1].append(t[2])
+    t[1].append(t[3])
     t[0] = t[1]
 def p_elseif_s2(t):
     'elseifs            : elseif_instr'
@@ -413,11 +415,21 @@ def p_for_instr_opciones(t):
                         # id, string, arreglo, variable === expresion
                         # TODO: validar estos parametros
     if len(t) == 4:
-        t[0] = ForCondicionInstr(Instrucciones.FOR_RANGO, t[1], t[3], t.lineno(1), find_column(input, t.slice[1]))
+        t[0] = ForCondicionInstr(Instrucciones.FOR_RANGO, t[1], t[3], t.lineno(2), find_column(input, t.slice[2]))
     elif len(t) == 2:
-        t[0] = ForCondicionInstr(Instrucciones.FOR_VARIABLE, t[1], None, t.lineno(1), find_column(input, t.slice[1]))
+        t[0] = ForCondicionInstr(Instrucciones.FOR_VARIABLE, t[1], None, t[1].fila, t[1].columna) # TODO: verificarq que esto no produzca error alguno
 
+def p_break_instr_s1(t):
+    'break_instr            : BREAK PUNTOYCOMA'
+    t[0] = BreakInst(t.lineno(1), find_column(input, t.slice[1]))
 
+def p_return_instr_s1(t):
+    'return_instr            : RETURN expresion PUNTOYCOMA'
+    t[0] = ReturnInstr(t[2], t.lineno(1), find_column(input, t.slice[1]))
+
+def p_continue_instr_s1(t):
+    'continue_instr            : CONTINUE PUNTOYCOMA'
+    t[0] = ContinueInstr(t.lineno(1), find_column(input, t.slice[1]))
 # ==========================
 
 
@@ -479,9 +491,9 @@ def p_expresion_s2(t): # TODO: unario
     '''expresion        : MENOS expresion %prec UMENOS
                         | NOT expresion'''
     if len(t) == 3:
-        t[0] = Aritmetica(OperadorAritmetico.MENOS, t[2], None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Aritmetica(OperadorAritmetico.MENOS, t[2], None, t.lineno(1), find_column(input, t.slice[1]))
     else:
-        t[0] = Logica(OperadorLogico.NOT, t[2], None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Logica(OperadorLogico.NOT, t[2], None, t.lineno(1), find_column(input, t.slice[1]))
 
 
 def p_expresion_s3(t): # TODO: unario
@@ -511,37 +523,37 @@ def p_expresion_s4(t):
                         | UPPERCASE PARIZQ expresion PARDER
                         | LOWERCASE PARIZQ expresion PARDER'''
     if t[1] == 'SQRT':
-        t[0] = Nativas(FuncionesPrimitivas.SQRT, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.SQRT, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'TAN':
-        t[0] = Nativas(FuncionesPrimitivas.TAN, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.TAN, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'COS':
-        t[0] = Nativas(FuncionesPrimitivas.COS, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.COS, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'SIN':
-        t[0] = Nativas(FuncionesPrimitivas.SIN, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.SIN, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'LOG':
-        t[0] = Nativas(FuncionesPrimitivas.LOG, t[3], t[5], None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.LOG, t[3], t[5], None, t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'LOG10':
-        t[0] = Nativas(FuncionesPrimitivas.LOG10, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.LOG10, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'PARSE':
-        t[0] = Nativas(FuncionesPrimitivas.PARSE, t[5], None, t[3], t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.PARSE, t[5], None, t[3], t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'TRUNC':
-        t[0] = Nativas(FuncionesPrimitivas.TRUNC, t[5], None, t[3], t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.TRUNC, t[5], None, t[3], t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'FLOAT':
-        t[0] = Nativas(FuncionesPrimitivas.FLOAT, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.FLOAT, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'STRING':
-        t[0] = Nativas(FuncionesPrimitivas.STRING, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.STRING, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'TYPEOF':
-        t[0] = Nativas(FuncionesPrimitivas.TYPEOF, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.TYPEOF, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'PUSH':
-        t[0] = Nativas(FuncionesPrimitivas.PUSH, t[4], t[6], None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.PUSH, t[4], t[6], None, t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'POP':
-        t[0] = Nativas(FuncionesPrimitivas.POP, t[4], None, None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.POP, t[4], None, None, t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'LENGTH':
-        t[0] = Nativas(FuncionesPrimitivas.LENGTH, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.LENGTH, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'UPPERCASE':
-        t[0] = Nativas(FuncionesPrimitivas.UPPERCASE, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.UPPERCASE, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
     elif t[1] == 'LOWERCASE':
-        t[0] = Nativas(FuncionesPrimitivas.LOWERCASE, t[3], None, None, t.lineno(2), find_column(input, t.slice[2]))
+        t[0] = Nativas(FuncionesPrimitivas.LOWERCASE, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
 
 
 def p_expresion_s5(t):
@@ -587,9 +599,62 @@ def p_error(t):
     print("Error sintáctico en '%s'" % str(t))
 
 # CONSTRUYENDO EL ANALIZADOR SINTACTICO========
+from TS.Arbol import Arbol
+from TS.TablaSimbolos import TablaSimbolos
+
 parser = yacc.yacc()
 
-def parse(input):
+def getErrores():
+    return errores
+
+def parse(inp):
+    global errores  # reference to global variables
+    global lexer
+    global parser
+
+    lexer.input(inp)
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break  # No more input
+        print(tok)
+
+    cad = parser.parse(inp)  # TODO: porque ingresar al cad[x]?
+    for item in cad:
+        print(item)
+
+
+    errores = []
+    lexer = lex.lex(reflags=re.IGNORECASE)
+    parser = yacc.yacc()
+
+    global input
+    input = inp
+
+    instrucciones = parser.parse(inp)
+    ast = Arbol(instrucciones)
+    TSGlobal = TablaSimbolos()
+    ast.setTSglobal(TSGlobal)
+
+    # TODO: captura de errores lexicos y sintacticos
+
+    for instruccion in ast.getInstrucciones():
+        if isinstance(instruccion, Funcion):
+            ast.addFuncion(instruccion)
+        elif isinstance(instruccion, ReturnInstr):
+            errores.append(Excepcion("SINTACTICO", "instruccion return en lugar no valido" , instruccion.fila, instruccion.columna))
+        elif isinstance(instruccion, BreakInst):
+            errores.append(Excepcion("SINTACTICO", "instruccion break en lugar no valido" , instruccion.fila, instruccion.columna))
+        elif isinstance(instruccion, ContinueInstr):
+            errores.append(Excepcion("SINTACTICO", "instruccion contine en lugar no valido" , instruccion.fila, instruccion.columna))
+        else:
+            instruccion.interpretar(ast, TSGlobal)
+
+    return ast
+
+
+
+"""
     # Give the lexer some input
     lexer.input(input)
     # Tokenize
@@ -601,6 +666,7 @@ def parse(input):
 
     cad = parser.parse(input)  # TODO: porque ingresar al cad[x]?
     return str(cad)
+"""
 
 """
 def parse(input):
@@ -617,5 +683,8 @@ x[1] = 3;
 x[3][2]=55;
 
 """
+
+
+
 # TODO: dejarlo mas completo en el sentido que recupere mas informacion. Y empezar a ver como sera la TDS
 # TODO: hacer pruebas con los numeros, expresiones bien escritas

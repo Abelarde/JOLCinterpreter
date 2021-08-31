@@ -44,6 +44,7 @@ class Arbol:
                 return funcion
         return None
 
+    # TODO: quizas validar que no exista dos funciones con el mismo nombre
     def addFuncion(self, funcion):
         self.funciones.append(funcion)
 

@@ -1,5 +1,5 @@
 from flask import Flask, redirect, url_for, render_template, request
-from grammar import parse as parseC3D
+from grammar import parse
 app = Flask(__name__)
 
 tmp_val=''
@@ -17,13 +17,15 @@ def analyze():
         tmp_val=inpt
         return redirect(url_for("output"))
     else:
-        return render_template('analyze.html', initial="3*2*(2+5)==15|2+3*4/(3+1)==10 & 6*7/(8+1)==10")
+        f = open("./entrada.jl", "r")
+        entrada = f.read()
+        return render_template('analyze.html', initial=entrada)
 
 @app.route('/output')
 def output():
     global tmp_val
-    result = parseC3D(tmp_val)
-    return render_template('output.html', input=result)
+    result = parse(tmp_val)
+    return render_template('output.html', input=result.getConsola())
 
 @app.route("/report")# de esta forma le indicamos la ruta para acceder a esta pagina. 'Decoramos' la funcion.
 def report():
