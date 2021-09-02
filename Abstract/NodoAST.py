@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+# NODO DEL AST
 
 class NodoAST(ABC):
     def __init__(self, fila, columna):

@@ -1,5 +1,6 @@
 from Abstract.Objeto import Objeto, TipoObjeto
 
+# CLASE PARA MANEJAR LOS ERRORES: LEXICOS, SINTACTICOS, SEMANTICOS.
 
 class Excepcion(Objeto):
     def __init__(self, tipo, descripcion, fila, columna):

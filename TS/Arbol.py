@@ -1,10 +1,13 @@
+
+# CLASE PARA CONSTRUIR NUESTRO ARBOL CON EL ANALISIS
+
 class Arbol:
     def __init__(self, instrucciones):
         self.instrucciones = instrucciones
         self.funciones = []
         self.excepciones = []
         self.consola = ""
-        self.TSglobal = None
+        self.TSglobal = None   # DE TIPO TablaSimbolos() con sus metodos
         self.dot = ""
         self.contador = 0
 

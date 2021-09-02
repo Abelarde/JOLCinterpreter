@@ -1,3 +1,8 @@
+from enum import Enum
+
+
+# CLASE PARA REPORTE DEL AST
+
 class NodoReporteArbol():
     def __init__(self, valor):
         self.hijos = []
@@ -30,3 +35,14 @@ class NodoReporteArbol():
 
     def getHijos(self):
         return self.hijos
+
+
+# TIPOS DE EXPRESIONES
+class Expresion(Enum):
+    CONSTANTES = 1
+    IDENTIFICADOR = 2
+    ARITMETICA = 3
+    LOGICA = 4
+    RELACIONAL = 5
+    NATIVA = 6
+    IMPRIMIR = 7

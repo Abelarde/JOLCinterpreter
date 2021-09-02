@@ -1,10 +1,13 @@
 
+# CLASE QUE SERA CUALQUIER VARIBLES (OBJETOS),
+# FUNCIONES DENTRO DEL ANALISIS
+
 class Simbolo:
     def __init__(self, identificador, fila, columna, valor ):
         self.id = identificador
         self.fila = fila
         self.columna = columna
-        self.valor = valor  # instancia de clase OBJETO
+        self.valor = valor  # instancia de clase OBJETO [tipo, valor]
 
     def getID(self):
         return self.id

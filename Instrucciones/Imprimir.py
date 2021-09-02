@@ -1,5 +1,7 @@
 from enum import Enum
 from Abstract.NodoAST import NodoAST
+from Abstract.NodoReporteArbol import NodoReporteArbol, Expresion
+from TS.Excepcion import Excepcion
 from TS.Tipo import TIPO, Instrucciones
 
 class Imprimir(NodoAST):
@@ -10,7 +12,15 @@ class Imprimir(NodoAST):
         self.columna = columna
 
     def interpretar(self, tree, table):
+        for item in self.expresioness:
+            value = item.interpretar(tree, table)
+            if isinstance(value, Excepcion):
+                continue
+            tree.updateConsola(value.valor)  # TODO: Actualizar singleton en su campo consola
         return None
 
+
     def getNodo(self):
-        return None
+        nodo = NodoReporteArbol(Expresion.IMPRIMIR)
+        nodo.agregarHijoNodo(self.expresion.getNodo())
+        return nodo

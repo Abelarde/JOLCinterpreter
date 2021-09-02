@@ -1,5 +1,7 @@
 from TS.Excepcion import Excepcion
 
+# CLASE QUE SERA CUALQUIER VARIBLES (OBJETOS),
+# FUNCIONES DENTRO DEL ANALISIS
 
 class TablaSimbolos:
     def __init__(self, anterior=None):

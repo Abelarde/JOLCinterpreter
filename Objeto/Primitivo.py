@@ -2,6 +2,7 @@ from Abstract.Objeto import Objeto
 from abc import ABC, abstractmethod
 
 # NOTE: alguna clase para manejar los que no sean primitivos?
+# CLASE PARA LAS VARIABLES (OBJETOS) PRIMITIVOS
 
 class Primitivo(Objeto):
     def __init__(self, tipo, valor):

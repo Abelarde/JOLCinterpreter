@@ -2,6 +2,8 @@ from enum import Enum
 
 
 # TODO: averiguar la diferencia entre este tipo y el tipo dentro de Objeto
+# CLASE PARA USAR EN LA GRAMATICA
+
 class TIPO(Enum):
     NULO = 1
     FLOAT64 = 2
