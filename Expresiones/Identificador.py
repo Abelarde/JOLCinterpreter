@@ -1,6 +1,6 @@
 from Abstract.NodoAST import NodoAST
 from Abstract.NodoReporteArbol import NodoReporteArbol, Expresion
-from TS.Excepcion import Excepcion
+from TS.Excepcion import Excepcion, TipoError
 
 
 class Identificador(NodoAST):
@@ -12,7 +12,7 @@ class Identificador(NodoAST):
     def interpretar(self, tree, table):
         simbolo = table.getTabla(self.identificador.lower())
         if simbolo is None:
-            return Excepcion("SEMÁNTICO", " variable " + self.identificador + " no encontrada.", self.fila, self.columna)
+            return Excepcion(TipoError.SEMANTICO, "Error, variable " + self.identificador + " no encontrada.", self.fila, self.columna)
         return simbolo.getValor()   # INSTANCIA DE LA CLASE OBJETO
 
     def getNodo(self):

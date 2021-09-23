@@ -2,7 +2,6 @@ from TS.Excepcion import Excepcion
 
 # CLASE QUE SERA CUALQUIER VARIBLES (OBJETOS),
 # FUNCIONES DENTRO DEL ANALISIS
-
 class TablaSimbolos:
     def __init__(self, anterior=None):
         self.tabla = {}  # DICCIONARIO VACIO
@@ -24,7 +23,7 @@ class TablaSimbolos:
                 tablaActual = tablaActual.anterior
         return None
 
-    def actualizarTabla(self, simbolo):
+    def actualizarTabla(self, simbolo):     # actualiza o crea el valor para un simbolo
         tablaActual = self
         while tablaActual != None:
             if simbolo.id.lower() in tablaActual.tabla:

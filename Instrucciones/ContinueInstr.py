@@ -7,7 +7,7 @@ class ContinueInstr(NodoAST):
         self.columna = columna
 
     def interpretar(self, tree, table):
-        return None
+        return self
 
     def getNodo(self):
         return None

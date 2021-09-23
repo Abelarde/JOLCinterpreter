@@ -1,6 +1,6 @@
 
+# NOTE: CLASE PARA MANEJAR NUESTRO ANALISIS
 # CLASE PARA CONSTRUIR NUESTRO ARBOL CON EL ANALISIS
-
 class Arbol:
     def __init__(self, instrucciones):
         self.instrucciones = instrucciones

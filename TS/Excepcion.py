@@ -1,6 +1,17 @@
 from Abstract.Objeto import Objeto, TipoObjeto
+from enum import Enum
 
-# CLASE PARA MANEJAR LOS ERRORES: LEXICOS, SINTACTICOS, SEMANTICOS.
+# NOTE: ERRORES DE CUALQUIER TIPO Y PODER USAR ESTA CLASE DONDE LA NECESITEMOS
+# CLASE HIJA DE OBJETO
+# PARA MANEJAR LOS ERRORES: LEXICOS, SINTACTICOS, SEMANTICOS.
+
+
+# NOTE: ENUM'S PARA LA GRAMATICA
+class TipoError(Enum):
+    LEXICO = 1
+    SINTACTICO = 2
+    SEMANTICO = 3
+
 
 class Excepcion(Objeto):
     def __init__(self, tipo, descripcion, fila, columna):

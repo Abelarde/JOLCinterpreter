@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
 from enum import Enum
 
+# NOTE: TIPO DE LOS OBJETOS EN EL LENGUAGE
 # TIPO DE LAS VARIABLES (OBJETOS) QUE VOY A CREAR
+
 
 class TipoObjeto(Enum):
     NULO = 1
@@ -19,8 +21,8 @@ class TipoObjeto(Enum):
     GLOBAL = 13  # cuando se declara
     ERROR = 14
 
-# CLASE PARA LAS VARIABLES (OBJETOS) QUE VOY A CREAR
-
+# NOTE: VALOR DE LOS SIMBOLOS
+# INTERFAZ PARA LOS OBJETOS QUE VOY A CREAR
 class Objeto(ABC):
     def __init__(self, tipo):
         self.tipo = tipo

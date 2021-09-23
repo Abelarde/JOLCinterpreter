@@ -14,24 +14,33 @@ class Logica(NodoAST):
         self.columna = columna
 
     def interpretar(self, tree, table):
-        res_left = self.OperacionIzq.interpretar(tree, table)
-        res_right = self.OperacionDer.interpretar(tree, table)
+        res_right = self.operadorDer.interpretar(tree, table)
 
-        if res_left.tipo == TipoObjeto.ERROR:
-            return res_left
         if res_right.tipo == TipoObjeto.ERROR:
             return res_right
 
-        if self.operador == OperadorLogico.OR:
-            return Primitivo(TipoObjeto.BOOL, bool(str(res_left.getValue())) or bool(str(res_right.getValue())))
+        res_left = None
+        if self.operadorIzq is not None:
+            res_left = self.operadorIzq.interpretar(tree, table)
+            if res_left.tipo == TipoObjeto.ERROR:
+                return res_left
 
-        if self.operador == OperadorLogico.AND:
-            return Primitivo(TipoObjeto.BOOL, bool(str(res_left.getValue())) and bool(str(res_right.getValue())))
+        if res_right.tipo == TipoObjeto.BOOL:
+            if self.operador == OperadorLogico.OR or self.operador == OperadorLogico.AND:
+                if res_left is not None and res_left.tipo == TipoObjeto.BOOL:
+                    if self.operador == OperadorLogico.OR:
+                        return Primitivo(TipoObjeto.BOOL, res_left.getValue() or res_right.getValue())
+                    elif self.operador == OperadorLogico.AND:
+                        return Primitivo(TipoObjeto.BOOL, res_left.getValue() and res_right.getValue())
+                else:
+                    return Exception("Semantico", f"Tipo error al obtener el valor izq", self.fila, self.columna)
+            elif self.operador == OperadorLogico.NOT:
+                return Primitivo(TipoObjeto.BOOL, not bool(str(res_right.getValue())))
+            else:
+                return Exception("Semantico", f"Operador desconocido: {self.operador}", self.fila, self.columna)
+        else:
+            return Exception("Semantico", f"Tipo de datos invalidos para una operacion logica der{res_right.tipo}", self.fila, self.columna)
 
-        if self.operador == OperadorLogico.NOT:
-            return Primitivo(TipoObjeto.BOOL, not bool(str(res_right.getValue())))
-
-        return Exception("Semantico", f"Operador desconocido: {self.operador}", self.fila, self.columna)
 
 
     def getNodo(self):

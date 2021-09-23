@@ -1,9 +1,9 @@
 
+# NOTE: UN ID CON UN VALOR
 # CLASE QUE SERA CUALQUIER VARIBLES (OBJETOS),
 # FUNCIONES DENTRO DEL ANALISIS
-
 class Simbolo:
-    def __init__(self, identificador, fila, columna, valor ):
+    def __init__(self, identificador, fila, columna, valor):
         self.id = identificador
         self.fila = fila
         self.columna = columna
