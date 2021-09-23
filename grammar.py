@@ -169,12 +169,12 @@ def t_ID(t):
      t.type = reservadas.get(t.value.lower(),'ID')    # Check for reserved words
      return t
 
-def t_COMENTARIO_MULTI(t):
+def t_COMENTARIOMULTI(t):
     r'\#\=(.|\n)*?\\=\#'
     t.lexer.lineno += t.value.count('\n')
 
-def t_COMENTARIO_SIMPLE(t):
-    r'\#.*\n'
+def t_COMENTARIOSIMPLE(t):
+    r'\#.*'
     t.lexer.lineno += 1
 
 # CARACTERES IGNORADOS
@@ -234,13 +234,12 @@ from Instrucciones.ForCondicionInstr import ForCondicionInstr
 
 from Expresiones.Aritmetica import Aritmetica
 from Expresiones.Constante import Constante
-from Expresiones.Especiales import Especiales
 from Expresiones.Identificador import Identificador
 from Expresiones.Logica import Logica
 from Expresiones.Nativas import Nativas
 from Expresiones.Relacional import Relacional
 
-from TS.Tipo import Instrucciones, TiposEspeciales, OperadorLogico, OperadorAritmetico, OperadorRelacional, FuncionesPrimitivas
+from TS.Tipo import Instrucciones, OperadorLogico, OperadorAritmetico, OperadorRelacional, FuncionesPrimitivas
 
 from Objeto.Primitivo import Primitivo
 
@@ -339,22 +338,50 @@ def p_struct_variable(t):
     elif len(t) == 3:
         t[0] = StructParametros(Instrucciones.STRUCT_VARIABLE, t[1], None, t.lineno(1), find_column(input, t.slice[1]))
 
+def p_asignacion_instr_s1(t):      # arr = [1,2,3,4,5,6];  variable = 3;
+    'asignacion_instr       : ID IGUAL expresion PUNTOYCOMA'
+    t[0] = Asignacion(t[1], t[3], None, Instrucciones.ASIGNACION_ID, t.lineno(1), find_column(input, t.slice[1]))
 
-def p_asignacion_instr_s1(t): # VARIABLE Y ARRAY  antes=[ID IGUAL CORIZQ expresiones CORDER expresion PUNTOYCOMA]
-    'asignacion_instr       : expresion IGUAL expresion PUNTOYCOMA'
-                            # validar que la expresion que viene es de tipo:
-                            # ID
-                            # arreglo
-                            # arr = [1,2,3,4,5,6];  x[3][2]=55; x[1] = 3;  variable = 3;
-    t[0] = Asignacion(t[1], t[3], t.lineno(2), find_column(input, t.slice[2]))
+def p_asignacion_instr_s2(t):    # x[3][2]=55;  x[1] = 3; x[3][2]=55; x[1] = 3;
+    'asignacion_instr       : ID posiciones IGUAL expresion PUNTOYCOMA'
+    t[0] = Asignacion(t[1], t[4], t[2], Instrucciones.ASIGNACION_ARREGLO, t.lineno(1), find_column(input, t.slice[1]))
+
+def p_asignacion_instr_s2_1(t):
+    'posiciones        : posiciones posicion'
+    t[1].append(t[2])
+    t[0] = t[1]
+
+def p_asignacion_instr_s2_2(t):
+    'posiciones        : posicion'
+    t[0] = [t[1]]
+
+def p_asignacion_instr_s2_3(t):
+    'posicion          : CORIZQ ID CORDER'
+    t[0] = t[2]
+
+def p_asignacion_instr_s3(t):   # ID.ID.ID.ID.ID = expresion
+    'asignacion_instr       : ID posids IGUAL expresion PUNTOYCOMA'
+    t[0] = Asignacion(t[1], t[4], t[2], Instrucciones.ASIGNACION_ACCESO, t.lineno(1), find_column(input, t.slice[1]))
+
+def p_asignacion_instr_s3_1(t):
+    'posids        : posids posid'
+    t[1].append(t[2])
+    t[0] = t[1]
+
+def p_asignacion_instr_s3_2(t):
+    'posids        : posid'
+    t[0] = [t[1]]
+
+def p_asignacion_instr_s3_3(t):
+    'posid          : PUNTO expresion'
+    t[0] = t[2]             #ID
 
 def p_declaracion_asignacion_instr_s1(t):
     'declaracion_asignacion_instr   :  ID IGUAL expresion DOSPUNTOSDOSPUNTOS tipoDato PUNTOYCOMA'
     t[0] = DeclaracionAsignacion(t[1], t[3], t[5], t.lineno(1), find_column(input, t.slice[1]))
 
-
 def p_llamadaFuncion_instr_s1(t):
-    'llamadaFuncion_instr   : ID PARIZQ expresiones PARDER PUNTOYCOMA'
+    'llamadaFuncion_instr   : ID PARIZQ parametros_envio PARDER PUNTOYCOMA'
     t[0] = LlamadaFuncion(t[1], t[3], t.lineno(1), find_column(input, t.slice[1]))
 
 def p_funcion_instr_s1(t):  #VALIDAR EL RETURN EN EL SEMANTICO TODO:siempre retornar 'nothing'
@@ -373,16 +400,25 @@ def p_parametros_s2(t):
 
 def p_parametro_s1(t):
     '''parametro        : ID DOSPUNTOSDOSPUNTOS tipoDato
-                        | ID'''
+                        | ID
+                        | '''
                         # TODO: se permitira un id como parametro
     if len(t) == 4:
         t[0] = FuncionParametros(t[1], t[3], t.lineno(1), find_column(input, t.slice[1]))
     elif len(t) == 2:
         t[0] = FuncionParametros(t[1], None, t.lineno(1), find_column(input, t.slice[1]))
 
+def p_parametros_envio(t):
+    '''parametros_envio     : expresiones
+                            | '''
+    if len(t) == 2:
+        t[0] = t[1]
+    else:
+        t[0] = []
+
 # ==========================
 def p_if_instr(t):
-    '''if_instr        : IF expresion instrucciones END PUNTOYCOMA
+    '''if_instr        :  IF expresion instrucciones END PUNTOYCOMA
                         | IF expresion instrucciones elseifs ELSE instrucciones END PUNTOYCOMA
                         | IF expresion instrucciones ELSE instrucciones END PUNTOYCOMA'''
     if len(t) == 6:
@@ -393,8 +429,8 @@ def p_if_instr(t):
         t[0] = IfInstr(Instrucciones.IF_3, t[2], t[3], t[5], None, t.lineno(1), find_column(input, t.slice[1]))
 
 def p_elseifs_s1(t):
-    'elseifs            : elseifs COMA elseif_instr'
-    t[1].append(t[3])
+    'elseifs            : elseifs elseif_instr'
+    t[1].append(t[2])
     t[0] = t[1]
 
 def p_elseif_s2(t):
@@ -496,11 +532,11 @@ def p_expresion_s(t): # TODO: unario
 
 def p_expresion_s1(t): # TODO: unario
     'expresion        : MENOS expresion %prec UMENOS'
-    t[0] = Aritmetica(OperadorAritmetico.MENOS, t[2], None, t.lineno(1), find_column(input, t.slice[1]))
+    t[0] = Aritmetica(OperadorAritmetico.MENOS, None, t[2], t.lineno(1), find_column(input, t.slice[1]))
 
 def p_expresion_s2(t): # TODO: unario
     'expresion        : NOT expresion'
-    t[0] = Logica(OperadorLogico.NOT, t[2], None, t.lineno(1), find_column(input, t.slice[1]))
+    t[0] = Logica(OperadorLogico.NOT, None, t[2], t.lineno(1), find_column(input, t.slice[1]))
 
 # VARIABLES DE TIPO PRIMITIVO
 def p_expresion_s3(t): # TODO: unario
@@ -536,9 +572,6 @@ def p_expresion_s8(t): # TODO: unario
 def p_expresion_s9(t): # TODO: unario
     'expresion        : NULO'
     t[0] = Constante(Primitivo(TipoObjeto.NULO, None), t.lineno(1), find_column(input, t.slice[1]))
-
-
-
 
 def p_expresion_s10(t):
     'expresion        : SQRT PARIZQ expresion PARDER'
@@ -592,32 +625,32 @@ def p_expresion_s19(t):
 
 def p_expresion_s20(t):
     'expresion        : TYPEOF PARIZQ expresion PARDER'
-    Nativas(FuncionesPrimitivas.TYPEOF, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
+    t[0] = Nativas(FuncionesPrimitivas.TYPEOF, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
 
 
 def p_expresion_s21(t):
     'expresion        : PUSH NOT PARIZQ expresion COMA expresion PARDER'
-    Nativas(FuncionesPrimitivas.PUSH, t[4], t[6], None, t.lineno(1), find_column(input, t.slice[1]))
+    t[0] = Nativas(FuncionesPrimitivas.PUSH, t[4], t[6], None, t.lineno(1), find_column(input, t.slice[1]))
 
 
 def p_expresion_s22(t):
     'expresion        : POP NOT PARIZQ expresion PARDER'
-    Nativas(FuncionesPrimitivas.POP, t[4], None, None, t.lineno(1), find_column(input, t.slice[1]))
+    t[0] = Nativas(FuncionesPrimitivas.POP, t[4], None, None, t.lineno(1), find_column(input, t.slice[1]))
 
 
 def p_expresion_s23(t):
     'expresion        : LENGTH PARIZQ expresion PARDER'
-    Nativas(FuncionesPrimitivas.LENGTH, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
+    t[0] = Nativas(FuncionesPrimitivas.LENGTH, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
 
 
 def p_expresion_s24(t):
     'expresion        : UPPERCASE PARIZQ expresion PARDER'
-    Nativas(FuncionesPrimitivas.UPPERCASE, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
+    t[0] = Nativas(FuncionesPrimitivas.UPPERCASE, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
 
 
 def p_expresion_s25(t):
     'expresion        : LOWERCASE PARIZQ expresion PARDER'
-    Nativas(FuncionesPrimitivas.LOWERCASE, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
+    t[0] = Nativas(FuncionesPrimitivas.LOWERCASE, t[3], None, None, t.lineno(1), find_column(input, t.slice[1]))
 
 
 # TODO: cambiar el ==
@@ -631,57 +664,52 @@ def p_expresion_s27(t):
                         # arreglo = [32, 21, 7, 89, 56, 909, 109, 2, 9, 1, 44, 3, 8200, 11, 8, 10];
 
 def p_expresion_s28(t):
-    'expresion        : PARIZQ expresiones PARDER'
-
-def p_expresion_s29(t):
-    'expresion        : expresion PUNTO expresion'
-
-def p_expresion_s30(t):
-    'expresion        : ID PARIZQ expresiones PARDER'
-                        #PUEDE SER LA LLAMDA A UNA FUNCION || PUEDE SER LA CREACION DE UN STRUCT COMO EXPRESION
-
-def p_expresion_s31(t):
-    'expresion        : ID expresion'
-                        # x[1] = 3;
-                        # x[3][2]=55;
+    'expresion        : PARIZQ expresion PARDER'
+    t[0] = t[2]
 
 def p_expresion_s32(t):
     'expresion        : ID'
     t[0] = Identificador(t[1].replace('\\n', '\n'), t.lineno(1), find_column(input, t.slice[1]))
 
+def p_expresion_s30(t):
+    'expresion        : ID PARIZQ expresiones PARDER'
+                        #PUEDE SER LA LLAMDA A UNA FUNCION || PUEDE SER LA CREACION DE UN STRUCT COMO EXPRESION
 
-def p_tipoDatos(t):
+def p_expresion_s29(t):
+    'expresion        : expresion PUNTO expresion'
+
+
+def p_tipo_datos(t):
     'tipoDato         : NULO'
     t[0] = TipoObjeto.NULO
 
-def p_tipoDatos_s1(t):
+def p_tipo_datos_s1(t):
     'tipoDato         : FLOAT64'
     t[0] = TipoObjeto.FLOAT64
 
 
-def p_tipoDatos_s2(t):
+def p_tipo_datos_s2(t):
     'tipoDato         : INT64'
     t[0] = TipoObjeto.INT64
 
 
-def p_tipoDatos_s3(t):
+def p_tipo_datos_s3(t):
     'tipoDato         : BOOL'
     t[0] = TipoObjeto.BOOL
 
 
-def p_tipoDatos_s4(t):
+def p_tipo_datos_s4(t):
     'tipoDato         : CHAR'
     t[0] = TipoObjeto.CHAR
 
 
-def p_tipoDatos_s5(t):
+def p_tipo_datos_s5(t):
     'tipoDato         : STRING'
     t[0] = TipoObjeto.STRING
 
 
-def p_tipoDatos_s6(t):
+def p_tipo_datos_s6(t):
     'tipoDato         : ID'
-                        # POR EJEMPLO ALGUN STRUCT
     t[0] = TipoObjeto.ID
 
 

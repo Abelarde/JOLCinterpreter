@@ -1,25 +1,6 @@
 from enum import Enum
 
-
-# TODO: averiguar la diferencia entre este tipo y el tipo dentro de Objeto
-# CLASE PARA USAR EN LA GRAMATICA
-
-class TIPO(Enum):
-    NULO = 1
-    FLOAT64 = 2
-    INT64 = 3
-    BOOL = 4
-    CHAR = 5
-    STRING = 6
-    ID = 7  # algun tipo de algun struct o variable
-    ARRAY = 8
-    STRUCT_MUTABLE = 9  # cuando se declara
-    STRUCT_NO_MUTABLE = 10  # cuando se declara
-    FUNCTION = 11  # cuando se declara
-    LOCAL = 12  # cuando se declara
-    GLOBAL = 13  # cuando se declara
-    ERROR = 14
-
+# NOTE: ENUM'S PARA LA GRAMATICA
 class OperadorAritmetico(Enum):
     MAS = 1
     MENOS = 2
@@ -78,3 +59,6 @@ class Instrucciones(Enum):
     PRINT_LN = 10
     FOR_VARIABLE = 11
     FOR_RANGO = 12
+    ASIGNACION_ID = 13
+    ASIGNACION_ARREGLO = 14
+    ASIGNACION_ACCESO = 15
